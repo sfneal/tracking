@@ -16,6 +16,7 @@ class ParseTrafficAction extends AbstractAction
      */
     private $tracking = [];
 
+    // todo: add to config
     /**
      * Array keys to exclude from the 'request_payload' attribute.
      *
