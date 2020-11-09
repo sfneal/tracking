@@ -13,6 +13,7 @@ use Sfneal\Tracking\Queries\TrackActivityQuery;
 
 class TrackingController extends AbstractController
 {
+    // todo: add to config
     /**
      * Routes & views prefix.
      */
