@@ -1,11 +1,11 @@
 {
-    "name": "sfneal/php-package-boilerplate",
-    "description": "Boilerplate for PHP package repo's",
+    "name": "sfneal/tracking",
+    "description": "Add persistent traffic, action & activity tracking to a Laravel Application through middleware & events/listeners",
     "keywords": [
         "sfneal",
-        "php-package-boilerplate"
+        "tracking"
     ],
-    "homepage": "https://github.com/sfneal/php-package-boilerplate",
+    "homepage": "https://github.com/sfneal/tracking",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Sfneal\\PhpPackageBoilerplate\\": "src"
+            "Sfneal\\Tracking\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sfneal\\PhpPackageBoilerplate\\Tests\\": "tests"
+            "Sfneal\\Tracking\\Tests\\": "tests"
         }
     },
     "scripts": {
