@@ -41,6 +41,7 @@ class TrackingController extends AbstractController
      */
     public function index(Request $request)
     {
+        // todo: add 'users' to config
         return view(self::PREFIX.'.index', [
             'title' => 'Activity Tracking',
             'tables' => self::TABLES,
