@@ -21,6 +21,7 @@
         "jenssegers/agent": "^2.6",
         "sfneal/controllers": ">=0.3.2",
         "sfneal/queries": ">=0.3.0",
+        "sfneal/string-helpers": ">=0.2.2",
         "sfneal/time-helpers": ">=0.7.0"
     },
     "require-dev": {
