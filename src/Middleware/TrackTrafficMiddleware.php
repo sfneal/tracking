@@ -18,7 +18,7 @@ class TrackTrafficMiddleware
      *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         // Add unique ID to be used to relate traffic & activities
         $request->attributes->add(['track_traffic_token' => uniqid()]);
@@ -44,7 +44,7 @@ class TrackTrafficMiddleware
         event(new TrackTrafficEvent(
             $request,
             $response,
-            $this->getTimestamp(),
+            $this->getTimestamp()
         ));
     }
 
