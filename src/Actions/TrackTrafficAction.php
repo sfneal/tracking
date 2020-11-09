@@ -23,6 +23,7 @@ class TrackTrafficAction extends AbstractActionStatic
         TrackTraffic::query()->create($flat);
 
         // Log JSON encoded activity to local log file
+        // todo: add to config
         if (env('TRACK_TRAFFIC_LOGGING', false) == true) {
             Log::channel('traffic')->info(json_encode($flat));
         }
