@@ -1,7 +1,8 @@
 # Tracking (actions, activity & traffic)
 
+[![Packagist PHP support](https://img.shields.io/packagist/php-v/sfneal/tracking)](https://packagist.org/packages/sfneal/tracking)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/sfneal/tracking.svg?style=flat-square)](https://packagist.org/packages/sfneal/tracking)
-[![Build Status](https://img.shields.io/travis/sfneal/tracking/master.svg?style=flat-square)](https://travis-ci.org/sfneal/tracking)
+[![Build Status](https://travis-ci.com/sfneal/tracking.svg?branch=master&style=flat-square)](https://travis-ci.com/sfneal/tracking)
 [![Quality Score](https://img.shields.io/scrutinizer/g/sfneal/tracking.svg?style=flat-square)](https://scrutinizer-ci.com/g/sfneal/tracking)
 [![Total Downloads](https://img.shields.io/packagist/dt/sfneal/tracking.svg?style=flat-square)](https://packagist.org/packages/sfneal/tracking)
 
