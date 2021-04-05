@@ -2,10 +2,9 @@
 
 namespace Sfneal\Tracking\Builders;
 
+use Sfneal\Builders\QueryBuilder;
 use Sfneal\Users\Builders\Interfaces\WhereUserInterface;
 use Sfneal\Users\Builders\Traits\WhereUser;
-use Sfneal\Builders\QueryBuilder;
-
 
 class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
 {
