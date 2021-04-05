@@ -3,10 +3,10 @@
 namespace Sfneal\Tracking\Actions;
 
 use Illuminate\Database\Eloquent\Model;
-use Sfneal\Actions\AbstractAction;
+use Sfneal\Actions\Action;
 use Sfneal\Tracking\Models\TrackAction;
 
-class TrackActionAction extends AbstractAction
+class TrackActionAction extends Action
 {
     public $action;
     public $model;

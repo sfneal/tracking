@@ -3,10 +3,10 @@
 namespace Sfneal\Tracking\Actions;
 
 use Illuminate\Support\Facades\Log;
-use Sfneal\Actions\AbstractActionStatic;
+use Sfneal\Actions\ActionStatic;
 use Sfneal\Tracking\Models\TrackTraffic;
 
-class TrackTrafficAction extends AbstractActionStatic
+class TrackTrafficAction extends ActionStatic
 {
     /**
      * Retrieve tracking data and then do something with it.

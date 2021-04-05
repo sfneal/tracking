@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Jenssegers\Agent\Agent;
-use Sfneal\Actions\AbstractAction;
+use Sfneal\Actions\Action;
 
-class ParseTrafficAction extends AbstractAction
+class ParseTrafficAction extends Action
 {
     /**
      * @var array

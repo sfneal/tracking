@@ -2,10 +2,10 @@
 
 namespace Sfneal\Tracking\Actions;
 
-use Sfneal\Actions\AbstractActionStatic;
+use Sfneal\Actions\ActionStatic;
 use Sfneal\Tracking\Models\TrackTraffic;
 
-class CleanDevTrackingAction extends AbstractActionStatic
+class CleanDevTrackingAction extends ActionStatic
 {
     /**
      * Execute the Action.
