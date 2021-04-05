@@ -30,7 +30,7 @@ class TrackTrafficAction extends Action
      * @return void
      */
     public function execute()
-    {;
+    {
         // Log traffic data to DB
         TrackTraffic::query()->create($this->tracking);
 
