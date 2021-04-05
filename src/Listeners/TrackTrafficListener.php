@@ -2,11 +2,11 @@
 
 namespace Sfneal\Tracking\Listeners;
 
-use Sfneal\Listeners\AbstractListener;
+use Sfneal\Listeners\Listener;
 use Sfneal\Tracking\Actions\TrackTrafficAction;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
 
-class TrackTrafficListener extends AbstractListener
+class TrackTrafficListener extends Listener
 {
     /**
      * @var string Queue to use

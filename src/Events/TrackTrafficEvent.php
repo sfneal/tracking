@@ -5,10 +5,10 @@ namespace Sfneal\Tracking\Events;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Sfneal\Events\AbstractEvent;
+use Sfneal\Events\Event;
 use Sfneal\Tracking\Actions\ParseTrafficAction;
 
-class TrackTrafficEvent extends AbstractEvent
+class TrackTrafficEvent extends Event
 {
     /**
      * @var array

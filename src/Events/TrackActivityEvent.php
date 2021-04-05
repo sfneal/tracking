@@ -3,9 +3,9 @@
 namespace Sfneal\Tracking\Events;
 
 use Illuminate\Database\Eloquent\Model;
-use Sfneal\Events\AbstractEvent;
+use Sfneal\Events\Event;
 
-class TrackActivityEvent extends AbstractEvent
+class TrackActivityEvent extends Event
 {
     /**
      * @var Model

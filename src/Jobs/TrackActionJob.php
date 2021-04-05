@@ -5,11 +5,10 @@ namespace Sfneal\Tracking\Jobs;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Sfneal\Queueables\AbstractJob;
+use Sfneal\Queueables\Job;
 use Sfneal\Tracking\Actions\TrackActionAction;
 
-// TODO: create package Tracking
-class TrackActionJob extends AbstractJob
+class TrackActionJob extends Job
 {
     /**
      * Delete the job if its models no longer exist.

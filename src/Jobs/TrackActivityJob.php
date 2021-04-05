@@ -3,10 +3,10 @@
 namespace Sfneal\Tracking\Jobs;
 
 use Illuminate\Database\Eloquent\Model;
-use Sfneal\Queueables\AbstractJob;
+use Sfneal\Queueables\Job;
 use Sfneal\Tracking\Actions\TrackActivityAction;
 
-class TrackActivityJob extends AbstractJob
+class TrackActivityJob extends Job
 {
     /**
      * @var string Queue to use

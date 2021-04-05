@@ -2,10 +2,10 @@
 
 namespace Sfneal\Tracking\Jobs;
 
-use Sfneal\Queueables\AbstractJob;
+use Sfneal\Queueables\Job;
 use Sfneal\Tracking\Actions\CleanDevTrackingAction;
 
-class CleanDevTrackingJob extends AbstractJob
+class CleanDevTrackingJob extends Job
 {
     /**
      * @var string Queue to use

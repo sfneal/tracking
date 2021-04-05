@@ -2,16 +2,16 @@
 
 namespace Sfneal\Tracking\Controllers;
 
-use Domain\Users\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Sfneal\Controllers\AbstractController;
+use Sfneal\Controllers\Controller;
 use Sfneal\Helpers\Time\TimePeriods;
 use Sfneal\Tracking\Queries\TrackActionQuery;
 use Sfneal\Tracking\Queries\TrackActivityQuery;
+use Sfneal\Users\Models\User;
 
-class TrackingController extends AbstractController
+class TrackingController extends Controller
 {
     // todo: add to config
     /**

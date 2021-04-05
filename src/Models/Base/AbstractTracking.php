@@ -2,10 +2,10 @@
 
 namespace Sfneal\Tracking\Models\Base;
 
-use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Sfneal\Models\AbstractModel;
 use Sfneal\Scopes\CreatedOrderScope;
+use Sfneal\Users\Models\User;
 
 abstract class AbstractTracking extends AbstractModel
 {
