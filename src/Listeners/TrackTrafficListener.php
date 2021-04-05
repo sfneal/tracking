@@ -24,6 +24,6 @@ class TrackTrafficListener extends AbstractListener
      */
     public function handle(TrackTrafficEvent $event)
     {
-        TrackTrafficAction::execute($event->tracking);
+        (new TrackTrafficAction($event->tracking))->execute();
     }
 }
