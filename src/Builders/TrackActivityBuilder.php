@@ -2,8 +2,8 @@
 
 namespace Sfneal\Tracking\Builders;
 
-use Domain\Users\Builders\Interfaces\WhereUserInterface;
-use Domain\Users\Builders\Traits\WhereUser;
+use Sfneal\Users\Builders\Interfaces\WhereUserInterface;
+use Sfneal\Users\Builders\Traits\WhereUser;
 use Sfneal\Builders\QueryBuilder;
 use Sfneal\Tracking\Builders\Traits\WhereModels;
 

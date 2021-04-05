@@ -2,11 +2,11 @@
 
 namespace Sfneal\Tracking\Builders;
 
-use Domain\Users\Builders\Interfaces\WhereUserInterface;
-use Domain\Users\Builders\Traits\WhereUser;
+use Sfneal\Users\Builders\Interfaces\WhereUserInterface;
+use Sfneal\Users\Builders\Traits\WhereUser;
 use Sfneal\Builders\QueryBuilder;
 
-// todo: add use of User package
+
 class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
 {
     use WhereUser;
