@@ -9,6 +9,7 @@ use Sfneal\Queries\Traits\ParamGetter;
 use Sfneal\Tracking\Builders\TrackActivityBuilder;
 use Sfneal\Tracking\Models\TrackActivity;
 
+// todo: refactor
 class TrackActivityQuery extends AbstractQueryStatic
 {
     use ParamGetter;
