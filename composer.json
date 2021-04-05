@@ -19,6 +19,7 @@
         "php": ">=7.3",
         "ext-json": "*",
         "jenssegers/agent": "^2.6",
+        "sfneal/actions": "^2.0",
         "sfneal/controllers": "^2.0",
         "sfneal/datum": "^1.0",
         "sfneal/observables": "^1.0",
