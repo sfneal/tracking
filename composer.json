@@ -36,7 +36,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Sfneal\\Tracking\\": "src"
+            "Sfneal\\Tracking\\": "src",
+            "Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
