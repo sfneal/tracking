@@ -21,6 +21,7 @@ class TrackTrafficAction extends Action
      */
     public function __construct(array $tracking)
     {
+        // Flatten tracking data
         $this->tracking = (new ArrayHelpers($tracking))->arrayFlattenKeys();
     }
 
@@ -30,12 +31,12 @@ class TrackTrafficAction extends Action
      * @return void
      */
     public function execute()
-    {;
+    {
         // Log traffic data to DB
         TrackTraffic::query()->create($this->tracking);
 
         // Log JSON encoded activity to local log file
-        // todo: add to config
+        // todo: add use of config
         if (env('TRACK_TRAFFIC_LOGGING', false) == true) {
             Log::channel('traffic')->info(json_encode($this->tracking));
         }

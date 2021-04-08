@@ -13,7 +13,6 @@ use Sfneal\Users\Models\User;
 
 class TrackingController extends Controller
 {
-    // todo: add to config
     /**
      * Routes & views prefix.
      */
@@ -42,7 +41,6 @@ class TrackingController extends Controller
      */
     public function index(Request $request)
     {
-        // todo: add 'users' to config
         return view(self::PREFIX.'.index', [
             'title' => 'Activity Tracking',
             'tables' => self::TABLES,
@@ -74,7 +72,7 @@ class TrackingController extends Controller
     {
         return view(self::PREFIX.'.activity.results', [
             // Retrieve Collection of Activities
-            'activities' => TrackActivityQuery::execute($request)->get(),
+            'activities' => (new TrackActivityQuery($request))->execute()->get(),
 
             // Don't show plan_ids if a model_key has been specified
             'hide_id' => $request->has('key'),
@@ -94,7 +92,7 @@ class TrackingController extends Controller
     {
         return view(self::PREFIX.'.actions.results', [
             // Retrieve Collection of Actions
-            'actions' => TrackActionQuery::execute($request)->get(),
+            'actions' => (new TrackActionQuery($request))->execute()->get(),
 
             // Don't show plan_ids if a model_key has been specified
             'hide_id' => $request->has('key'),

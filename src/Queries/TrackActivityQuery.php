@@ -2,15 +2,13 @@
 
 namespace Sfneal\Tracking\Queries;
 
-use Illuminate\Http\Request;
 use Sfneal\Helpers\Time\TimePeriods;
-use Sfneal\Queries\AbstractQueryStatic;
 use Sfneal\Queries\Traits\ParamGetter;
 use Sfneal\Tracking\Builders\TrackActivityBuilder;
 use Sfneal\Tracking\Models\TrackActivity;
+use Sfneal\Tracking\Queries\Base\TrackingQuery;
 
-// todo: refactor
-class TrackActivityQuery extends AbstractQueryStatic
+class TrackActivityQuery extends TrackingQuery
 {
     use ParamGetter;
 
@@ -32,41 +30,47 @@ class TrackActivityQuery extends AbstractQueryStatic
     ];
 
     /**
-     * Retrieve a TrackActivity by table query result set.
-     *
-     * @param Request|null $request
-     * @param array        $parameters
-     * @param array|null   $relationships
+     * Retrieve a Query builder.
      *
      * @return TrackActivityBuilder
      */
-    public static function execute(Request $request = null, array $parameters = [], array $relationships = null): TrackActivityBuilder
+    protected function builder(): TrackActivityBuilder
     {
-        $tracking = TrackActivity::query()
-            ->with($relationships ?? self::DEFAULT_RELATIONSHIPS);
+        return TrackActivity::query()
+            ->with($this->relationships ?? self::DEFAULT_RELATIONSHIPS);
+    }
+
+    /**
+     * Retrieve a TrackActivity by table query result set.
+     *
+     * @return TrackActivityBuilder
+     */
+    public function execute(): TrackActivityBuilder
+    {
+        $tracking = $this->builder();
 
         // Table
-        if ($table = self::getParam($request, $parameters, 'table')) {
+        if ($table = self::getParam($this->request, $this->parameters, 'table')) {
             $tracking->whereModelTable($table);
         }
 
         // User
-        if ($user = self::getParam($request, $parameters, 'user')) {
+        if ($user = self::getParam($this->request, $this->parameters, 'user')) {
             $tracking->whereUser($user);
         }
 
         // User(s)
-        if ($users = self::getParam($request, $parameters, 'users')) {
+        if ($users = self::getParam($this->request, $this->parameters, 'users')) {
             $tracking->whereUserIn($users);
         }
 
         // Key
-        if ($model_keys = self::getParam($request, $parameters, 'key')) {
+        if ($model_keys = self::getParam($this->request, $this->parameters, 'key')) {
             $tracking->whereModelKey($model_keys);
         }
 
         // Time Period
-        if ($period = self::getParam($request, $parameters, 'period')) {
+        if ($period = self::getParam($this->request, $this->parameters, 'period')) {
             if (is_string($period)) {
                 $period = TimePeriods::timePeriod($period);
             }

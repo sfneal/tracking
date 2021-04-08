@@ -25,6 +25,7 @@ class TrackTrafficMiddleware
 
         $response = $next($request);
 
+        // todo: add use of config
         if (env('TRACK_TRAFFIC') == true) {
             $this->track($request, $response);
         } else {
@@ -44,7 +45,7 @@ class TrackTrafficMiddleware
         event(new TrackTrafficEvent(
             $request,
             $response,
-            $this->getTimestamp()
+            $this->getTimestamp(),
         ));
     }
 

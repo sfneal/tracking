@@ -16,7 +16,6 @@ class ParseTrafficAction extends Action
      */
     private $tracking = [];
 
-    // todo: add to config
     /**
      * Array keys to exclude from the 'request_payload' attribute.
      *
@@ -95,6 +94,7 @@ class ParseTrafficAction extends Action
         $this->tracking['response']['time'] = $this->getResponseTime($time_stamp);
 
         // Store response content served if enabled
+        // todo: replace env call with config call
         if (env('TRACK_TRAFFIC_RESPONSE_CONTENT', false) == true) {
             $this->tracking['response']['content'] = $response->getContent();
         }
@@ -128,6 +128,7 @@ class ParseTrafficAction extends Action
      */
     private function getResponseTime($time_stamp)
     {
+        // todo: fix issue with LARAVEL_START constant
         return number_format($time_stamp - LARAVEL_START, 2);
     }
 

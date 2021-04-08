@@ -4,6 +4,7 @@ namespace Sfneal\Tracking\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Sfneal\Helpers\Laravel\AppInfo;
 use Sfneal\Tracking\Builders\TrackTrafficBuilder;
 use Sfneal\Tracking\Models\Base\AbstractTracking;
 
@@ -72,6 +73,6 @@ class TrackTraffic extends AbstractTracking
      */
     public function setAppEnvironmentAttribute($value = null)
     {
-        $this->attributes['app_environment'] = (isset($value) ? $value : env('APP_ENV'));
+        $this->attributes['app_environment'] = (isset($value) ? $value : AppInfo::env());
     }
 }
