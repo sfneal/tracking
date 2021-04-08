@@ -20,6 +20,7 @@ class TrackTrafficMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        // todo: add to if statement body?
         // Add unique ID to be used to relate traffic & activities
         $request->attributes->add(['track_traffic_token' => uniqid()]);
 
