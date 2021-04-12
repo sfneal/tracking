@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Scopes\IdOrderScope;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
-use Sfneal\Tracking\Models\Base\AbstractTracking;
+use Sfneal\Tracking\Models\Base\Tracking;
 use Sfneal\Tracking\Models\Traits\TrackingRelationships;
 
-class TrackAction extends AbstractTracking
+class TrackAction extends Tracking
 {
     use TrackingRelationships;
 

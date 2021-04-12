@@ -7,7 +7,7 @@ use Sfneal\Models\Model;
 use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Users\Models\User;
 
-abstract class AbstractTracking extends Model
+abstract class Tracking extends Model
 {
     /**
      * The "booting" method of the model.

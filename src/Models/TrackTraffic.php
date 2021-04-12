@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Sfneal\Helpers\Laravel\AppInfo;
 use Sfneal\Tracking\Builders\TrackTrafficBuilder;
-use Sfneal\Tracking\Models\Base\AbstractTracking;
+use Sfneal\Tracking\Models\Base\Tracking;
 
-class TrackTraffic extends AbstractTracking
+class TrackTraffic extends Tracking
 {
     protected $table = 'track_traffic';
     protected $primaryKey = 'track_traffic_id';

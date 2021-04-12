@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Scopes\IdOrderScope;
 use Sfneal\Tracking\Builders\TrackActivityBuilder;
-use Sfneal\Tracking\Models\Base\AbstractTracking;
+use Sfneal\Tracking\Models\Base\Tracking;
 use Sfneal\Tracking\Models\Traits\TrackingRelationships;
 
-class TrackActivity extends AbstractTracking
+class TrackActivity extends Tracking
 {
     // todo: add use of polymorphic relationships
     use TrackingRelationships;
