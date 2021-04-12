@@ -40,6 +40,16 @@ class TrackAction extends Tracking
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'model_key' => 'int',
+        'model_changes' => 'array',
+    ];
+
+    /**
      * Create a new factory instance for the model.
      *
      * @return TrackActionFactory
@@ -68,4 +78,15 @@ class TrackAction extends Tracking
     {
         return parent::query();
     }
+
+//    /**
+//     * Retrieve the 'model_key' key attribute as an integer.
+//     *
+//     * @param $value
+//     * @return int
+//     */
+//    public function getModelKeyAttribute($value): int
+//    {
+//        return intval($value);
+//    }
 }
