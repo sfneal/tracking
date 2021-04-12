@@ -2,7 +2,9 @@
 
 namespace Sfneal\Tracking\Models;
 
+use Database\Factories\TrackActionFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Scopes\IdOrderScope;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
@@ -11,6 +13,7 @@ use Sfneal\Tracking\Models\Traits\TrackingRelationships;
 
 class TrackAction extends Tracking
 {
+    use HasFactory;
     use TrackingRelationships;
 
     /**
@@ -35,6 +38,16 @@ class TrackAction extends Tracking
         'model_key',
         'model_changes',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return TrackActionFactory
+     */
+    protected static function newFactory(): TrackActionFactory
+    {
+        return new TrackActionFactory();
+    }
 
     /**
      * Query Builder.
