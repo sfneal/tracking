@@ -26,8 +26,8 @@ class TrackTrafficMiddleware
 
         $response = $next($request);
 
-        // todo: add use of config
-        if (env('TRACK_TRAFFIC') == true) {
+        // Check if traffic tracking is enabled
+        if (config('tracking.traffic.track')) {
             $this->track($request, $response);
         } else {
             $request->attributes->add(['track_traffic_token' => null]);
