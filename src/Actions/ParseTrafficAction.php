@@ -94,7 +94,6 @@ class ParseTrafficAction extends Action
         $this->tracking['response']['time'] = $this->getResponseTime($time_stamp);
 
         // Store response content served if enabled
-        // todo: replace env call with config call
         if (config('tracking.traffic.response_content')) {
             $this->tracking['response']['content'] = $response->getContent();
         }
