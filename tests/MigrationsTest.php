@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests;
-
 
 use Sfneal\Tracking\Models\TrackAction;
 

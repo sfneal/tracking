@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Database\Factories\Traits;
-
 
 trait ModelChanges
 {

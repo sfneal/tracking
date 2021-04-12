@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Database\Factories;
-
 
 use Database\Factories\Traits\ModelChanges;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -41,8 +39,8 @@ class TrackActionFactory extends Factory
      */
     protected function randomAction(): array
     {
-        return collect(['created', 'updated', 'deleted'])->each(function(string $action) {
-            return ucfirst($action) . ' the model.';
+        return collect(['created', 'updated', 'deleted'])->each(function (string $action) {
+            return ucfirst($action).' the model.';
         })->toArray();
     }
 }

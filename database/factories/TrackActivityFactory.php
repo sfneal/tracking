@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Database\Factories;
-
 
 use Database\Factories\Traits\ModelChanges;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -35,7 +33,7 @@ class TrackActivityFactory extends Factory
             'model_key' => $this->faker->randomNumber(3),
             'model_changes' => $this->faker->randomElements($this->modelChanges()),
 
-            'request_token' => $this->faker->uuid
+            'request_token' => $this->faker->uuid,
         ];
     }
 
@@ -48,6 +46,7 @@ class TrackActivityFactory extends Factory
     {
         $prefixes = ['projects', 'tasks', 'reports', 'client'];
         $actions = ['store', 'update',  'delete'];
-        return $this->faker->randomElement($prefixes) . '.' . $this->faker->randomElement($actions);
+
+        return $this->faker->randomElement($prefixes).'.'.$this->faker->randomElement($actions);
     }
 }

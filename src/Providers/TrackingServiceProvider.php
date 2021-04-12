@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Providers;
-
 
 use Illuminate\Support\ServiceProvider;
 
