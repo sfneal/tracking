@@ -46,6 +46,17 @@ class TrackActivity extends Tracking
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'int',
+        'model_key' => 'int',
+        'model_changes' => 'array',
+    ];
+
+    /**
      * Create a new factory instance for the model.
      *
      * @return TrackActivityFactory
