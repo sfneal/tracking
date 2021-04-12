@@ -12,6 +12,8 @@ class MigrationsTest extends TestCase
     /**
      * Execute model assertions.
      *
+     * // todo: add to test data package?
+     *
      * @param array $data
      * @param Model $model
      * @return void
