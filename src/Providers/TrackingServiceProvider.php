@@ -6,10 +6,19 @@ use Illuminate\Support\ServiceProvider;
 
 class TrackingServiceProvider extends ServiceProvider
 {
+    /**
+     * Bootstrap any Tracking services.
+     *
+     * @return void
+     */
     public function boot()
     {
-        // Publish migration file (if not already published)
-        // `TrackActivity` migration
+        // Publish config file (before migrations in case config values are used in migrations)
+        $this->publishes([
+            __DIR__.'/../../config/tracking.php' => config_path('tracking.php'),
+        ], 'config');
+
+        // `TrackActivity` migration file
         if (! class_exists('CreateTrackActionTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_track_action_table.php.stub' => database_path(
@@ -18,7 +27,7 @@ class TrackingServiceProvider extends ServiceProvider
             ], 'migration');
         }
 
-        // `TrackAction` migration
+        // `TrackAction` migration file
         if (! class_exists('CreateTrackActivityTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_track_activity_table.php.stub' => database_path(
@@ -27,7 +36,7 @@ class TrackingServiceProvider extends ServiceProvider
             ], 'migration');
         }
 
-        // `TrackTraffic` migration
+        // `TrackTraffic` migration file
         if (! class_exists('CreateTrackTrafficTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_track_traffic_table.php.stub' => database_path(
@@ -35,5 +44,16 @@ class TrackingServiceProvider extends ServiceProvider
                 ),
             ], 'migration');
         }
+    }
+
+    /**
+     * Register any Tracking services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        // Load config file
+        $this->mergeConfigFrom(__DIR__.'/../../config/tracking.php', 'tracking');
     }
 }
