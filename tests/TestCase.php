@@ -20,7 +20,7 @@ class TestCase extends OrchestraTestCase
     protected function getEnvironmentSetUp($app)
     {
         // Migrate 'track_action' table
-        include_once __DIR__.'/migrations/create_track_action_table.php.stub';
+        include_once __DIR__.'/../database/migrations/create_track_action_table.php.stub';
         (new \CreateTrackActionTable())->up();
 
         // Migrate 'track_activity' table
