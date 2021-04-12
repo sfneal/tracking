@@ -40,7 +40,7 @@ class MigrationsTest extends TestCase
             'description' => 'Created a new People model.',
             'model_table' => 'people',
             'model_key' => 22,
-            'request_token' => uniqid()
+            'request_token' => uniqid(),
         ];
 
         // Create the `TrackActivity` model
