@@ -7,15 +7,29 @@ return [
         | Track Traffic
         |--------------------------------------------------------------------------
         |
-        | Enable traffic tracking within your laravel application.  Once enable,
-        | visits to routes using the `TrackTrafficMiddleware` will be tracked &
-        | data will be stored using a `TrackTraffic` model.
+        | Enable traffic tracking within your laravel application.  Once enable
+        | along with 'store' key, visits to routes using the
+        | `TrackTrafficMiddleware` will be tracked & data will be stored using a
+        | `TrackTraffic` model.
         |
         | type     : boolean
         | default  : false
         |
         */
         'track' => false,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Track Traffic database storage
+        |--------------------------------------------------------------------------
+        |
+        | Enable storing of tracked traffic data using the `TrackTraffic` model.
+        |
+        | type     : boolean
+        | default  : false
+        |
+        */
+        'store' => false,
 
         /*
         |--------------------------------------------------------------------------
