@@ -1,0 +1,62 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateTrackTrafficTable extends Migration
+{
+    private const TABLE_NAME = 'track_traffic';
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create(self::TABLE_NAME, function (Blueprint $table) {
+            $table->increments('track_traffic_id');
+            $table->integer('user_id');
+            $table->text('session_id');
+
+            // Application
+            $table->text('app_version');
+            $table->string('app_environment', 20);
+
+            // Request
+            $table->text('request_host');
+            $table->longText('request_uri');
+            $table->text('request_method');
+            $table->longText('request_payload');
+            $table->longText('request_browser');
+            $table->text('request_ip');
+            $table->longText('request_referrer');
+            $table->text('request_token');
+
+            // Response
+            $table->integer('response_code');
+            $table->float('response_time');
+            $table->longText('response_content');
+
+            // Agent
+            $table->text('agent_platform');
+            $table->text('agent_device');
+            $table->text('agent_browser');
+
+            $table->timestamp('time_stamp');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists(self::TABLE_NAME);
+    }
+}
