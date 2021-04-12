@@ -38,7 +38,7 @@ class TrackTrafficAction extends Action
 
         // Log JSON encoded activity to local log file
         // todo: add use of config
-        if (env('TRACK_TRAFFIC_LOGGING', false) == true) {
+        if (config('tracking.traffic.log')) {
             // todo: add config value for log channel
             Log::channel('traffic')->info(json_encode($this->tracking));
         }
