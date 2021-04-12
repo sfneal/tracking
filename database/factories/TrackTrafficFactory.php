@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Database\Factories;
-
 
 use Database\Factories\Traits\ModelChanges;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -35,7 +33,7 @@ class TrackTrafficFactory extends Factory
             'app_environment' => $this->environment(),
 
             // Request
-            'request_host' => $this->environment() . '.example.com',
+            'request_host' => $this->environment().'.example.com',
             'request_uri' => $this->uri(),
             'request_method' => $this->faker->randomElement(['GET', 'POST', 'PUT', 'DELETE']),
             'request_payload' => ['page' => $this->faker->randomNumber(1)],
@@ -55,7 +53,7 @@ class TrackTrafficFactory extends Factory
             'agent_browser' => $this->faker->randomElement(['Chrome', 'Mozilla', 'Safari']),
 
             // Timestamp
-            'time_stamp' => $this->faker->time('Y-m-d H:i:s')
+            'time_stamp' => $this->faker->time('Y-m-d H:i:s'),
         ];
     }
 
@@ -66,7 +64,7 @@ class TrackTrafficFactory extends Factory
      */
     protected function version(): string
     {
-        return $this->faker->randomDigit . '.' . $this->faker->randomDigit . '.' . $this->faker->randomDigit;
+        return $this->faker->randomDigit.'.'.$this->faker->randomDigit.'.'.$this->faker->randomDigit;
     }
 
     /**
@@ -86,12 +84,12 @@ class TrackTrafficFactory extends Factory
      */
     protected function uri(): string
     {
-        return '/' . $this->faker->randomElement([
+        return '/'.$this->faker->randomElement([
             'about',
             'services',
             'team',
             'portfolio',
-            'faqs'
+            'faqs',
         ]);
     }
 }
