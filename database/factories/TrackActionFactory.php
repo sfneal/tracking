@@ -4,11 +4,14 @@
 namespace Database\Factories;
 
 
+use Database\Factories\Traits\ModelChanges;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Sfneal\Tracking\Models\TrackAction;
 
 class TrackActionFactory extends Factory
 {
+    use ModelChanges;
+
     /**
      * The name of the factory's corresponding model.
      *
@@ -36,24 +39,10 @@ class TrackActionFactory extends Factory
      *
      * @return array
      */
-    private function randomAction(): array
+    protected function randomAction(): array
     {
         return collect(['created', 'updated', 'deleted'])->each(function(string $action) {
             return ucfirst($action) . ' the model.';
         })->toArray();
-    }
-
-    /**
-     * Retrieve an array of 'model_changes' that can be used as random elements.
-     *
-     * @return array
-     */
-    private function modelChanges(): array
-    {
-        return [
-            'uploaded' => $this->faker->randomElement([0, 1]),
-            'correction_needed' => $this->faker->randomElement([0, 1]),
-            'published' => $this->faker->randomElement([0, 1]),
-        ];
     }
 }
