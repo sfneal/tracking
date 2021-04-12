@@ -2,7 +2,9 @@
 
 namespace Sfneal\Tracking\Models;
 
+use Database\Factories\TrackTrafficFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Sfneal\Helpers\Laravel\AppInfo;
 use Sfneal\Tracking\Builders\TrackTrafficBuilder;
@@ -10,6 +12,8 @@ use Sfneal\Tracking\Models\Base\Tracking;
 
 class TrackTraffic extends Tracking
 {
+    use HasFactory;
+
     protected $table = 'track_traffic';
     protected $primaryKey = 'track_traffic_id';
 
@@ -35,6 +39,16 @@ class TrackTraffic extends Tracking
         'agent_browser',
         'time_stamp',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return TrackTrafficFactory
+     */
+    protected static function newFactory(): TrackTrafficFactory
+    {
+        return new TrackTrafficFactory();
+    }
 
     /**
      * Query Builder.
@@ -73,6 +87,6 @@ class TrackTraffic extends Tracking
      */
     public function setAppEnvironmentAttribute($value = null)
     {
-        $this->attributes['app_environment'] = (isset($value) ? $value : AppInfo::env());
+        $this->attributes['app_environment'] = $value ?? AppInfo::env();
     }
 }
