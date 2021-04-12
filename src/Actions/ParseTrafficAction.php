@@ -78,7 +78,7 @@ class ParseTrafficAction extends Action
         $this->tracking['request']['payload'] = $this->getRequestPayload($request);
         $this->tracking['request']['browser'] = $_SERVER['HTTP_USER_AGENT'];
         $this->tracking['request']['ip'] = $request->ip();
-        $this->tracking['request']['referrer'] = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
+        $this->tracking['request']['referrer'] = $_SERVER['HTTP_REFERER'] ?? null;
         $this->tracking['request']['token'] = $request->get('track_traffic_token');
     }
 
@@ -95,7 +95,7 @@ class ParseTrafficAction extends Action
 
         // Store response content served if enabled
         // todo: replace env call with config call
-        if (env('TRACK_TRAFFIC_RESPONSE_CONTENT', false) == true) {
+        if (config('tracking.traffic.response_content')) {
             $this->tracking['response']['content'] = $response->getContent();
         }
     }
