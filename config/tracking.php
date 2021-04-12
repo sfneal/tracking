@@ -26,10 +26,10 @@ return [
         | Enable storing of tracked traffic data using the `TrackTraffic` model.
         |
         | type     : boolean
-        | default  : false
+        | default  : true
         |
         */
-        'store' => false,
+        'store' => true,
 
         /*
         |--------------------------------------------------------------------------
