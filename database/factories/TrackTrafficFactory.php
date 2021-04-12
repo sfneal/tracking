@@ -55,7 +55,7 @@ class TrackTrafficFactory extends Factory
             'agent_browser' => $this->faker->randomElement(['Chrome', 'Mozilla', 'Safari']),
 
             // Timestamp
-            'time_stamp' => $this->faker->time('Y-m-d H:i:s')
+            'time_stamp' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 

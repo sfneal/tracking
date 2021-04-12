@@ -29,15 +29,15 @@ class CreateTrackTrafficTable extends Migration
             $table->longText('request_uri');
             $table->text('request_method');
             $table->longText('request_payload');
-            $table->longText('request_browser');
+            $table->longText('request_browser')->nullable();
             $table->text('request_ip');
-            $table->longText('request_referrer');
+            $table->longText('request_referrer')->nullable();
             $table->text('request_token');
 
             // Response
             $table->integer('response_code');
             $table->float('response_time');
-            $table->longText('response_content');
+            $table->longText('response_content')->nullable();
 
             // Agent
             $table->text('agent_platform');

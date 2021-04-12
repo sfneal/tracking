@@ -41,6 +41,18 @@ class TrackTraffic extends Tracking
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'int',
+        'request_payload' => 'array',
+        'response_code' => 'int',
+        'response_time' => 'float',
+    ];
+
+    /**
      * Create a new factory instance for the model.
      *
      * @return TrackTrafficFactory
