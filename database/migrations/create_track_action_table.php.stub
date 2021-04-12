@@ -20,7 +20,7 @@ class CreateTrackActionTable extends Migration
             $table->string('action', 255);
             $table->string('model_table');
             $table->integer('model_key');
-            $table->string('model_changes');
+            $table->text('model_changes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
