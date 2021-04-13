@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Feature;
-
 
 use Illuminate\Support\Facades\Event;
 use Sfneal\Tracking\Events\TrackActivityEvent;
