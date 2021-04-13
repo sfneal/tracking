@@ -1,6 +1,8 @@
 <?php
 
-namespace Sfneal\Tracking\Tests;
+namespace Sfneal\Tracking\Tests\Feature;
+
+use Sfneal\Tracking\Tests\TestCase;
 
 class LaravelConfigTest extends TestCase
 {

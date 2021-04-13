@@ -1,12 +1,12 @@
 <?php
 
-namespace Sfneal\Tracking\Tests\Actions;
+namespace Sfneal\Tracking\Tests\Unit;
 
 use Sfneal\Tracking\Actions\CleanDevTrackingAction;
 use Sfneal\Tracking\Models\TrackTraffic;
 use Sfneal\Tracking\Tests\TestCase;
 
-class CleanDevTrackingActionTest extends TestCase
+class CleanDevTrackingTest extends TestCase
 {
     /**
      * Setup the test environment.

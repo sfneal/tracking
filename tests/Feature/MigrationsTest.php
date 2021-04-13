@@ -1,11 +1,12 @@
 <?php
 
-namespace Sfneal\Tracking\Tests;
+namespace Sfneal\Tracking\Tests\Feature;
 
 use Illuminate\Database\Eloquent\Model;
 use Sfneal\Tracking\Models\TrackAction;
 use Sfneal\Tracking\Models\TrackActivity;
 use Sfneal\Tracking\Models\TrackTraffic;
+use Sfneal\Tracking\Tests\TestCase;
 
 class MigrationsTest extends TestCase
 {
