@@ -2,5 +2,10 @@
 
 All notable changes to `tracking` will be documented in this file
 
-## 0.1.0 - 2020-11-09
-- initial release
+
+## 0.1.0 - 2021-04-13
+- update dependencies & fix imports
+- optimize Travis CI config & enable code coverage uploading
+- make TrackingServiceProvider that publishes migrations & configs as well as registering event listeners
+- make database factories & migrations for `TrackAction`, `TrackActivity` & `TrackTraffic` models
+- start making Feature & Unit test suites

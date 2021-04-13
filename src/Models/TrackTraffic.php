@@ -2,13 +2,18 @@
 
 namespace Sfneal\Tracking\Models;
 
+use Database\Factories\TrackTrafficFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Sfneal\Helpers\Laravel\AppInfo;
 use Sfneal\Tracking\Builders\TrackTrafficBuilder;
-use Sfneal\Tracking\Models\Base\AbstractTracking;
+use Sfneal\Tracking\Models\Base\Tracking;
 
-class TrackTraffic extends AbstractTracking
+class TrackTraffic extends Tracking
 {
+    use HasFactory;
+
     protected $table = 'track_traffic';
     protected $primaryKey = 'track_traffic_id';
 
@@ -34,6 +39,28 @@ class TrackTraffic extends AbstractTracking
         'agent_browser',
         'time_stamp',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'int',
+        'request_payload' => 'array',
+        'response_code' => 'int',
+        'response_time' => 'float',
+    ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return TrackTrafficFactory
+     */
+    protected static function newFactory(): TrackTrafficFactory
+    {
+        return new TrackTrafficFactory();
+    }
 
     /**
      * Query Builder.
@@ -72,6 +99,6 @@ class TrackTraffic extends AbstractTracking
      */
     public function setAppEnvironmentAttribute($value = null)
     {
-        $this->attributes['app_environment'] = (isset($value) ? $value : env('APP_ENV'));
+        $this->attributes['app_environment'] = $value ?? AppInfo::env();
     }
 }

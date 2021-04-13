@@ -24,6 +24,7 @@ class TrackTrafficEvent extends Event
      */
     public function __construct(Request $request, $response, string $time_stamp)
     {
+        // todo: refactor timestamp to optional param
         $this->tracking = (new ParseTrafficAction($request, $response, $time_stamp))->execute();
     }
 }

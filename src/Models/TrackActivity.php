@@ -2,18 +2,21 @@
 
 namespace Sfneal\Tracking\Models;
 
+use Database\Factories\TrackActivityFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Scopes\IdOrderScope;
 use Sfneal\Tracking\Builders\TrackActivityBuilder;
-use Sfneal\Tracking\Models\Base\AbstractTracking;
+use Sfneal\Tracking\Models\Base\Tracking;
 use Sfneal\Tracking\Models\Traits\TrackingRelationships;
 
-class TrackActivity extends AbstractTracking
+class TrackActivity extends Tracking
 {
     // todo: add use of polymorphic relationships
+    use HasFactory;
     use TrackingRelationships;
 
     /**
@@ -41,6 +44,27 @@ class TrackActivity extends AbstractTracking
         'model_changes',
         'request_token',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'int',
+        'model_key' => 'int',
+        'model_changes' => 'array',
+    ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return TrackActivityFactory
+     */
+    protected static function newFactory(): TrackActivityFactory
+    {
+        return new TrackActivityFactory();
+    }
 
     /**
      * Query Builder.

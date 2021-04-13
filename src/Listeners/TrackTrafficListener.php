@@ -14,8 +14,6 @@ class TrackTrafficListener extends Listener
     public $queue = 'traffic';
 
     /**
-     * Call the TrackTrafficAction.
-     *
      * Retrieve tracking data and then do something with it.
      *
      * @param TrackTrafficEvent $event

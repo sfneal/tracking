@@ -17,8 +17,10 @@ class CleanDevTrackingAction extends ActionStatic
         // Delete TrackTraffic data from 'development' envs that don't have associated activity data
         while (! isset($deleted) || $deleted > 0) {
             $deleted = TrackTraffic::query()
-                ->where('app_environment', '=', 'development')
-                ->limit(100)->delete();
+                // todo: add use of builder after tests
+                ->whereEnvironmentDevelopment()
+                ->limit(100)
+                ->delete();
         }
     }
 }

@@ -2,19 +2,16 @@
 
 namespace Sfneal\Tracking\Queries;
 
-use Illuminate\Http\Request;
 use Sfneal\Helpers\Time\TimePeriods;
-use Sfneal\Queries\AbstractQueryStatic;
 use Sfneal\Queries\Traits\ParamGetter;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
 use Sfneal\Tracking\Models\TrackAction;
+use Sfneal\Tracking\Queries\Base\TrackingQuery;
 
-// todo: refactor
-class TrackActionQuery extends AbstractQueryStatic
+class TrackActionQuery extends TrackingQuery
 {
     use ParamGetter;
 
-    // todo: add to config
     /**
      * Relationships that should be eager loaded by default.
      */
@@ -31,31 +28,37 @@ class TrackActionQuery extends AbstractQueryStatic
     ];
 
     /**
-     * Retrieve a TrackActivity by table query result set.
-     *
-     * @param Request|null $request
-     * @param array        $parameters
-     * @param array|null   $relationships
+     * Retrieve a Query builder.
      *
      * @return TrackActionBuilder
      */
-    public static function execute(Request $request = null, array $parameters = [], array $relationships = null): TrackActionBuilder
+    protected function builder(): TrackActionBuilder
     {
-        $tracking = TrackAction::query()
-            ->with($relationships ?? self::DEFAULT_RELATIONSHIPS);
+        return TrackAction::query()
+            ->with($this->relationships ?? self::DEFAULT_RELATIONSHIPS);
+    }
+
+    /**
+     * Retrieve a TrackActivity by table query result set.
+     *
+     * @return TrackActionBuilder
+     */
+    public function execute(): TrackActionBuilder
+    {
+        $tracking = $this->builder();
 
         // Table
-        if ($table = self::getParam($request, $parameters, 'table')) {
+        if ($table = self::getParam($this->request, $this->parameters, 'table')) {
             $tracking->whereModelTable($table);
         }
 
         // Key
-        if ($model_keys = self::getParam($request, $parameters, 'key')) {
+        if ($model_keys = self::getParam($this->request, $this->parameters, 'key')) {
             $tracking->whereModelKey($model_keys);
         }
 
         // Time Period
-        if ($period = self::getParam($request, $parameters, 'period')) {
+        if ($period = self::getParam($this->request, $this->parameters, 'period')) {
             if (is_string($period)) {
                 $period = TimePeriods::timePeriod($period);
             }

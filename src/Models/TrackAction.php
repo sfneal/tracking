@@ -2,15 +2,18 @@
 
 namespace Sfneal\Tracking\Models;
 
+use Database\Factories\TrackActionFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Scopes\IdOrderScope;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
-use Sfneal\Tracking\Models\Base\AbstractTracking;
+use Sfneal\Tracking\Models\Base\Tracking;
 use Sfneal\Tracking\Models\Traits\TrackingRelationships;
 
-class TrackAction extends AbstractTracking
+class TrackAction extends Tracking
 {
+    use HasFactory;
     use TrackingRelationships;
 
     /**
@@ -37,6 +40,26 @@ class TrackAction extends AbstractTracking
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'model_key' => 'int',
+        'model_changes' => 'array',
+    ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return TrackActionFactory
+     */
+    protected static function newFactory(): TrackActionFactory
+    {
+        return new TrackActionFactory();
+    }
+
+    /**
      * Query Builder.
      *
      * @param $query
@@ -55,4 +78,15 @@ class TrackAction extends AbstractTracking
     {
         return parent::query();
     }
+
+//    /**
+//     * Retrieve the 'model_key' key attribute as an integer.
+//     *
+//     * @param $value
+//     * @return int
+//     */
+//    public function getModelKeyAttribute($value): int
+//    {
+//        return intval($value);
+//    }
 }

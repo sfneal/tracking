@@ -9,7 +9,6 @@ use Domain\Tasks\Models\Task;
 use Domain\Tasks\Models\TaskRecord;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-// todo: probably move back to project
 trait TrackingRelationships
 {
     /**

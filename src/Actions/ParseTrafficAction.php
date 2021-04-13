@@ -8,6 +8,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Jenssegers\Agent\Agent;
 use Sfneal\Actions\Action;
+use Sfneal\Helpers\Arrays\ArrayHelpers;
+use Sfneal\Helpers\Laravel\AppInfo;
 
 class ParseTrafficAction extends Action
 {
@@ -16,7 +18,6 @@ class ParseTrafficAction extends Action
      */
     private $tracking = [];
 
-    // todo: add to config
     /**
      * Array keys to exclude from the 'request_payload' attribute.
      *
@@ -41,9 +42,9 @@ class ParseTrafficAction extends Action
         string $time_stamp
     ) {
         // Initialize event for serialization
-        $this->tracking['user_id'] = intval(activeUserID());
+        $this->tracking['user_id'] = intval(auth()->id());
         $this->tracking['session_id'] = Cookie::get('hpa_laravel_session');
-        $this->tracking['app_version'] = version();
+        $this->tracking['app_version'] = AppInfo::version();
         $this->tracking['time_stamp'] = $this->getTimestamp($time_stamp);
 
         // Request data
@@ -77,9 +78,9 @@ class ParseTrafficAction extends Action
         $this->tracking['request']['uri'] = $request->getRequestUri();
         $this->tracking['request']['method'] = strtoupper($request->getMethod());
         $this->tracking['request']['payload'] = $this->getRequestPayload($request);
-        $this->tracking['request']['browser'] = $_SERVER['HTTP_USER_AGENT'];
+        $this->tracking['request']['browser'] = $_SERVER['HTTP_USER_AGENT'] ?? null;
         $this->tracking['request']['ip'] = $request->ip();
-        $this->tracking['request']['referrer'] = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
+        $this->tracking['request']['referrer'] = $_SERVER['HTTP_REFERER'] ?? null;
         $this->tracking['request']['token'] = $request->get('track_traffic_token');
     }
 
@@ -95,7 +96,7 @@ class ParseTrafficAction extends Action
         $this->tracking['response']['time'] = $this->getResponseTime($time_stamp);
 
         // Store response content served if enabled
-        if (env('TRACK_TRAFFIC_RESPONSE_CONTENT', false) == true) {
+        if (config('tracking.traffic.response_content')) {
             $this->tracking['response']['content'] = $response->getContent();
         }
     }
@@ -116,7 +117,8 @@ class ParseTrafficAction extends Action
      */
     private function getRequestPayload(Request $request)
     {
-        return arrayRemoveKeys(array_merge($request->query(), $request->input()), $this->request_payload_exclusions);
+        return (new ArrayHelpers(array_merge($request->query(), $request->input())))
+            ->arrayRemoveKeys($this->request_payload_exclusions);
     }
 
     /**

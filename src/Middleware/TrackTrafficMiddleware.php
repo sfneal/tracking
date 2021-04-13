@@ -20,12 +20,14 @@ class TrackTrafficMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        // todo: add to if statement body?
         // Add unique ID to be used to relate traffic & activities
         $request->attributes->add(['track_traffic_token' => uniqid()]);
 
         $response = $next($request);
 
-        if (env('TRACK_TRAFFIC') == true) {
+        // Check if traffic tracking is enabled
+        if (config('tracking.traffic.track')) {
             $this->track($request, $response);
         } else {
             $request->attributes->add(['track_traffic_token' => null]);
@@ -44,7 +46,7 @@ class TrackTrafficMiddleware
         event(new TrackTrafficEvent(
             $request,
             $response,
-            $this->getTimestamp()
+            $this->getTimestamp(),
         ));
     }
 
