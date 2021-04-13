@@ -9,3 +9,8 @@ All notable changes to `tracking` will be documented in this file
 - make TrackingServiceProvider that publishes migrations & configs as well as registering event listeners
 - make database factories & migrations for `TrackAction`, `TrackActivity` & `TrackTraffic` models
 - start making Feature & Unit test suites
+
+
+## 0.1.1 - 2021-04-13
+- fix use of `activeUserID()` helper function in `TrackActivityEvent`
+- add sfneal/mock-models to dev requirements
