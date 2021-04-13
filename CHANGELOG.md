@@ -14,3 +14,4 @@ All notable changes to `tracking` will be documented in this file
 ## 0.1.1 - 2021-04-13
 - fix use of `activeUserID()` helper function in `TrackActivityEvent`
 - add sfneal/mock-models to dev requirements
+- fix migration paths in `TrackingServiceProvider`
