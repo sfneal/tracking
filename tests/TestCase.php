@@ -32,6 +32,10 @@ class TestCase extends OrchestraTestCase
      */
     protected function getEnvironmentSetUp($app)
     {
+        if (!defined('LARAVEL_START')) {
+            define('LARAVEL_START', microtime(true));
+        }
+
         // Set config values
         $app['config']->set('app.debug', true);
         $app['config']->set('tracking.traffic.track', true);
