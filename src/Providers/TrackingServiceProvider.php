@@ -21,7 +21,7 @@ class TrackingServiceProvider extends ServiceProvider
         // `TrackActivity` migration file
         if (! class_exists('CreateTrackActionTable')) {
             $this->publishes([
-                __DIR__.'/../database/migrations/create_track_action_table.php.stub' => database_path(
+                __DIR__.'/../../database/migrations/create_track_action_table.php.stub' => database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_track_action_table.php'
                 ),
             ], 'migration');
@@ -30,7 +30,7 @@ class TrackingServiceProvider extends ServiceProvider
         // `TrackAction` migration file
         if (! class_exists('CreateTrackActivityTable')) {
             $this->publishes([
-                __DIR__.'/../database/migrations/create_track_activity_table.php.stub' => database_path(
+                __DIR__.'/../../database/migrations/create_track_activity_table.php.stub' => database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_track_activity_table.php'
                 ),
             ], 'migration');
@@ -39,7 +39,7 @@ class TrackingServiceProvider extends ServiceProvider
         // `TrackTraffic` migration file
         if (! class_exists('CreateTrackTrafficTable')) {
             $this->publishes([
-                __DIR__.'/../database/migrations/create_track_traffic_table.php.stub' => database_path(
+                __DIR__.'/../../database/migrations/create_track_traffic_table.php.stub' => database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_track_traffic_table.php'
                 ),
             ], 'migration');
