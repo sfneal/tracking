@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Actions;
-
 
 use Sfneal\Tracking\Actions\CleanDevTrackingAction;
 use Sfneal\Tracking\Models\TrackTraffic;
@@ -23,14 +21,14 @@ class CleanDevTrackingActionTest extends TestCase
         TrackTraffic::factory()
             ->count(250)
             ->create([
-                'app_environment' => 'development'
+                'app_environment' => 'development',
             ]);
 
         // Seed TrackTraffic model with other tracking data
         TrackTraffic::factory()
             ->count(150)
             ->create([
-                'app_environment' => 'production'
+                'app_environment' => 'production',
             ]);
     }
 
