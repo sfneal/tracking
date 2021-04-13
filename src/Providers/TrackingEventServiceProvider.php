@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Sfneal\Tracking\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
