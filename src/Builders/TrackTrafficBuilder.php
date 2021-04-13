@@ -84,4 +84,16 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
 
         return $this;
     }
+
+    /**
+     * Scope query results to only Traffic originating from a 'development' environment.
+     *
+     * @return $this
+     */
+    public function whereEnvironmentDevelopment()
+    {
+        $this->whereEnvironment('development');
+
+        return $this;
+    }
 }

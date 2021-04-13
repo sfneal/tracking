@@ -37,13 +37,13 @@ class CleanDevTrackingActionTest extends TestCase
     {
         // Validate before cleaning
         $expectedBefore = 250;
-        $devTrackingRecordsBefore = TrackTraffic::query()->whereEnvironment('development')->count();
+        $devTrackingRecordsBefore = TrackTraffic::query()->whereEnvironmentDevelopment()->count();
         $this->assertSame($expectedBefore, $devTrackingRecordsBefore);
 
         // Clean dev tracking data
         CleanDevTrackingAction::execute();
         $expectedAfter = 0;
-        $devTrackingRecordsAfter = TrackTraffic::query()->whereEnvironment('development')->count();
+        $devTrackingRecordsAfter = TrackTraffic::query()->whereEnvironmentDevelopment()->count();
         $this->assertSame($expectedAfter, $devTrackingRecordsAfter);
 
         // Confirm 'production' env data hasn't been deleted
