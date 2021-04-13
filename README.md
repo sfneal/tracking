@@ -19,7 +19,7 @@ composer require sfneal/tracking
 To make use of database migration, publish the Service Provider.
 
 ``` php
-php artisan vendor:publish --provider="Sfneal\Track\Providers\TrackingServiceProvider"
+php artisan vendor:publish --provider="Sfneal\Tracking\Providers\TrackingServiceProvider"
 ```
 
 ## Usage
