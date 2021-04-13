@@ -16,6 +16,12 @@ You can install the package via composer:
 composer require sfneal/tracking
 ```
 
+To make use of database migration, publish the Service Provider.
+
+``` php
+php artisan vendor:publish --provider="Sfneal\Tracking\Providers\TrackingServiceProvider"
+```
+
 ## Usage
 
 ``` php

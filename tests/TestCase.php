@@ -5,6 +5,7 @@ namespace Sfneal\Tracking\Tests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Sfneal\Testing\Providers\MockModelsServiceProvider;
 use Sfneal\Tracking\Providers\TrackingServiceProvider;
 
 class TestCase extends OrchestraTestCase
@@ -21,6 +22,7 @@ class TestCase extends OrchestraTestCase
     {
         return [
             TrackingServiceProvider::class,
+            MockModelsServiceProvider::class,
         ];
     }
 
@@ -51,5 +53,9 @@ class TestCase extends OrchestraTestCase
         // Migrate 'track_traffic' table
         include_once __DIR__.'/../database/migrations/create_track_traffic_table.php.stub';
         (new \CreateTrackTrafficTable())->up();
+
+        // Migrate 'people' table
+        include_once __DIR__.'/../vendor/sfneal/mock-models/database/migrations/create_people_table.php.stub';
+        (new \CreatePeopleTable())->up();
     }
 }

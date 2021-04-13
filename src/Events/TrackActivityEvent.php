@@ -51,7 +51,7 @@ class TrackActivityEvent extends Event
         $this->model_changes = $this->model->getChanges();
 
         // Set user_id and request_token for associating with traffic tracking data
-        $this->user_id = activeUserID();
+        $this->user_id = intval(auth()->id());
         $this->request_token = request()->get('track_traffic_token') ?? null;
 
         // Get the route name
