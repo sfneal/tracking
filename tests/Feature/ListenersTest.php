@@ -9,12 +9,24 @@ use Sfneal\Tracking\Events\TrackActivityEvent;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
 use Sfneal\Tracking\Listeners\TrackActivityListener;
 use Sfneal\Tracking\Listeners\TrackTrafficListener;
-use Sfneal\Tracking\Tests\EventFakerSetup;
+use Sfneal\Tracking\Tests\EventFaker;
 use Sfneal\Tracking\Tests\TestCase;
 
 class ListenersTest extends TestCase
 {
-    use EventFakerSetup;
+    use EventFaker;
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->eventFaker();
+    }
 
     /** @test */
     public function listeners_are_attached_to_events()

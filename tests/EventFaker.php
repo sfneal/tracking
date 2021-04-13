@@ -4,17 +4,15 @@ namespace Sfneal\Tracking\Tests;
 
 use Illuminate\Support\Facades\Event;
 
-trait EventFakerSetup
+trait EventFaker
 {
     /**
-     * Setup the test environment.
+     * Setup Event faking.
      *
      * @return void
      */
-    protected function setUp(): void
+    protected function eventFaker(): void
     {
-        parent::setUp();
-
         // Enable event faking
         Event::fake();
 
