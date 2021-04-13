@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests;
-
 
 use Illuminate\Http\Request;
 
