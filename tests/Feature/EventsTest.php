@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Feature;
-
 
 use Sfneal\Tracking\Tests\EventFakerSetup;
 use Sfneal\Tracking\Tests\TestCase;
