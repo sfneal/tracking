@@ -55,5 +55,8 @@ class TrackingServiceProvider extends ServiceProvider
     {
         // Load config file
         $this->mergeConfigFrom(__DIR__.'/../../config/tracking.php', 'tracking');
+
+        // Register Event ServiceProvider
+        $this->app->register(TrackingEventServiceProvider::class);
     }
 }
