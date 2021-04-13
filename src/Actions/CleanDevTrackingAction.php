@@ -18,7 +18,7 @@ class CleanDevTrackingAction extends ActionStatic
         while (! isset($deleted) || $deleted > 0) {
             $deleted = TrackTraffic::query()
                 // todo: add use of builder after tests
-                ->where('app_environment', '=', 'development')
+                ->whereEnvironment('development')
                 ->limit(100)
                 ->delete();
         }
