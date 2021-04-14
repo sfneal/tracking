@@ -21,6 +21,11 @@ class QueriesTestCase extends TestCase
     public $models;
 
     /**
+     * @var int
+     */
+    public $count = 1000;
+
+    /**
      * Setup the test environment.
      *
      * @return void
@@ -30,6 +35,6 @@ class QueriesTestCase extends TestCase
         parent::setUp();
 
         // Retrieve the People model from an Address model
-        $this->models = $this->modelClass::factory()->count(1000)->create();
+        $this->models = $this->modelClass::factory()->count($this->count)->create();
     }
 }
