@@ -19,9 +19,9 @@ trait WhereModelTests
             ->pluck('model_key')
             ->first();
 
-        $count = $this->modelClass::query()->whereModelKey($model_key)->count();
+        $model = $this->modelClass::query()->whereModelKey($model_key)->get();
 
-        $this->assertSame($expected, $count);
+        $this->assertContains($model_key, $model->pluck('model_key'));
     }
 
     /** @test */
@@ -29,7 +29,7 @@ trait WhereModelTests
     {
         $expected = 4;
 
-        $model_key = $this->modelClass::query()
+        $model_keys = $this->modelClass::query()
             ->distinct()
             ->get('model_key')
             ->shuffle()
@@ -37,9 +37,11 @@ trait WhereModelTests
             ->pluck('model_key')
             ->toArray();
 
-        $count = $this->modelClass::query()->whereModelKey($model_key)->count();
+        $models = $this->modelClass::query()->whereModelKey($model_keys)->get();
 
-        $this->assertSame($expected, $count);
+        foreach ($model_keys as $model_key) {
+            $this->assertContains($model_key, $models->pluck('model_key'));
+        }
     }
 
     /** @test */

@@ -19,9 +19,9 @@ trait WhereUserTests
             ->pluck('user_id')
             ->first();
 
-        $count = $this->modelClass::query()->whereUser($user_id)->count();
+        $model = $this->modelClass::query()->whereUser($user_id)->get();
 
-        $this->assertSame($expected, $count);
+        $this->assertContains($user_id, $model->pluck('user_id'));
     }
 
     /** @test */
@@ -37,8 +37,10 @@ trait WhereUserTests
             ->pluck('user_id')
             ->toArray();
 
-        $count = $this->modelClass::query()->whereUserIn($user_ids)->count();
+        $models = $this->modelClass::query()->whereUserIn($user_ids)->get();
 
-        $this->assertSame($expected, $count);
+        foreach ($user_ids as $user_id) {
+            $this->assertContains($user_id, $models->pluck('user_id'));
+        }
     }
 }
