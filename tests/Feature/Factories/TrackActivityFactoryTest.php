@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Feature\Factories;
-
 
 use Sfneal\Tracking\Models\TrackActivity;
 use Sfneal\Tracking\Tests\Feature\Factories\Interfaces\FactoryFillablesTest;

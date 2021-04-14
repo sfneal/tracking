@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Feature\Factories;
-
 
 use Sfneal\Tracking\Models\Base\Tracking;
 use Sfneal\Tracking\Tests\TestCase;
