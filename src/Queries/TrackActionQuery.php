@@ -15,29 +15,19 @@ class TrackActionQuery extends TrackingQuery
     use ParamGetter;
 
     /**
-     * Relationships that should be eager loaded by default.
-     */
-    private const DEFAULT_RELATIONSHIPS = [
-        'plan',
-        'planManagement',
-        'planManagement.plan',
-        'project',
-        'task',
-        'task.project',
-        'taskRecord',
-        'taskRecord.task',
-        'taskRecord.task.project',
-    ];
-
-    /**
      * Retrieve a Query builder.
      *
      * @return TrackActionBuilder
      */
     protected function builder(): TrackActionBuilder
     {
-        return TrackAction::query()
-            ->with($this->relationships ?? self::DEFAULT_RELATIONSHIPS);
+        $builder = TrackAction::query();
+
+        if ($this->relationships) {
+            $builder->with($this->relationships);
+        }
+
+        return $builder;
     }
 
     /**
