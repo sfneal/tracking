@@ -4,6 +4,7 @@
 namespace Sfneal\Tracking\Tests\Feature\Factories\Interfaces;
 
 
+// todo: consider moving to sfneal/mock-models?
 interface FactoryTest
 {
     /** @test */
