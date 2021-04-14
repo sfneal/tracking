@@ -3,7 +3,6 @@
 namespace Sfneal\Tracking\Tests\Feature\Factories;
 
 use Sfneal\Tracking\Models\TrackTraffic;
-use Sfneal\Tracking\Tests\Feature\Factories\Interfaces\FactoryFillablesTest;
 
 class TrackTrafficFactoryTest extends FactoriesTestCase implements FactoryFillablesTest
 {

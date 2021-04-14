@@ -10,22 +10,9 @@ use Sfneal\Tracking\Queries\Base\TrackingQuery;
 
 class TrackActionQuery extends TrackingQuery
 {
-    use ParamGetter;
+    // todo: add request validation
 
-    /**
-     * Relationships that should be eager loaded by default.
-     */
-    private const DEFAULT_RELATIONSHIPS = [
-        'plan',
-        'planManagement',
-        'planManagement.plan',
-        'project',
-        'task',
-        'task.project',
-        'taskRecord',
-        'taskRecord.task',
-        'taskRecord.task.project',
-    ];
+    use ParamGetter;
 
     /**
      * Retrieve a Query builder.
@@ -34,8 +21,13 @@ class TrackActionQuery extends TrackingQuery
      */
     protected function builder(): TrackActionBuilder
     {
-        return TrackAction::query()
-            ->with($this->relationships ?? self::DEFAULT_RELATIONSHIPS);
+        $builder = TrackAction::query();
+
+        if ($this->relationships) {
+            $builder->with($this->relationships);
+        }
+
+        return $builder;
     }
 
     /**
