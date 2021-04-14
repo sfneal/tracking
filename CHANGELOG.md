@@ -24,7 +24,8 @@ All notable changes to `tracking` will be documented in this file
 - fix issue with `TrackTraffic` model not passing value to attribute setter in `TrackTrafficObserver`
 
 
-## 0.2.1 - 2021-04-14
+## 0.3.0 - 2021-04-14
+- cut support for php7.4
 - cut relationships brought in from hpa app in `TrackingQuery`
 - fix $parameters param to default as null in `TrackingQuery`
 - start making query test suite
