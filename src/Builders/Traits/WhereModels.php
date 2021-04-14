@@ -2,6 +2,8 @@
 
 namespace Sfneal\Tracking\Builders\Traits;
 
+use Sfneal\Helpers\Strings\StringHelpers;
+
 trait WhereModels
 {
     /**
@@ -35,7 +37,7 @@ trait WhereModels
         $model_table = (array) $model_table;
         $this->where(function (self $query) use ($model_table) {
             foreach ($model_table as $table) {
-                if (inString($table, '_')) {
+                if ((new StringHelpers($table))->inString('_')) {
                     $query->orWhereLike('model_table', $table);
                 } else {
                     $query->orWhere('model_table', '=', $table);
