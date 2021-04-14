@@ -2,6 +2,7 @@
 
 namespace Sfneal\Tracking\Queries;
 
+use Illuminate\Database\Eloquent\Builder;
 use Sfneal\Helpers\Time\TimePeriods;
 use Sfneal\Queries\Traits\ParamGetter;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
@@ -17,7 +18,7 @@ class TrackActionQuery extends TrackingQuery
     /**
      * Retrieve a Query builder.
      *
-     * @return TrackActionBuilder
+     * @return TrackActionBuilder|Builder
      */
     protected function builder(): TrackActionBuilder
     {
