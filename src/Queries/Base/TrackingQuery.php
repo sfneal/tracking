@@ -25,13 +25,13 @@ abstract class TrackingQuery extends Query
     /**
      * TrackActionQuery constructor.
      * @param Request|null $request
-     * @param array        $parameters
+     * @param array|null   $parameters
      * @param array|null   $relationships
      */
-    public function __construct(Request $request = null, array $parameters = [], array $relationships = null)
+    public function __construct(Request $request = null, array $parameters = null, array $relationships = null)
     {
         $this->request = $request;
-        $this->parameters = $parameters;
+        $this->parameters = $parameters ?? [];
         $this->relationships = $relationships;
     }
 }
