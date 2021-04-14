@@ -15,3 +15,8 @@ All notable changes to `tracking` will be documented in this file
 - fix use of `activeUserID()` helper function in `TrackActivityEvent`
 - add sfneal/mock-models to dev requirements
 - fix migration paths in `TrackingServiceProvider`
+
+
+## 0.1.2 - 2021-04-13
+- add use of `env()` helper function in config file
+- fix use of sfneal/string-helpers helper functions by adding import of `StringHelpers`
