@@ -3,11 +3,9 @@
 namespace Sfneal\Tracking\Tests\Feature;
 
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Route;
 use Sfneal\Testing\Models\People;
 use Sfneal\Tracking\Events\TrackActivityEvent;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
-use Sfneal\Tracking\Middleware\TrackTrafficMiddleware;
 use Sfneal\Tracking\Tests\CreateRequest;
 use Sfneal\Tracking\Tests\EventFaker;
 use Sfneal\Tracking\Tests\TestCase;
@@ -28,11 +26,6 @@ class EventsTest extends TestCase
 
         // Enable event faking
         $this->eventFaker();
-
-        // Enable middleware
-        Route::middleware(TrackTrafficMiddleware::class)->any('/', function () {
-            return 'OK';
-        });
     }
 
     /** @test */
