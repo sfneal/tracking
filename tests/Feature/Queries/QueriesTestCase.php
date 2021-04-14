@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Feature\Queries;
-
 
 use Illuminate\Support\Collection;
 use Sfneal\Tracking\Models\Base\Tracking;
