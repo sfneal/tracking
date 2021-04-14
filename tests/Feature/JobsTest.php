@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Feature;
-
 
 use Illuminate\Support\Facades\Queue;
 use Sfneal\Testing\Models\People;
