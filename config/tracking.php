@@ -16,7 +16,7 @@ return [
         | default  : false
         |
         */
-        'track' => false,
+        'track' => env('TRACK_TRAFFIC', false),
 
         /*
         |--------------------------------------------------------------------------
@@ -43,7 +43,7 @@ return [
         | default  : false
         |
         */
-        'log' => false,
+        'log' => env('TRACK_TRAFFIC_LOGGING', false),
 
         /*
         |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
         | default  : false
         |
         */
-        'response_content' => false,
+        'response_content' => env('TRACK_TRAFFIC_RESPONSE_CONTENT', false),
     ],
 
 ];
