@@ -15,6 +15,4 @@ class TrackActionBuilderTest extends BuilderTestCase
      * @var TrackAction
      */
     protected $modelClass = TrackAction::class;
-
-
 }
