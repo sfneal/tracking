@@ -21,3 +21,4 @@ All notable changes to `tracking` will be documented in this file
 - add use of `env()` helper function in config file
 - fix use of sfneal/string-helpers helper functions by adding import of `StringHelpers`
 - fix issue with `TrackTrafficObserver` not being attached to `TrackTraffic` model
+- fix issue with `TrackTraffic` model not passing value to attribute setter in `TrackTrafficObserver`
