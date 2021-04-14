@@ -10,6 +10,8 @@ use Sfneal\Tracking\Queries\Base\TrackingQuery;
 
 class TrackActionQuery extends TrackingQuery
 {
+    // todo: add request validation
+
     use ParamGetter;
 
     /**
