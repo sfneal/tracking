@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\Tracking\Tests\Feature\Builders\Traits;
+namespace Sfneal\Tracking\Tests\Feature\Builders;
 
 trait WhereUserTests
 {

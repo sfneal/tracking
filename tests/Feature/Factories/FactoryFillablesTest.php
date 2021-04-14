@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\Tracking\Tests\Feature\Factories\Interfaces;
+namespace Sfneal\Tracking\Tests\Feature\Factories;
 
 // todo: consider moving to sfneal/mock-models?
 interface FactoryFillablesTest
