@@ -2,6 +2,7 @@
 
 namespace Sfneal\Tracking\Models\Base;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Sfneal\Models\Model;
 use Sfneal\Scopes\CreatedOrderScope;
@@ -37,9 +38,19 @@ abstract class Tracking extends Model
         'request_payload' => 'array',
     ];
 
+    /**
+     * @var array Attributes that should be appended to collections
+     */
     protected $appends = [
         'has_model_changes',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    abstract protected static function newFactory();
 
     /**
      * User relationship.
