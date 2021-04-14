@@ -17,6 +17,7 @@ All notable changes to `tracking` will be documented in this file
 - fix migration paths in `TrackingServiceProvider`
 
 
-## 0.1.2 - 2021-04-13
+## 0.2.0 - 2021-04-13
 - add use of `env()` helper function in config file
 - fix use of sfneal/string-helpers helper functions by adding import of `StringHelpers`
+- fix issue with `TrackTrafficObserver` not being attached to `TrackTraffic` model
