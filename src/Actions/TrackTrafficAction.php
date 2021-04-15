@@ -42,6 +42,7 @@ class TrackTrafficAction extends Action
         if (config('tracking.traffic.store')) {
             return TrackTraffic::query()->create($this->tracking);
         }
+
         return null;
     }
 }
