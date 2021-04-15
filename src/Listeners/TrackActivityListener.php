@@ -8,6 +8,7 @@ use Sfneal\Tracking\Events\TrackActivityEvent;
 
 class TrackActivityListener extends Listener
 {
+    // todo: add to config
     /**
      * @var string Queue to use
      */
