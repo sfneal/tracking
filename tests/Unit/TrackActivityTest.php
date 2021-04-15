@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Unit;
-
 
 use Sfneal\Testing\Models\People;
 use Sfneal\Tracking\Jobs\TrackActivityJob;
@@ -49,7 +47,7 @@ class TrackActivityTest extends TestCase implements CrudModelTest
 
         $description = 'Updated the People model with latest attributes.';
         $activity->update([
-            'description' => $description
+            'description' => $description,
         ]);
 
         $this->assertInstanceOf(TrackActivity::class, $activity);

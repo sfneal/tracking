@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Unit;
-
 
 use Sfneal\Testing\Models\People;
 use Sfneal\Tracking\Jobs\TrackActionJob;
@@ -32,7 +30,7 @@ class TrackActionTest extends TestCase implements CrudModelTest
 
         $newAction = 'Created the People model.';
         $trackAction->update([
-            'action' => $newAction
+            'action' => $newAction,
         ]);
 
         $this->assertInstanceOf(TrackAction::class, $trackAction);

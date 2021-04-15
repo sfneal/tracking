@@ -55,6 +55,7 @@ class TrackActionJob extends Job
         if ($this->model->exists) {
             return (new TrackActionAction($this->action, $this->model, $this->model_changes))->execute();
         }
+
         return null;
     }
 }
