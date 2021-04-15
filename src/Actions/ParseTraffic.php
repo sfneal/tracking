@@ -11,7 +11,6 @@ use Sfneal\Actions\Action;
 use Sfneal\Helpers\Arrays\ArrayHelpers;
 use Sfneal\Helpers\Laravel\AppInfo;
 
-// todo: optimize execute method
 class ParseTraffic extends Action
 {
     /**
@@ -31,6 +30,20 @@ class ParseTraffic extends Action
     private $tracking = [];
 
     /**
+     * @var Request
+     */
+    private $request;
+    /**
+     * @var Response|RedirectResponse
+     */
+    private $response;
+
+    /**
+     * @var string
+     */
+    private $time_stamp;
+
+    /**
      * Create a new event instance.
      *
      * @param Request                   $request
@@ -39,20 +52,9 @@ class ParseTraffic extends Action
      */
     public function __construct(Request $request, Response $response, string $time_stamp)
     {
-        // Initialize event for serialization
-        $this->tracking['user_id'] = intval(auth()->id());
-        $this->tracking['session_id'] = Cookie::get(config('session.cookie'));
-        $this->tracking['app_version'] = AppInfo::version();
-        $this->tracking['time_stamp'] = $this->getTimestamp($time_stamp);
-
-        // Request data
-        $this->parseRequest($request);
-
-        // Response data
-        $this->parseResponse($response, $time_stamp);
-
-        // Request data
-        $this->parseAgent();
+        $this->request = $request;
+        $this->response = $response;
+        $this->time_stamp = $time_stamp;
     }
 
     /**
@@ -62,40 +64,50 @@ class ParseTraffic extends Action
      */
     public function execute()
     {
+        // Initialize event for serialization
+        $this->tracking['user_id'] = intval(auth()->id());
+        $this->tracking['session_id'] = Cookie::get(config('session.cookie'));
+        $this->tracking['app_version'] = AppInfo::version();
+        $this->tracking['time_stamp'] = $this->getTimestamp($this->time_stamp);
+
+        // Request data
+        $this->parseRequest();
+
+        // Response data
+        $this->parseResponse();
+
+        // Request data
+        $this->parseAgent();
+
         return $this->tracking;
     }
 
     /**
      * Parse a Request object to retrieve relevant data.
-     *
-     * @param Request $request
      */
-    private function parseRequest(Request $request)
+    private function parseRequest()
     {
-        $this->tracking['request']['host'] = $request->getHttpHost();
-        $this->tracking['request']['uri'] = $request->getRequestUri();
-        $this->tracking['request']['method'] = $request->getMethod();
-        $this->tracking['request']['payload'] = $this->getRequestPayload($request);
+        $this->tracking['request']['host'] = $this->request->getHttpHost();
+        $this->tracking['request']['uri'] = $this->request->getRequestUri();
+        $this->tracking['request']['method'] = $this->request->getMethod();
+        $this->tracking['request']['payload'] = $this->getRequestPayload();
         $this->tracking['request']['browser'] = $_SERVER['HTTP_USER_AGENT'] ?? null;
-        $this->tracking['request']['ip'] = $request->ip();
+        $this->tracking['request']['ip'] = $this->request->ip();
         $this->tracking['request']['referrer'] = $_SERVER['HTTP_REFERER'] ?? null;
-        $this->tracking['request']['token'] = $request->get('track_traffic_token') ?? uniqid();
+        $this->tracking['request']['token'] = $this->request->get('track_traffic_token') ?? uniqid();
     }
 
     /**
      * Parse a Response object to retrieve relevant data.
-     *
-     * @param Response|RedirectResponse $response
-     * @param $time_stamp
      */
-    private function parseResponse(Response $response, $time_stamp)
+    private function parseResponse()
     {
-        $this->tracking['response']['code'] = $response->getStatusCode();
-        $this->tracking['response']['time'] = $this->getResponseTime($time_stamp);
+        $this->tracking['response']['code'] = $this->response->getStatusCode();
+        $this->tracking['response']['time'] = $this->getResponseTime($this->time_stamp);
 
         // Store response content served if enabled
         if (config('tracking.traffic.response_content')) {
-            $this->tracking['response']['content'] = $response->getContent();
+            $this->tracking['response']['content'] = $this->response->getContent();
         }
     }
 
@@ -114,13 +126,11 @@ class ParseTraffic extends Action
     /**
      * Retrieve a request payload with exclusions removed.
      *
-     * @param Request $request
-     *
      * @return array
      */
-    private function getRequestPayload(Request $request)
+    private function getRequestPayload()
     {
-        return (new ArrayHelpers(array_merge($request->query(), $request->input())))
+        return (new ArrayHelpers(array_merge($this->request->query(), $this->request->input())))
             ->arrayRemoveKeys(self::REQUEST_PAYLOAD_EXCLUSIONS);
     }
 
