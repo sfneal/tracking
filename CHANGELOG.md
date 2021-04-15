@@ -61,3 +61,7 @@ All notable changes to `tracking` will be documented in this file
 - fix issue with `ParseTraffic` response time results not being type cast to floats
 - improve parameter & return type hinting
 - add public `parse()` methods to `ParseTraffic` to enable use cases where not all data is needed to be retrieved
+
+
+## 0.5.1 - 2021-04-15
+- optimize `TrackTrafficMiddleware` by deferring adding a unique id token until after confirming tracking is enabled
