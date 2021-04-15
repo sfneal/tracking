@@ -75,4 +75,28 @@ return [
         'response_content' => env('TRACK_TRAFFIC_RESPONSE_CONTENT', false),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Tracking Jobs Queue
+    |--------------------------------------------------------------------------
+    |
+    | Specify a Job queue to use when dispatching tracking jobs.  Creating a
+    | 'tracking' queue can be effective for avoiding bottlenecks.
+    |
+    | type     : string
+    | default  : 'default'
+    |
+    */
+    'queue' => env('TRACKING_QUEUE', 'default'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Queue Driver
+    |--------------------------------------------------------------------------
+    |
+    | Specify a Queue Driver for dispatching tracking jobs.
+    |
+    */
+    'driver' => env('TRACKING_QUEUE_DRIVER', config('queue.default')),
+
 ];
