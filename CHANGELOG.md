@@ -46,3 +46,11 @@ All notable changes to `tracking` will be documented in this file
 
 ## 0.3.3 - 2021-04-15
 - cut redundant actions & jobs that are only called from a single class
+
+
+## 0.4.0 - 2021-04-15
+- cut use of `session_id()` in `ParseTrafficAction`
+- add use of config 'session.cookie' key for retrieving session id
+- fix issue with 'session_id' column not being nullable
+- add 'tracking.queue' & 'tracking.driver' keys to config file
+- add use of 'tracking.queue' & 'tracking.driver' config keys in `TrackActionJob` & `TrackActivityListener`
