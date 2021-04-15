@@ -36,7 +36,7 @@ class ParseTrafficAction extends Action
      *
      * @param Request                   $request
      * @param Response|RedirectResponse $response
-     * @param string                    $time_stamp
+     * @param string                    $time_stamp todo: add default value
      */
     public function __construct(Request $request, Response $response, string $time_stamp)
     {
