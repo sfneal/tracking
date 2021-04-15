@@ -49,18 +49,6 @@ class TrackTrafficMiddleware
     private function track(Request $request, $response)
     {
         // Fire Traffic Tracker event
-        event(new TrackTrafficEvent(
-            $request,
-            $response,
-            $this->getTimestamp(),
-        ));
-    }
-
-    /**
-     * @return string
-     */
-    private function getTimestamp(): string
-    {
-        return microtime(true);
+        event(new TrackTrafficEvent($request, $response, microtime(true)));
     }
 }
