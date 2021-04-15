@@ -8,11 +8,14 @@ use Sfneal\Tracking\Events\TrackActivityEvent;
 
 class TrackActivityListener extends Listener
 {
-    // todo: add to config
     /**
-     * @var string Queue to use
+     * TrackActivityListener constructor.
      */
-    public $queue = 'tracking';
+    public function __construct()
+    {
+        $this->onQueue(config('tracking.queue'));
+        $this->onConnection(config('tracking.queue_driver'));
+    }
 
     /**
      * Handle the event.

@@ -17,12 +17,6 @@ class TrackActionJob extends Job
      */
     public $deleteWhenMissingModels = true;
 
-    // todo: add to config
-    /**
-     * @var string Queue to use
-     */
-    public $queue = 'tracking';
-
     // todo: improve type hinting
     public $action;
     public $model;
@@ -44,6 +38,9 @@ class TrackActionJob extends Job
         } catch (Exception $exception) {
             $this->model_changes = [];
         }
+
+        $this->onQueue(config('tracking.queue'));
+        $this->onConnection(config('tracking.queue_driver'));
     }
 
     /**
