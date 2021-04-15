@@ -7,9 +7,10 @@ namespace Sfneal\Tracking\Tests\Unit;
 use Sfneal\Testing\Models\People;
 use Sfneal\Tracking\Jobs\TrackActionJob;
 use Sfneal\Tracking\Models\TrackAction;
+use Sfneal\Tracking\Tests\CrudModelTest;
 use Sfneal\Tracking\Tests\TestCase;
 
-class TrackActionTest extends TestCase
+class TrackActionTest extends TestCase implements CrudModelTest
 {
     /** @test */
     public function records_can_be_created()
