@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests;
-
 
 // todo: add to sfneal/mock-models?
 interface CrudModelTest

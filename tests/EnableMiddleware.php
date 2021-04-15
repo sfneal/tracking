@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests;
-
 
 use Illuminate\Support\Facades\Route;
 use Sfneal\Tracking\Middleware\TrackTrafficMiddleware;
