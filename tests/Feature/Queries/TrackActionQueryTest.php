@@ -42,7 +42,7 @@ class TrackActionQueryTest extends QueriesTestCase
 
             // Create a request
             $request = $this->createRequest([], [
-                'table' => $table
+                'table' => $table,
             ]);
 
             // Query Builder
@@ -72,7 +72,7 @@ class TrackActionQueryTest extends QueriesTestCase
 
         // Create a request
         $request = $this->createRequest([], [
-            'key' => $model_key
+            'key' => $model_key,
         ]);
 
         // Query Builder
@@ -97,7 +97,6 @@ class TrackActionQueryTest extends QueriesTestCase
                 ->first()
                 ->model_key;
 
-
             // `TrackAction` records for the $table
             $records = TrackAction::query()
                 ->where('model_table', '=', $table)
@@ -107,7 +106,7 @@ class TrackActionQueryTest extends QueriesTestCase
             // Create a request
             $request = $this->createRequest([], [
                 'table' => $table,
-                'key' => $model_key
+                'key' => $model_key,
             ]);
 
             // Query Builder
