@@ -11,6 +11,7 @@ use Sfneal\Tracking\Queries\Base\TrackingQuery;
 class TrackActionQuery extends TrackingQuery
 {
     // todo: add request validation
+    // todo: add use of sfneal/builders HasRelationships trait
 
     use ParamGetter;
 

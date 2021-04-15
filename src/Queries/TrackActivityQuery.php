@@ -11,25 +11,9 @@ use Sfneal\Tracking\Queries\Base\TrackingQuery;
 class TrackActivityQuery extends TrackingQuery
 {
     // todo: add request validation
+    // todo: add use of sfneal/builders HasRelationships trait
 
     use ParamGetter;
-
-    /**
-     * Relationships that should be eager loaded by default.
-     */
-    private const DEFAULT_RELATIONSHIPS = [
-        'user',
-        'tracking',
-        'plan',
-        'planManagement',
-        'planManagement.plan',
-        'project',
-        'task',
-        'task.project',
-        'taskRecord',
-        'taskRecord.task',
-        'taskRecord.task.project',
-    ];
 
     /**
      * Retrieve a Query builder.
@@ -38,8 +22,13 @@ class TrackActivityQuery extends TrackingQuery
      */
     protected function builder(): TrackActivityBuilder
     {
-        return TrackActivity::query()
-            ->with($this->relationships ?? self::DEFAULT_RELATIONSHIPS);
+        $builder = TrackActivity::query();
+
+        if ($this->relationships) {
+            $builder->with($this->relationships);
+        }
+
+        return $builder;
     }
 
     /**

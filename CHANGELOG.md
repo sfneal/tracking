@@ -26,6 +26,12 @@ All notable changes to `tracking` will be documented in this file
 
 ## 0.3.0 - 2021-04-14
 - cut support for php7.4
-- cut relationships brought in from hpa app in `TrackingQuery`
+- cut relationships brought in from hpa app in `TrackActionQuery`
 - fix $parameters param to default as null in `TrackingQuery`
 - start making query test suite
+
+
+## 0.3.1 - 2021-04-15
+- cut relationships brought in from hpa app in `TrackActivityQuery`
+- improve `TrackAction` & `TrackActivity` database factory definitions
+- add queries feature test suite
