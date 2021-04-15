@@ -3,7 +3,7 @@
 namespace Sfneal\Tracking\Tests\Unit;
 
 use Sfneal\Testing\Models\People;
-use Sfneal\Tracking\Jobs\TrackActivityJob;
+use Sfneal\Tracking\Actions\TrackActivityAction;
 use Sfneal\Tracking\Models\TrackActivity;
 use Sfneal\Tracking\Tests\CrudModelTest;
 use Sfneal\Tracking\Tests\TestCase;
@@ -16,12 +16,12 @@ class TrackActivityTest extends TestCase implements CrudModelTest
         $model = People::factory()->create();
         $user_id = rand(1, 999);
         $route = 'people.create';
-        $activity = (new TrackActivityJob(
+        $activity = (new TrackActivityAction(
             $model,
             uniqid(),
             $user_id,
             $route
-        ))->handle();
+        ))->execute();
 
         $this->assertInstanceOf(TrackActivity::class, $activity);
         $this->assertSame($user_id, $activity->user_id);
@@ -38,12 +38,12 @@ class TrackActivityTest extends TestCase implements CrudModelTest
         $model = People::factory()->create();
         $user_id = rand(1, 999);
         $route = 'people.create';
-        $activity = (new TrackActivityJob(
+        $activity = (new TrackActivityAction(
             $model,
             uniqid(),
             $user_id,
             $route
-        ))->handle();
+        ))->execute();
 
         $description = 'Updated the People model with latest attributes.';
         $activity->update([
@@ -61,12 +61,12 @@ class TrackActivityTest extends TestCase implements CrudModelTest
         $model = People::factory()->create();
         $user_id = rand(1, 999);
         $route = 'people.create';
-        $activity = (new TrackActivityJob(
+        $activity = (new TrackActivityAction(
             $model,
             uniqid(),
             $user_id,
             $route
-        ))->handle();
+        ))->execute();
 
         $activity->delete();
 

@@ -6,7 +6,6 @@ use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Sfneal\Queueables\Job;
-use Sfneal\Tracking\Actions\TrackActionAction;
 use Sfneal\Tracking\Models\TrackAction;
 
 class TrackActionJob extends Job
@@ -18,11 +17,13 @@ class TrackActionJob extends Job
      */
     public $deleteWhenMissingModels = true;
 
+    // todo: add to config
     /**
      * @var string Queue to use
      */
     public $queue = 'tracking';
 
+    // todo: improve type hinting
     public $action;
     public $model;
     public $model_changes;
@@ -53,7 +54,12 @@ class TrackActionJob extends Job
     public function handle(): ?TrackAction
     {
         if ($this->model->exists) {
-            return (new TrackActionAction($this->action, $this->model, $this->model_changes))->execute();
+            return TrackAction::query()->create([
+                'action'        => $this->action,
+                'model_table'   => $this->model->getTable(),
+                'model_key'     => $this->model->getKey(),
+                'model_changes' => $this->model_changes,
+            ]);
         }
 
         return null;

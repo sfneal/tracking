@@ -8,6 +8,7 @@ use Sfneal\Tracking\Models\TrackActivity;
 
 class TrackActivityAction extends Action
 {
+    // todo: improve type hinting
     public $model;
     public $request_token;
     public $user_id;
