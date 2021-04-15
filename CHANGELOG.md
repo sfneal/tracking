@@ -35,3 +35,10 @@ All notable changes to `tracking` will be documented in this file
 - cut relationships brought in from hpa app in `TrackActivityQuery`
 - improve `TrackAction` & `TrackActivity` database factory definitions
 - add queries feature test suite
+
+
+## 0.3.2 - 2021-04-15
+- fix issues with `TrackAction`, `TrackActivity` & `TrackTraffic` actions & jobs not returning newly created models
+- fix issues with migrations not allowing columns to be nullable
+- fix min sfneal/laravel-helpers version to ensure `AppInfo::env()` method is supported
+- add unit tests to test suite

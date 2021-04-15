@@ -44,11 +44,11 @@ class TrackActivityAction extends Action
     /**
      * Track a user's activity/actions.
      *
-     * @return void
+     * @return TrackActivity|Model
      */
-    public function execute()
+    public function execute(): TrackActivity
     {
-        TrackActivity::query()->create([
+        return TrackActivity::query()->create([
             'user_id'       => $this->user_id,
             'route'         => $this->route,
             'description'   => $this->description,
