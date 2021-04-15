@@ -8,7 +8,6 @@ use Sfneal\Users\Builders\Traits\WhereUser;
 
 class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
 {
-    // todo: improve type hinting
     use WhereUser;
 
     /**
@@ -20,7 +19,7 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
      *
      * @return $this
      */
-    public function whereRequestUri(string $uri, string $operator = '=', string $boolean = 'and')
+    public function whereRequestUri(string $uri, string $operator = '=', string $boolean = 'and'): self
     {
         $this->where('request_uri', $operator, $uri, $boolean);
 
@@ -35,7 +34,7 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
      *
      * @return $this
      */
-    public function orWhereRequestUri(string $uri, string $operator = '=')
+    public function orWhereRequestUri(string $uri, string $operator = '='): self
     {
         $this->whereRequestUri($uri, $operator, 'or');
 
@@ -51,7 +50,7 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
      *
      * @return $this
      */
-    public function whereRequestUriIn(array $uris, string $boolean = 'and', bool $not = false)
+    public function whereRequestUriIn(array $uris, string $boolean = 'and', bool $not = false): self
     {
         $this->whereIn('request_uri', $uris, $boolean, $not);
 
@@ -67,7 +66,7 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
      *
      * @return $this
      */
-    public function whereEnvironment(string $environment, string $operator = '=', string $boolean = 'and')
+    public function whereEnvironment(string $environment, string $operator = '=', string $boolean = 'and'): self
     {
         $this->where('app_environment', $operator, $environment, $boolean);
 
@@ -79,7 +78,7 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
      *
      * @return $this
      */
-    public function whereEnvironmentProduction()
+    public function whereEnvironmentProduction(): self
     {
         $this->whereEnvironment('production');
 
@@ -91,7 +90,7 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
      *
      * @return $this
      */
-    public function whereEnvironmentDevelopment()
+    public function whereEnvironmentDevelopment(): self
     {
         $this->whereEnvironment('development');
 

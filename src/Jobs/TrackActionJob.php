@@ -17,9 +17,19 @@ class TrackActionJob extends Job
      */
     public $deleteWhenMissingModels = true;
 
-    // todo: improve type hinting
+    /**
+     * @var string Description of the action.
+     */
     public $action;
+
+    /**
+     * @var Collection|Model Model or models effected by the action
+     */
     public $model;
+
+    /**
+     * @var array array of changes made to the model
+     */
     public $model_changes;
 
     /**

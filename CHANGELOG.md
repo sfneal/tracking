@@ -59,5 +59,5 @@ All notable changes to `tracking` will be documented in this file
 ## 0.5.0 - 2021-04-15
 - refactor `ParseTrafficAction` to `ParseTraffic`
 - fix issue with `ParseTraffic` response time results not being type cast to floats
-- improve parameter & return type hinting TrackTraffic events & actions
+- improve parameter & return type hinting
 - add public `parse()` methods to `ParseTraffic` to enable use cases where not all data is needed to be retrieved
