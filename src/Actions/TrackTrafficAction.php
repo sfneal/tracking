@@ -2,6 +2,7 @@
 
 namespace Sfneal\Tracking\Actions;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Sfneal\Actions\Action;
 use Sfneal\Helpers\Arrays\ArrayHelpers;
@@ -28,18 +29,19 @@ class TrackTrafficAction extends Action
     /**
      * Retrieve tracking data and then do something with it.
      *
-     * @return void
+     * @return TrackTraffic|Model
      */
-    public function execute()
+    public function execute(): ?TrackTraffic
     {
-        // Store traffic data in database
-        if (config('tracking.traffic.store')) {
-            TrackTraffic::query()->create($this->tracking);
-        }
-
         // Log JSON encoded activity to local log file
         if (config('tracking.traffic.log')) {
             Log::channel(config('tracking.traffic.log_channel'))->info(json_encode($this->tracking));
         }
+
+        // Store traffic data in database
+        if (config('tracking.traffic.store')) {
+            return TrackTraffic::query()->create($this->tracking);
+        }
+        return null;
     }
 }
