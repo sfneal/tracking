@@ -15,20 +15,20 @@ use Sfneal\Helpers\Laravel\AppInfo;
 class ParseTraffic extends Action
 {
     /**
-     * @var array
-     */
-    private $tracking = [];
-
-    /**
      * Array keys to exclude from the 'request_payload' attribute.
      *
      * @var array
      */
-    private $request_payload_exclusions = [
+    private const REQUEST_PAYLOAD_EXCLUSIONS = [
         '_token',
         '_method',
         'password',
     ];
+
+    /**
+     * @var array
+     */
+    private $tracking = [];
 
     /**
      * Create a new event instance.
@@ -116,7 +116,7 @@ class ParseTraffic extends Action
     private function getRequestPayload(Request $request)
     {
         return (new ArrayHelpers(array_merge($request->query(), $request->input())))
-            ->arrayRemoveKeys($this->request_payload_exclusions);
+            ->arrayRemoveKeys(self::REQUEST_PAYLOAD_EXCLUSIONS);
     }
 
     /**
