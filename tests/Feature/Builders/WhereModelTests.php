@@ -45,9 +45,9 @@ trait WhereModelTests
     /** @test */
     public function whereModelTable()
     {
-        $expected = 50;
+        $expected = 25;
 
-        $model_key = $this->modelClass::query()
+        $model_table = $this->modelClass::query()
             ->distinct()
             ->get('model_table')
             ->shuffle()
@@ -55,8 +55,8 @@ trait WhereModelTests
             ->pluck('model_table')
             ->first();
 
-        $count = $this->modelClass::query()->whereModelTable($model_key)->count();
+        $models = $this->modelClass::query()->whereModelTable($model_table)->get();
 
-        $this->assertSame($expected, $count);
+        $this->assertContains($model_table, $models->pluck('model_table'));
     }
 }
