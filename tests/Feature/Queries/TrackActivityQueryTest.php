@@ -85,7 +85,6 @@ class TrackActivityQueryTest extends QueriesTestCase
         // Test each unique table name
         $user_ids = TrackActivity::query()->distinct()->limit(20)->getFlatArray('user_id');
 
-
         // `TrackAction` records for the $table
         $records = TrackActivity::query()
             ->whereIn('user_id', $user_ids)
