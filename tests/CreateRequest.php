@@ -4,6 +4,7 @@ namespace Sfneal\Tracking\Tests;
 
 use Illuminate\Http\Request;
 
+// todo: add to sfneal/mock-models?
 trait CreateRequest
 {
     /**
