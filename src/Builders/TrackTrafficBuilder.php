@@ -8,6 +8,7 @@ use Sfneal\Users\Builders\Traits\WhereUser;
 
 class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
 {
+    // todo: improve type hinting
     use WhereUser;
 
     /**
