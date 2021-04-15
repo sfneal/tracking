@@ -4,14 +4,12 @@ namespace Sfneal\Tracking\Tests\Feature;
 
 use Illuminate\Support\Facades\Event;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
-use Sfneal\Tracking\Tests\CreateRequest;
 use Sfneal\Tracking\Tests\EnableMiddleware;
 use Sfneal\Tracking\Tests\EventFaker;
 use Sfneal\Tracking\Tests\TestCase;
 
 class MiddlewareTest extends TestCase
 {
-    use CreateRequest;
     use EnableMiddleware;
     use EventFaker;
 
