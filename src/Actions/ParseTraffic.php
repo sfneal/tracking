@@ -62,7 +62,7 @@ class ParseTraffic extends Action
      *
      * @return array
      */
-    public function execute()
+    public function execute(): array
     {
         // Initialize event for serialization
         $this->tracking['user_id'] = intval(auth()->id());
@@ -71,13 +71,13 @@ class ParseTraffic extends Action
         $this->tracking['time_stamp'] = self::getTimestamp($this->timestamp);
 
         // Request data
-        $this->parseRequest();
+        $this->tracking['request'] = $this->parseRequest();
 
         // Response data
-        $this->parseResponse();
+        $this->tracking['response'] = $this->parseResponse();
 
         // Request data
-        $this->parseAgent();
+        $this->tracking['agent'] = $this->parseAgent();
 
         return $this->tracking;
     }
@@ -85,48 +85,57 @@ class ParseTraffic extends Action
     /**
      * Parse a Request object to retrieve relevant data.
      *
-     * @return void
+     * @return array
      */
-    protected function parseRequest(): void
+    public function parseRequest(): array
     {
-        $this->tracking['request']['host'] = $this->request->getHttpHost();
-        $this->tracking['request']['uri'] = $this->request->getRequestUri();
-        $this->tracking['request']['method'] = $this->request->getMethod();
-        $this->tracking['request']['payload'] = $this->getRequestPayload();
-        $this->tracking['request']['browser'] = $_SERVER['HTTP_USER_AGENT'] ?? null;
-        $this->tracking['request']['ip'] = $this->request->ip();
-        $this->tracking['request']['referrer'] = $_SERVER['HTTP_REFERER'] ?? null;
-        $this->tracking['request']['token'] = $this->request->get('track_traffic_token') ?? uniqid();
+        return [
+            'host' => $this->request->getHttpHost(),
+            'uri' => $this->request->getRequestUri(),
+            'method' => $this->request->getMethod(),
+            'payload' => $this->getRequestPayload(),
+            'browser' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+            'ip' => $this->request->ip(),
+            'referrer' => $_SERVER['HTTP_REFERER'] ?? null,
+            'token' => $this->request->get('track_traffic_token') ?? uniqid(),
+        ];
     }
 
     /**
      * Parse a Response object to retrieve relevant data.
      *
-     * @return void
+     * @return array
      */
-    protected function parseResponse(): void
+    public function parseResponse(): array
     {
-        $this->tracking['response']['code'] = $this->response->getStatusCode();
-        $this->tracking['response']['time'] = self::getResponseTime($this->timestamp);
+        // Status code & response time
+        $response = [
+            'code' => $this->response->getStatusCode(),
+            'time' => self::getResponseTime($this->timestamp),
+        ];
 
         // Store response content served if enabled
         if (config('tracking.traffic.response_content')) {
-            $this->tracking['response']['content'] = $this->response->getContent();
+            $response['content'] = $this->response->getContent();
         }
+
+        return $response;
     }
 
     /**
      * Set user agent data on platform, device & browser.
      *
-     * @return void
+     * @return array
      */
-    protected function parseAgent(): void
+    public function parseAgent(): array
     {
         $agent = new Agent();
 
-        $this->tracking['agent']['platform'] = $agent->platform();
-        $this->tracking['agent']['device'] = $agent->device();
-        $this->tracking['agent']['browser'] = $agent->browser();
+        return [
+            'platform' => $agent->platform(),
+            'device' => $agent->device(),
+            'browser' => $agent->browser(),
+        ];
     }
 
     /**
