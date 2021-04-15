@@ -8,12 +8,34 @@ use Sfneal\Tracking\Models\TrackActivity;
 
 class TrackActivityAction extends Action
 {
-    // todo: improve type hinting
+    /**
+     * @var Model
+     */
     public $model;
+
+    /**
+     * @var string|null
+     */
     public $request_token;
+
+    /**
+     * @var int
+     */
     public $user_id;
+
+    /**
+     * @var string|null
+     */
     public $route;
+
+    /**
+     * @var array
+     */
     public $model_changes;
+
+    /**
+     * @var string|null
+     */
     public $description;
 
     /**
