@@ -43,7 +43,7 @@ class ParseTrafficAction extends Action
     ) {
         // Initialize event for serialization
         $this->tracking['user_id'] = intval(auth()->id());
-        $this->tracking['session_id'] = Cookie::get('hpa_laravel_session');
+        $this->tracking['session_id'] = Cookie::get('hpa_laravel_session') ?? session_id();
         $this->tracking['app_version'] = AppInfo::version();
         $this->tracking['time_stamp'] = $this->getTimestamp($time_stamp);
 
@@ -81,7 +81,7 @@ class ParseTrafficAction extends Action
         $this->tracking['request']['browser'] = $_SERVER['HTTP_USER_AGENT'] ?? null;
         $this->tracking['request']['ip'] = $request->ip();
         $this->tracking['request']['referrer'] = $_SERVER['HTTP_REFERER'] ?? null;
-        $this->tracking['request']['token'] = $request->get('track_traffic_token');
+        $this->tracking['request']['token'] = $request->get('track_traffic_token') ?? uniqid();
     }
 
     /**
