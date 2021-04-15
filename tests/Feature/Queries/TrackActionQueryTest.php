@@ -33,25 +33,25 @@ class TrackActionQueryTest extends QueriesTestCase
     /** @test */
     public function query_with_table_param()
     {
-        // Table name
-        $table = 'people';
+        // Test each unique table name
+        foreach (TrackAction::query()->distinct()->getFlatArray('model_table') as $table) {
+            // All of `TrackAction` records
+            $records = TrackAction::query()
+                ->where('model_table', '=', $table)
+                ->get();
 
-        // All of `TrackAction` records
-        $records = TrackAction::query()
-            ->where('model_table', '=', $table)
-            ->get();
+            // Create a request
+            $request = $this->createRequest([], [
+                'table' => $table
+            ]);
 
-        // Create a request
-        $request = $this->createRequest([], [
-            'table' => $table
-        ]);
+            // Query Builder
+            $builder = (new TrackActionQuery($request))->execute();
 
-        // Query Builder
-        $builder = (new TrackActionQuery($request))->execute();
-
-        // Execute assertions
-        $this->assertInstanceOf(TrackActionBuilder::class, $builder);
-        $this->assertEquals($records->count(), $builder->count());
-        $this->assertEquals($records, $builder->get());
+            // Execute assertions
+            $this->assertInstanceOf(TrackActionBuilder::class, $builder);
+            $this->assertEquals($records->count(), $builder->count());
+            $this->assertEquals($records, $builder->get());
+        }
     }
 }
