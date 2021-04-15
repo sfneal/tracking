@@ -20,23 +20,29 @@ class TrackTrafficMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // todo: add to if statement body?
-        // Add unique ID to be used to relate traffic & activities
-        $request->attributes->add(['track_traffic_token' => uniqid()]);
-
+        // Create response
         $response = $next($request);
 
         // Check if traffic tracking is enabled
         if (config('tracking.traffic.track')) {
+            // Add unique ID to be used to relate traffic & activities
+            $request->attributes->add(['track_traffic_token' => uniqid()]);
+
+            // Fire tracking event
             $this->track($request, $response);
-        } else {
-            $request->attributes->add(['track_traffic_token' => null]);
+        }
+
+        // false value signifies that the tracking token was disabled
+        else {
+            $request->attributes->add(['track_traffic_token' => false]);
         }
 
         return $response;
     }
 
     /**
+     * Fire the `TrackTrafficEvent`.
+     *
      * @param Request                   $request
      * @param Response|RedirectResponse $response
      */
@@ -53,7 +59,7 @@ class TrackTrafficMiddleware
     /**
      * @return string
      */
-    private function getTimestamp()
+    private function getTimestamp(): string
     {
         return microtime(true);
     }
