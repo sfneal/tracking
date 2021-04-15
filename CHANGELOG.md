@@ -54,3 +54,10 @@ All notable changes to `tracking` will be documented in this file
 - fix issue with 'session_id' column not being nullable
 - add 'tracking.queue' & 'tracking.driver' keys to config file
 - add use of 'tracking.queue' & 'tracking.driver' config keys in `TrackActionJob` & `TrackActivityListener`
+
+
+## 0.5.0 - 2021-04-15
+- refactor `ParseTrafficAction` to `ParseTraffic`
+- fix issue with `ParseTraffic` response time results not being type cast to floats
+- improve parameter & return type hinting TrackTraffic events & actions
+- add public `parse()` methods to `ParseTraffic` to enable use cases where not all data is needed to be retrieved
