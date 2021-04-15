@@ -20,7 +20,7 @@ class TrackActionTest extends TestCase implements CrudModelTest
 
         $this->assertInstanceOf(TrackAction::class, $trackAction);
         $this->assertSame($action, $trackAction->action);
-        $this->assertSame('people', $trackAction->model_table);
+        $this->assertSame(People::getTableName(), $trackAction->model_table);
         $this->assertEmpty($trackAction->model_changes);
     }
 
