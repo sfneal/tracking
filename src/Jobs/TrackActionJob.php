@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Sfneal\Queueables\Job;
 use Sfneal\Tracking\Actions\TrackActionAction;
+use Sfneal\Tracking\Models\TrackAction;
 
 class TrackActionJob extends Job
 {
@@ -47,17 +48,13 @@ class TrackActionJob extends Job
     /**
      * Execute the job.
      *
-     * @return void
+     * @return TrackAction|Model|null
      */
-    public function handle()
+    public function handle(): ?TrackAction
     {
         if ($this->model->exists) {
-            (new TrackActionAction(
-                $this->action,
-                $this->model,
-                $this->model_changes
-            )
-            )->execute();
+            return (new TrackActionAction($this->action, $this->model, $this->model_changes))->execute();
         }
+        return null;
     }
 }
