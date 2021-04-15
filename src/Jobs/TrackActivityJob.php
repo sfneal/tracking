@@ -5,6 +5,7 @@ namespace Sfneal\Tracking\Jobs;
 use Illuminate\Database\Eloquent\Model;
 use Sfneal\Queueables\Job;
 use Sfneal\Tracking\Actions\TrackActivityAction;
+use Sfneal\Tracking\Models\TrackActivity;
 
 class TrackActivityJob extends Job
 {
@@ -48,11 +49,11 @@ class TrackActivityJob extends Job
     /**
      * Execute the job.
      *
-     * @return void
+     * @return TrackActivity|Model
      */
-    public function handle()
+    public function handle(): TrackActivity
     {
-        (new TrackActivityAction(
+        return (new TrackActivityAction(
             $this->model,
             $this->request_token,
             $this->user_id,
