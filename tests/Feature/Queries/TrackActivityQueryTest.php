@@ -8,6 +8,8 @@ use Sfneal\Tracking\Queries\TrackActivityQuery;
 
 class TrackActivityQueryTest extends QueriesTestCase
 {
+    // todo: add methods to test 'period' key
+
     /**
      * @var TrackActivity
      */
