@@ -101,4 +101,14 @@ class TrackTraffic extends Tracking
     {
         $this->attributes['app_environment'] = $value ?? AppInfo::env();
     }
+
+    /**
+     * Set the 'request_method' attribute.
+     *
+     * @param string|null $value
+     */
+    public function setRequestMethodAttribute(string $value = null)
+    {
+        $this->attributes['request_method'] = strtoupper($value);
+    }
 }

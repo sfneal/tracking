@@ -76,7 +76,7 @@ class ParseTrafficAction extends Action
     {
         $this->tracking['request']['host'] = $request->getHttpHost();
         $this->tracking['request']['uri'] = $request->getRequestUri();
-        $this->tracking['request']['method'] = strtoupper($request->getMethod());
+        $this->tracking['request']['method'] = $request->getMethod();
         $this->tracking['request']['payload'] = $this->getRequestPayload($request);
         $this->tracking['request']['browser'] = $_SERVER['HTTP_USER_AGENT'] ?? null;
         $this->tracking['request']['ip'] = $request->ip();
