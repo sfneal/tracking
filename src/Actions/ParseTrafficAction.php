@@ -129,7 +129,7 @@ class ParseTrafficAction extends Action
      */
     private function getResponseTime($time_stamp)
     {
-        return number_format($time_stamp - LARAVEL_START, 2);
+        return floatval(number_format($time_stamp - LARAVEL_START, 2));
     }
 
     /**
