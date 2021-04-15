@@ -84,8 +84,10 @@ class ParseTraffic extends Action
 
     /**
      * Parse a Request object to retrieve relevant data.
+     *
+     * @return void
      */
-    private function parseRequest()
+    private function parseRequest(): void
     {
         $this->tracking['request']['host'] = $this->request->getHttpHost();
         $this->tracking['request']['uri'] = $this->request->getRequestUri();
@@ -99,8 +101,10 @@ class ParseTraffic extends Action
 
     /**
      * Parse a Response object to retrieve relevant data.
+     *
+     * @return void
      */
-    private function parseResponse()
+    private function parseResponse(): void
     {
         $this->tracking['response']['code'] = $this->response->getStatusCode();
         $this->tracking['response']['time'] = $this->getResponseTime($this->timestamp);
@@ -113,8 +117,10 @@ class ParseTraffic extends Action
 
     /**
      * Set user agent data on platform, device & browser.
+     *
+     * @return void
      */
-    private function parseAgent()
+    private function parseAgent(): void
     {
         $agent = new Agent();
 
@@ -128,7 +134,7 @@ class ParseTraffic extends Action
      *
      * @return array
      */
-    private function getRequestPayload()
+    private function getRequestPayload(): array
     {
         return (new ArrayHelpers(array_merge($this->request->query(), $this->request->input())))
             ->arrayRemoveKeys(self::REQUEST_PAYLOAD_EXCLUSIONS);
@@ -137,24 +143,24 @@ class ParseTraffic extends Action
     /**
      * Determine the amount of time taken to return a response.
      *
-     * @param $time_stamp
+     * @param string $timestamp
      *
      * @return float
      */
-    private function getResponseTime($time_stamp)
+    private function getResponseTime(string $timestamp): float
     {
-        return floatval(number_format($time_stamp - LARAVEL_START, 2));
+        return floatval(number_format($timestamp - LARAVEL_START, 2));
     }
 
     /**
      * Retrieve a traffic visit occurred at timestamp.
      *
-     * @param $time_stamp
+     * @param string $timestamp
      *
      * @return string
      */
-    private function getTimestamp($time_stamp)
+    private function getTimestamp(string $timestamp): string
     {
-        return date('Y-m-d H:i:s', $time_stamp);
+        return date('Y-m-d H:i:s', $timestamp);
     }
 }
