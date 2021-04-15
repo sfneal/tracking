@@ -17,9 +17,9 @@ class ParseTrafficTest extends TestCase
     private $timeStamp;
 
     /**
-     * @var array
+     * @var ParseTraffic
      */
-    private $tracking;
+    private $parser;
 
     /**
      * @var Response
@@ -39,48 +39,56 @@ class ParseTrafficTest extends TestCase
 
         $this->timeStamp = microtime(true);
         $this->response = response('OK');
-        $this->tracking = (new ParseTraffic(
+        $this->parser = new ParseTraffic(
             $this->createRequest([], ['page'=>1]),
             $this->response,
             $this->timeStamp
-        ))->execute();
+        );
     }
 
     /** @test */
     public function tracking_attributes_are_correct()
     {
-        $this->assertIsArray($this->tracking);
-        $this->assertIsInt($this->tracking['user_id']);
-        $this->assertIsString($this->tracking['time_stamp']);
-        $this->assertSame(date('Y-m-d H:i:s', $this->timeStamp), $this->tracking['time_stamp']);
+        $tracking = $this->parser->execute();
+
+        $this->assertIsArray($tracking);
+        $this->assertIsInt($tracking['user_id']);
+        $this->assertIsString($tracking['time_stamp']);
+        $this->assertSame(date('Y-m-d H:i:s', $this->timeStamp), $tracking['time_stamp']);
     }
 
     /** @test  */
     public function response_content_is_correct()
     {
-        $this->assertIsString($this->tracking['response']['content']);
-        $this->assertSame($this->response->content(), $this->tracking['response']['content']);
+        $tracking = $this->parser->execute();
+
+        $this->assertIsString($tracking['response']['content']);
+        $this->assertSame($this->response->content(), $tracking['response']['content']);
     }
 
     /** @test */
     public function request_attributes_are_correct()
     {
-        $this->assertIsString($this->tracking['request']['host']);
-        $this->assertStringContainsString('/', $this->tracking['request']['uri']);
-        $this->assertSame('/?page=1', $this->tracking['request']['uri']);
-        $this->assertSame('GET', $this->tracking['request']['method']);
-        $this->assertIsArray($this->tracking['request']['payload']);
-        $this->assertSame(['page'=>1], $this->tracking['request']['payload']);
-        $this->assertIsString($this->tracking['request']['ip']);
-        $this->assertSame('127.0.0.1', $this->tracking['request']['ip']);
-        $this->assertIsString($this->tracking['request']['token']);
+        $tracking = $this->parser->execute();
+
+        $this->assertIsString($tracking['request']['host']);
+        $this->assertStringContainsString('/', $tracking['request']['uri']);
+        $this->assertSame('/?page=1', $tracking['request']['uri']);
+        $this->assertSame('GET', $tracking['request']['method']);
+        $this->assertIsArray($tracking['request']['payload']);
+        $this->assertSame(['page'=>1], $tracking['request']['payload']);
+        $this->assertIsString($tracking['request']['ip']);
+        $this->assertSame('127.0.0.1', $tracking['request']['ip']);
+        $this->assertIsString($tracking['request']['token']);
     }
 
     /** @test */
     public function response_attributes_are_correct()
     {
-        $this->assertIsInt($this->tracking['response']['code']);
-        $this->assertSame(200, $this->tracking['response']['code']);
-        $this->assertIsFloat($this->tracking['response']['time']);
+        $tracking = $this->parser->execute();
+
+        $this->assertIsInt($tracking['response']['code']);
+        $this->assertSame(200, $tracking['response']['code']);
+        $this->assertIsFloat($tracking['response']['time']);
     }
 }
