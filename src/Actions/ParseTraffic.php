@@ -41,20 +41,20 @@ class ParseTraffic extends Action
     /**
      * @var string
      */
-    private $time_stamp;
+    private $timestamp;
 
     /**
      * Create a new event instance.
      *
      * @param Request                   $request
      * @param Response|RedirectResponse $response
-     * @param string                    $time_stamp todo: add default value
+     * @param string|null                $timestamp
      */
-    public function __construct(Request $request, Response $response, string $time_stamp)
+    public function __construct(Request $request, Response $response, string $timestamp = null)
     {
         $this->request = $request;
         $this->response = $response;
-        $this->time_stamp = $time_stamp;
+        $this->timestamp = $timestamp ?? microtime();
     }
 
     /**
@@ -68,7 +68,7 @@ class ParseTraffic extends Action
         $this->tracking['user_id'] = intval(auth()->id());
         $this->tracking['session_id'] = Cookie::get(config('session.cookie'));
         $this->tracking['app_version'] = AppInfo::version();
-        $this->tracking['time_stamp'] = $this->getTimestamp($this->time_stamp);
+        $this->tracking['time_stamp'] = $this->getTimestamp($this->timestamp);
 
         // Request data
         $this->parseRequest();
@@ -103,7 +103,7 @@ class ParseTraffic extends Action
     private function parseResponse()
     {
         $this->tracking['response']['code'] = $this->response->getStatusCode();
-        $this->tracking['response']['time'] = $this->getResponseTime($this->time_stamp);
+        $this->tracking['response']['time'] = $this->getResponseTime($this->timestamp);
 
         // Store response content served if enabled
         if (config('tracking.traffic.response_content')) {
