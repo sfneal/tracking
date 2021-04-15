@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Tests\Unit;
-
 
 use Sfneal\Tracking\Actions\TrackTrafficAction;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
