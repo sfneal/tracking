@@ -2,7 +2,7 @@
 
 namespace Sfneal\Tracking\Tests\Unit;
 
-use Sfneal\Tracking\Actions\CleanDevTrackingAction;
+use Sfneal\Tracking\Jobs\CleanDevTrackingJob;
 use Sfneal\Tracking\Models\TrackTraffic;
 use Sfneal\Tracking\Tests\TestCase;
 
@@ -41,7 +41,7 @@ class CleanDevTrackingTest extends TestCase
         $this->assertSame($expectedBefore, $devTrackingRecordsBefore);
 
         // Clean dev tracking data
-        CleanDevTrackingAction::execute();
+        (new CleanDevTrackingJob())->handle();
         $expectedAfter = 0;
         $devTrackingRecordsAfter = TrackTraffic::query()->whereEnvironmentDevelopment()->count();
         $this->assertSame($expectedAfter, $devTrackingRecordsAfter);
