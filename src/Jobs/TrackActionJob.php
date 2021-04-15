@@ -23,6 +23,7 @@ class TrackActionJob extends Job
      */
     public $queue = 'tracking';
 
+    // todo: improve type hinting
     public $action;
     public $model;
     public $model_changes;
