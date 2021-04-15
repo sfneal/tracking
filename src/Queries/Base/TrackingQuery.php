@@ -7,6 +7,8 @@ use Sfneal\Queries\Query;
 
 abstract class TrackingQuery extends Query
 {
+    // todo: improve constructor arguments
+
     /**
      * @var Request|null
      */
