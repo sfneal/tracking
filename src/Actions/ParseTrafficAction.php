@@ -38,11 +38,8 @@ class ParseTrafficAction extends Action
      * @param Response|RedirectResponse $response
      * @param string                    $time_stamp
      */
-    public function __construct(
-        Request $request,
-        $response,
-        string $time_stamp
-    ) {
+    public function __construct(Request $request, Response $response, string $time_stamp)
+    {
         // Initialize event for serialization
         $this->tracking['user_id'] = intval(auth()->id());
         $this->tracking['session_id'] = Cookie::get(config('session.cookie'));
