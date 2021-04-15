@@ -29,7 +29,7 @@ class TrackActivityFactory extends Factory
             'route' => $this->route(),
             'description' => $this->faker->text(),
 
-            'model_table' => 'people',
+            'model_table' => $this->faker->randomElement(['people', 'address']),
             'model_key' => $this->faker->randomNumber(3),
             'model_changes' => $this->faker->randomElements($this->modelChanges()),
 
