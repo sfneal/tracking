@@ -3,7 +3,7 @@
 namespace Sfneal\Tracking\Tests\Unit;
 
 use Illuminate\Http\Response;
-use Sfneal\Tracking\Actions\ParseTrafficAction;
+use Sfneal\Tracking\Actions\ParseTraffic;
 use Sfneal\Tracking\Tests\CreateRequest;
 use Sfneal\Tracking\Tests\TestCase;
 
@@ -39,7 +39,7 @@ class ParseTrafficTest extends TestCase
 
         $this->timeStamp = microtime(true);
         $this->response = response('OK');
-        $this->tracking = (new ParseTrafficAction(
+        $this->tracking = (new ParseTraffic(
             $this->createRequest([], ['page'=>1]),
             $this->response,
             $this->timeStamp

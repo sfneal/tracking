@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Sfneal\Events\Event;
-use Sfneal\Tracking\Actions\ParseTrafficAction;
+use Sfneal\Tracking\Actions\ParseTraffic;
 
 class TrackTrafficEvent extends Event
 {
@@ -25,6 +25,6 @@ class TrackTrafficEvent extends Event
     public function __construct(Request $request, $response, string $time_stamp)
     {
         // todo: refactor timestamp to optional param
-        $this->tracking = (new ParseTrafficAction($request, $response, $time_stamp))->execute();
+        $this->tracking = (new ParseTraffic($request, $response, $time_stamp))->execute();
     }
 }

@@ -11,9 +11,8 @@ use Sfneal\Actions\Action;
 use Sfneal\Helpers\Arrays\ArrayHelpers;
 use Sfneal\Helpers\Laravel\AppInfo;
 
-// todo: refactor to ParseTraffic
 // todo: optimize execute method
-class ParseTrafficAction extends Action
+class ParseTraffic extends Action
 {
     /**
      * @var array
