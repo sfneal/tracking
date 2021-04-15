@@ -3,17 +3,17 @@
 namespace Sfneal\Tracking\Tests\Feature;
 
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Route;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
-use Sfneal\Tracking\Middleware\TrackTrafficMiddleware;
 use Sfneal\Tracking\Tests\CreateRequest;
+use Sfneal\Tracking\Tests\EnableMiddleware;
 use Sfneal\Tracking\Tests\EventFaker;
 use Sfneal\Tracking\Tests\TestCase;
 
 class MiddlewareTest extends TestCase
 {
-    use EventFaker;
     use CreateRequest;
+    use EnableMiddleware;
+    use EventFaker;
 
     /**
      * Setup the test environment.
@@ -80,14 +80,6 @@ class MiddlewareTest extends TestCase
         // Assert the Event was pushed
         Event::assertNotDispatched(TrackTrafficEvent::class, function (TrackTrafficEvent $event) {
             return is_null($event->tracking['request']['token']);
-        });
-    }
-
-    private function enableMiddleware(): void
-    {
-        // Enable middleware
-        Route::middleware(TrackTrafficMiddleware::class)->any('/', function () {
-            return 'OK';
         });
     }
 }
