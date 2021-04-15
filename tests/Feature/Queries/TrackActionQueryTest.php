@@ -5,12 +5,9 @@ namespace Sfneal\Tracking\Tests\Feature\Queries;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
 use Sfneal\Tracking\Models\TrackAction;
 use Sfneal\Tracking\Queries\TrackActionQuery;
-use Sfneal\Tracking\Tests\CreateRequest;
 
 class TrackActionQueryTest extends QueriesTestCase
 {
-    use CreateRequest;
-
     /**
      * @var TrackAction
      */

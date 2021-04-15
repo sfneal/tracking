@@ -4,10 +4,13 @@ namespace Sfneal\Tracking\Tests\Feature\Queries;
 
 use Illuminate\Support\Collection;
 use Sfneal\Tracking\Models\Base\Tracking;
+use Sfneal\Tracking\Tests\CreateRequest;
 use Sfneal\Tracking\Tests\TestCase;
 
 class QueriesTestCase extends TestCase
 {
+    use CreateRequest;
+
     /**
      * @var Tracking
      */
