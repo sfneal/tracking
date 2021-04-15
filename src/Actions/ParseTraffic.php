@@ -48,7 +48,7 @@ class ParseTraffic extends Action
      *
      * @param Request                   $request
      * @param Response|RedirectResponse $response
-     * @param string|null                $timestamp
+     * @param string|null               $timestamp
      */
     public function __construct(Request $request, Response $response, string $timestamp = null)
     {
@@ -68,7 +68,7 @@ class ParseTraffic extends Action
         $this->tracking['user_id'] = intval(auth()->id());
         $this->tracking['session_id'] = Cookie::get(config('session.cookie'));
         $this->tracking['app_version'] = AppInfo::version();
-        $this->tracking['time_stamp'] = $this->getTimestamp($this->timestamp);
+        $this->tracking['time_stamp'] = self::getTimestamp($this->timestamp);
 
         // Request data
         $this->parseRequest();
@@ -87,7 +87,7 @@ class ParseTraffic extends Action
      *
      * @return void
      */
-    private function parseRequest(): void
+    protected function parseRequest(): void
     {
         $this->tracking['request']['host'] = $this->request->getHttpHost();
         $this->tracking['request']['uri'] = $this->request->getRequestUri();
@@ -104,10 +104,10 @@ class ParseTraffic extends Action
      *
      * @return void
      */
-    private function parseResponse(): void
+    protected function parseResponse(): void
     {
         $this->tracking['response']['code'] = $this->response->getStatusCode();
-        $this->tracking['response']['time'] = $this->getResponseTime($this->timestamp);
+        $this->tracking['response']['time'] = self::getResponseTime($this->timestamp);
 
         // Store response content served if enabled
         if (config('tracking.traffic.response_content')) {
@@ -120,7 +120,7 @@ class ParseTraffic extends Action
      *
      * @return void
      */
-    private function parseAgent(): void
+    protected function parseAgent(): void
     {
         $agent = new Agent();
 
@@ -147,7 +147,7 @@ class ParseTraffic extends Action
      *
      * @return float
      */
-    private function getResponseTime(string $timestamp): float
+    private static function getResponseTime(string $timestamp): float
     {
         return floatval(number_format($timestamp - LARAVEL_START, 2));
     }
@@ -159,7 +159,7 @@ class ParseTraffic extends Action
      *
      * @return string
      */
-    private function getTimestamp(string $timestamp): string
+    private static function getTimestamp(string $timestamp): string
     {
         return date('Y-m-d H:i:s', $timestamp);
     }
