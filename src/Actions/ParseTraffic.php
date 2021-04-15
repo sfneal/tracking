@@ -88,7 +88,7 @@ class ParseTraffic extends Action
      * @param Response|RedirectResponse $response
      * @param $time_stamp
      */
-    private function parseResponse($response, $time_stamp)
+    private function parseResponse(Response $response, $time_stamp)
     {
         $this->tracking['response']['code'] = $response->getStatusCode();
         $this->tracking['response']['time'] = $this->getResponseTime($time_stamp);
@@ -99,6 +99,9 @@ class ParseTraffic extends Action
         }
     }
 
+    /**
+     * Set user agent data on platform, device & browser.
+     */
     private function parseAgent()
     {
         $agent = new Agent();
@@ -109,6 +112,8 @@ class ParseTraffic extends Action
     }
 
     /**
+     * Retrieve a request payload with exclusions removed.
+     *
      * @param Request $request
      *
      * @return array
@@ -132,6 +137,8 @@ class ParseTraffic extends Action
     }
 
     /**
+     * Retrieve a traffic visit occurred at timestamp.
+     *
      * @param $time_stamp
      *
      * @return string
