@@ -16,13 +16,10 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereRequestUri()
     {
-        $expected = 1;
-
         $request_uri = $this->modelClass::query()
             ->distinct()
             ->get('request_uri')
             ->shuffle()
-            ->take($expected)
             ->pluck('request_uri')
             ->first();
 
@@ -54,13 +51,10 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereEnvironment()
     {
-        $expected = 1;
-
         $app_environment = $this->modelClass::query()
             ->distinct()
             ->get('app_environment')
             ->shuffle()
-            ->take($expected)
             ->pluck('app_environment')
             ->first();
 
