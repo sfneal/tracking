@@ -75,3 +75,4 @@ All notable changes to `tracking` will be documented in this file
 - make `ModelAdapter` for dynamically retrieving model classes
 - add 'models' section to 'tracking' config that allows for overwriting default models with custom extensions
 - add use of `ModelAdapter` for accessing `TrackAction`, `TrackActivity` & `TrackTraffic` models
+- cut `TrackingRelationship` trait and use in models

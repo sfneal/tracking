@@ -11,14 +11,12 @@ use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Scopes\IdOrderScope;
 use Sfneal\Tracking\Builders\TrackActivityBuilder;
 use Sfneal\Tracking\Models\Base\Tracking;
-use Sfneal\Tracking\Models\Traits\TrackingRelationships;
 use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackActivity extends Tracking
 {
     // todo: add use of polymorphic relationships
     use HasFactory;
-    use TrackingRelationships;
 
     /**
      * The "booting" method of the model.
