@@ -3,9 +3,7 @@
 namespace Sfneal\Tracking\Middleware;
 
 use Closure;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
 
 class TrackTrafficMiddleware
@@ -28,8 +26,8 @@ class TrackTrafficMiddleware
             // Add unique ID to be used to relate traffic & activities
             $request->attributes->add(['track_traffic_token' => uniqid()]);
 
-            // Fire tracking event
-            $this->track($request, $response);
+            // Fire Traffic Tracker event
+            event(new TrackTrafficEvent($request, $response, microtime(true)));
         }
 
         // false value signifies that the tracking token was disabled
@@ -37,18 +35,7 @@ class TrackTrafficMiddleware
             $request->attributes->add(['track_traffic_token' => false]);
         }
 
+        // Return the response
         return $response;
-    }
-
-    /**
-     * Fire the `TrackTrafficEvent`.
-     *
-     * @param Request                   $request
-     * @param Response|RedirectResponse $response
-     */
-    private function track(Request $request, $response)
-    {
-        // Fire Traffic Tracker event
-        event(new TrackTrafficEvent($request, $response, microtime(true)));
     }
 }
