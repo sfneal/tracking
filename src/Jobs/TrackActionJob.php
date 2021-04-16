@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Sfneal\Queueables\Job;
 use Sfneal\Tracking\Models\TrackAction;
+use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackActionJob extends Job
 {
@@ -61,7 +62,7 @@ class TrackActionJob extends Job
     public function handle(): ?TrackAction
     {
         if ($this->model->exists) {
-            return TrackAction::query()->create([
+            return ModelAdapter::TrackAction()::query()->create([
                 'action'        => $this->action,
                 'model_table'   => $this->model->getTable(),
                 'model_key'     => $this->model->getKey(),

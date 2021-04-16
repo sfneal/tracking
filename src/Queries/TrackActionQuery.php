@@ -5,8 +5,8 @@ namespace Sfneal\Tracking\Queries;
 use Sfneal\Helpers\Time\TimePeriods;
 use Sfneal\Queries\Traits\ParamGetter;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
-use Sfneal\Tracking\Models\TrackAction;
 use Sfneal\Tracking\Queries\Base\TrackingQuery;
+use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackActionQuery extends TrackingQuery
 {
@@ -22,7 +22,7 @@ class TrackActionQuery extends TrackingQuery
      */
     protected function builder(): TrackActionBuilder
     {
-        $builder = TrackAction::query();
+        $builder = ModelAdapter::TrackAction()::query();
 
         if ($this->relationships) {
             $builder->with($this->relationships);
