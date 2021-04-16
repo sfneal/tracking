@@ -1,5 +1,9 @@
 <?php
 
+use Sfneal\Tracking\Models\TrackAction;
+use Sfneal\Tracking\Models\TrackActivity;
+use Sfneal\Tracking\Models\TrackTraffic;
+
 return [
     'traffic' => [
         /*
@@ -73,6 +77,55 @@ return [
         |
         */
         'response_content' => env('TRACK_TRAFFIC_RESPONSE_CONTENT', false),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Model Overrides
+    |--------------------------------------------------------------------------
+    |
+    | Specify custom Models that extend built-in sfneal/tracking models to add
+    | custom methods & relationships.
+     */
+    'models' => [
+        /*
+        |--------------------------------------------------------------------------
+        | 'TrackAction' model
+        |--------------------------------------------------------------------------
+        |
+        | Use a custom extension of the `TrackAction` model within your application
+        |
+        | type     : TrackAction model or extended model
+        | default  : TrackAction::class
+        |
+        */
+        'TrackAction' => TrackAction::class,
+
+        /*
+        |--------------------------------------------------------------------------
+        | 'TrackActivity' model
+        |--------------------------------------------------------------------------
+        |
+        | Use a custom extension of the `TrackActivity` model within your application
+        |
+        | type     : TrackActivity model or extended model
+        | default  : TrackActivity::class
+        |
+        */
+        'TrackActivity' => TrackActivity::class,
+
+        /*
+        |--------------------------------------------------------------------------
+        | 'TrackTraffic' model
+        |--------------------------------------------------------------------------
+        |
+        | Use a custom extension of the `TrackTraffic` model within your application
+        |
+        | type     : TrackTraffic model or extended model
+        | default  : TrackTraffic::class
+        |
+        */
+        'TrackTraffic' => TrackTraffic::class,
     ],
 
     /*

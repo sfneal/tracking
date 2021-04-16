@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Sfneal\Actions\Action;
 use Sfneal\Helpers\Arrays\ArrayHelpers;
 use Sfneal\Tracking\Models\TrackTraffic;
+use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackTrafficAction extends Action
 {
@@ -40,7 +41,7 @@ class TrackTrafficAction extends Action
 
         // Store traffic data in database
         if (config('tracking.traffic.store')) {
-            return TrackTraffic::query()->create($this->tracking);
+            return ModelAdapter::TrackTraffic()::query()->create($this->tracking);
         }
 
         return null;

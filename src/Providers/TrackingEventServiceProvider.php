@@ -7,8 +7,8 @@ use Sfneal\Tracking\Events\TrackActivityEvent;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
 use Sfneal\Tracking\Listeners\TrackActivityListener;
 use Sfneal\Tracking\Listeners\TrackTrafficListener;
-use Sfneal\Tracking\Models\TrackTraffic;
 use Sfneal\Tracking\Observers\TrackTrafficObserver;
+use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackingEventServiceProvider extends EventServiceProvider
 {
@@ -39,6 +39,6 @@ class TrackingEventServiceProvider extends EventServiceProvider
         parent::boot();
 
         // Observers
-        TrackTraffic::observe(TrackTrafficObserver::class);
+        ModelAdapter::TrackTraffic()::observe(TrackTrafficObserver::class);
     }
 }
