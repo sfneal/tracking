@@ -29,6 +29,28 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     }
 
     /** @test */
+    public function orWhereRequestUri()
+    {
+        $request_uris = $this->modelClass::query()
+            ->distinct()
+            ->get('request_uri')
+            ->shuffle()
+            ->take(3)
+            ->pluck('request_uri');
+
+        $query = $this->modelClass::query();
+        $request_uris->each(function (string $request_uri) use ($query) {
+            $query->orWhereRequestUri($request_uri);
+        });
+
+        $model = $query->get();
+
+        $request_uris->each(function (string $request_uri) use ($model) {
+            $this->assertContains($request_uri, $model->pluck('request_uri'));
+        });
+    }
+
+    /** @test */
     public function whereRequestUriIn()
     {
         $expected = 4;
