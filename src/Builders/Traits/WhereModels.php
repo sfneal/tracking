@@ -13,7 +13,7 @@ trait WhereModels
      *
      * @return $this
      */
-    public function whereModelKey($model_key)
+    public function whereModelKey($model_key): self
     {
         $model_key = (array) $model_key;
         $this->where(function (self $query) use ($model_key) {
@@ -32,7 +32,7 @@ trait WhereModels
      *
      * @return $this
      */
-    public function whereModelTable($model_table)
+    public function whereModelTable($model_table): self
     {
         $model_table = (array) $model_table;
         $this->where(function (self $query) use ($model_table) {

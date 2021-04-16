@@ -16,19 +16,38 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereRequestUri()
     {
-        $expected = 1;
-
         $request_uri = $this->modelClass::query()
             ->distinct()
             ->get('request_uri')
             ->shuffle()
-            ->take($expected)
             ->pluck('request_uri')
             ->first();
 
         $model = $this->modelClass::query()->whereRequestUri($request_uri)->get();
 
         $this->assertContains($request_uri, $model->pluck('request_uri'));
+    }
+
+    /** @test */
+    public function orWhereRequestUri()
+    {
+        $request_uris = $this->modelClass::query()
+            ->distinct()
+            ->get('request_uri')
+            ->shuffle()
+            ->take(3)
+            ->pluck('request_uri');
+
+        $query = $this->modelClass::query();
+        $request_uris->each(function (string $request_uri) use ($query) {
+            $query->orWhereRequestUri($request_uri);
+        });
+
+        $model = $query->get();
+
+        $request_uris->each(function (string $request_uri) use ($model) {
+            $this->assertContains($request_uri, $model->pluck('request_uri'));
+        });
     }
 
     /** @test */
@@ -54,13 +73,10 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereEnvironment()
     {
-        $expected = 1;
-
         $app_environment = $this->modelClass::query()
             ->distinct()
             ->get('app_environment')
             ->shuffle()
-            ->take($expected)
             ->pluck('app_environment')
             ->first();
 

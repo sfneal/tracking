@@ -9,9 +9,13 @@ use Sfneal\Tracking\Events\TrackTrafficEvent;
 class TrackTrafficListener extends Listener
 {
     /**
-     * @var string Queue to use
+     * TrackTrafficListener constructor.
      */
-    public $queue = 'traffic';
+    public function __construct()
+    {
+        $this->onQueue(config('tracking.queue'));
+        $this->onConnection(config('tracking.queue_driver'));
+    }
 
     /**
      * Retrieve tracking data and then do something with it.

@@ -22,7 +22,7 @@ class TrackTrafficEvent extends Event
      * @param Response|RedirectResponse $response
      * @param string|null               $timestamp
      */
-    public function __construct(Request $request, Response $response, string $timestamp = null)
+    public function __construct(Request $request, $response, string $timestamp = null)
     {
         $this->tracking = (new ParseTraffic($request, $response, $timestamp ?? microtime()))->execute();
     }
