@@ -64,7 +64,7 @@ class TrackAction extends Tracking
      *
      * @param $query
      *
-     * @return TrackActionBuilder()
+     * @return TrackActionBuilder
      */
     public function newEloquentBuilder($query)
     {
