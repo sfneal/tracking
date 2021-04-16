@@ -5,6 +5,7 @@ namespace Sfneal\Tracking\Actions;
 use Illuminate\Database\Eloquent\Model;
 use Sfneal\Actions\Action;
 use Sfneal\Tracking\Models\TrackActivity;
+use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackActivityAction extends Action
 {
@@ -71,7 +72,7 @@ class TrackActivityAction extends Action
      */
     public function execute(): TrackActivity
     {
-        return TrackActivity::query()->create([
+        return ModelAdapter::TrackActivity()::query()->create([
             'user_id'       => $this->user_id,
             'route'         => $this->route,
             'description'   => $this->description,
