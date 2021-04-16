@@ -72,6 +72,6 @@ All notable changes to `tracking` will be documented in this file
 
 
 ## 0.6.0 - 2021-04-16
-make `ModelAdapter` for dynamically retrieving model classes
-add 'models' section to 'tracking' config that allows for overwriting default models with custom extensions
-add use of `ModelAdapter` for accessing `TrackAction`, `TrackActivity` & `TrackTraffic` models
+- make `ModelAdapter` for dynamically retrieving model classes
+- add 'models' section to 'tracking' config that allows for overwriting default models with custom extensions
+- add use of `ModelAdapter` for accessing `TrackAction`, `TrackActivity` & `TrackTraffic` models
