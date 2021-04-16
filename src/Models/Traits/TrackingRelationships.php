@@ -9,6 +9,7 @@ use Domain\Tasks\Models\Task;
 use Domain\Tasks\Models\TaskRecord;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+// todo: move this back to hpa app
 trait TrackingRelationships
 {
     /**
