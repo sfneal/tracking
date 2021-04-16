@@ -65,3 +65,7 @@ All notable changes to `tracking` will be documented in this file
 
 ## 0.5.1 - 2021-04-15
 - optimize `TrackTrafficMiddleware` by deferring adding a unique id token until after confirming tracking is enabled
+
+
+## 0.5.2 - 2021-04-16
+- fix issue with `Response` type hinting as `RedirectResponse` $response params are also acceptable
