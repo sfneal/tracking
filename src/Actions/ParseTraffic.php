@@ -50,7 +50,7 @@ class ParseTraffic extends Action
      * @param Response|RedirectResponse $response
      * @param string|null               $timestamp
      */
-    public function __construct(Request $request, Response $response, string $timestamp = null)
+    public function __construct(Request $request, $response, string $timestamp = null)
     {
         $this->request = $request;
         $this->response = $response;
