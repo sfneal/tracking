@@ -13,12 +13,12 @@ class TrackTrafficObserver extends Observer implements Saving
      *
      * Set app_environment attribute value.
      *
-     * @param TrackTraffic $tacking
+     * @param TrackTraffic $tracking
      *
      * @return void
      */
-    public function saving(TrackTraffic $tacking)
+    public function saving(TrackTraffic $tracking)
     {
-        $tacking->setAppEnvironmentAttribute($tacking->app_environment);
+        $tracking->setAppEnvironmentAttribute($tracking->app_environment);
     }
 }
