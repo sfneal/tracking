@@ -2,6 +2,7 @@
 
 namespace Sfneal\Tracking\Observers;
 
+use Illuminate\Database\Eloquent\Model;
 use Sfneal\Observers\Observer;
 use Sfneal\Observers\Saving;
 use Sfneal\Tracking\Models\TrackTraffic;
@@ -13,11 +14,11 @@ class TrackTrafficObserver extends Observer implements Saving
      *
      * Set app_environment attribute value.
      *
-     * @param TrackTraffic $tracking
+     * @param TrackTraffic|Model $tracking
      *
      * @return void
      */
-    public function saving(TrackTraffic $tracking)
+    public function saving(Model $tracking)
     {
         $tracking->setAppEnvironmentAttribute($tracking->app_environment);
     }

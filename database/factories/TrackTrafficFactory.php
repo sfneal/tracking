@@ -4,18 +4,35 @@ namespace Database\Factories;
 
 use Database\Factories\Traits\ModelChanges;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Sfneal\Tracking\Models\TrackTraffic;
+use Illuminate\Support\Collection;
+use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackTrafficFactory extends Factory
 {
     use ModelChanges;
 
     /**
-     * The name of the factory's corresponding model.
+     * TrackActivityFactory constructor.
      *
-     * @var string
+     * @param null $count
+     * @param Collection|null $states
+     * @param Collection|null $has
+     * @param Collection|null $for
+     * @param Collection|null $afterMaking
+     * @param Collection|null $afterCreating
+     * @param null $connection
      */
-    protected $model = TrackTraffic::class;
+    public function __construct($count = null,
+                                ?Collection $states = null,
+                                ?Collection $has = null,
+                                ?Collection $for = null,
+                                ?Collection $afterMaking = null,
+                                ?Collection $afterCreating = null,
+                                $connection = null)
+    {
+        $this->model = ModelAdapter::TrackTraffic();
+        parent::__construct($count, $states, $has, $for, $afterMaking, $afterCreating, $connection);
+    }
 
     /**
      * Define the model's default state.

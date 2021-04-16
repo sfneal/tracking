@@ -3,7 +3,7 @@
 namespace Sfneal\Tracking\Jobs;
 
 use Sfneal\Queueables\Job;
-use Sfneal\Tracking\Models\TrackTraffic;
+use Sfneal\Tracking\Utils\ModelAdapter;
 
 class CleanDevTrackingJob extends Job
 {
@@ -26,7 +26,7 @@ class CleanDevTrackingJob extends Job
     {
         // Delete TrackTraffic data from 'development' envs that don't have associated activity data
         while (! isset($deleted) || $deleted > 0) {
-            $deleted = TrackTraffic::query()
+            $deleted = ModelAdapter::TrackTraffic()::query()
                 ->whereEnvironmentDevelopment()
                 ->limit(100)
                 ->delete();
