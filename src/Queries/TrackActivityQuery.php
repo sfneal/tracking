@@ -23,7 +23,7 @@ class TrackActivityQuery extends TrackingQuery
     {
         $builder = ModelAdapter::TrackActivity()::query();
 
-        if ($this->relationships) {
+        if (! empty($this->relationships)) {
             $builder->with($this->relationships);
         }
 
