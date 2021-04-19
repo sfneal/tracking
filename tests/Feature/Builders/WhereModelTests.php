@@ -19,15 +19,8 @@ trait WhereModelTests
     /** @test */
     public function whereModelKeyMultiple()
     {
-        $expected = 4;
-
-        $model_keys = $this->modelClass::query()
-            ->distinct()
-            ->get('model_key')
-            ->shuffle()
-            ->take($expected)
-            ->pluck('model_key')
-            ->toArray();
+        $take = 4;
+        $model_keys = (new RandomModelAttributeQuery($this->modelClass, 'model_key', $take))->execute();
 
         $models = $this->modelClass::query()->whereModelKey($model_keys)->get();
 

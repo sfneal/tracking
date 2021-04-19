@@ -19,15 +19,8 @@ trait WhereUserTests
     /** @test */
     public function whereUsers()
     {
-        $expected = 3;
-
-        $user_ids = $this->modelClass::query()
-            ->distinct()
-            ->get('user_id')
-            ->shuffle()
-            ->take($expected)
-            ->pluck('user_id')
-            ->toArray();
+        $take = 3;
+        $user_ids = (new RandomModelAttributeQuery($this->modelClass, 'user_id', $take))->execute();
 
         $models = $this->modelClass::query()->whereUserIn($user_ids)->get();
 
