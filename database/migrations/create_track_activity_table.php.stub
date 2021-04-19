@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTrackActivityTable extends Migration
 {
-    // todo: add relationship to migration
     private const TABLE_NAME = 'track_activity';
 
     /**
