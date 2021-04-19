@@ -76,3 +76,9 @@ All notable changes to `tracking` will be documented in this file
 - add 'models' section to 'tracking' config that allows for overwriting default models with custom extensions
 - add use of `ModelAdapter` for accessing `TrackAction`, `TrackActivity` & `TrackTraffic` models
 - cut `TrackingRelationship` trait and use in models
+
+
+## 0.7.0 - 2021-04-19
+- add testing of `TrackActivity` 'tracking' relationship
+- add use of `HasRelationships` trait to abstract `TrackingQuery`
+- refactor constructor params of `TrackActionQuery` & `TrackActivityQuery` to no longer include $relationships
