@@ -88,8 +88,6 @@ class TrackActivity extends Tracking
     /**
      * Related TrackTraffic data.
      *
-     * // todo: add tests
-     *
      * @return BelongsTo
      */
     public function tracking()

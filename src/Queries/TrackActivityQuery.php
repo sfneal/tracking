@@ -11,7 +11,6 @@ use Sfneal\Tracking\Utils\ModelAdapter;
 class TrackActivityQuery extends TrackingQuery
 {
     // todo: add request validation
-    // todo: add use of sfneal/datum HasRelationships trait
 
     use ParamGetter;
 
@@ -24,7 +23,7 @@ class TrackActivityQuery extends TrackingQuery
     {
         $builder = ModelAdapter::TrackActivity()::query();
 
-        if ($this->relationships) {
+        if (! empty($this->relationships)) {
             $builder->with($this->relationships);
         }
 
