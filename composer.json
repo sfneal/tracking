@@ -22,7 +22,7 @@
         "sfneal/actions": "^2.0",
         "sfneal/array-helpers": "^1.0",
         "sfneal/controllers": "^2.0",
-        "sfneal/datum": "^1.0",
+        "sfneal/datum": "^1.4",
         "sfneal/laravel-helpers": "^2.1.1",
         "sfneal/models": "^2.2",
         "sfneal/observables": "^1.0",

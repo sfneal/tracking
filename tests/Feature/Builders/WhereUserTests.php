@@ -2,20 +2,14 @@
 
 namespace Sfneal\Tracking\Tests\Feature\Builders;
 
+use Sfneal\Queries\RandomModelAttributeQuery;
+
 trait WhereUserTests
 {
     /** @test */
     public function whereUser()
     {
-        $expected = 1;
-
-        $user_id = $this->modelClass::query()
-            ->distinct()
-            ->get('user_id')
-            ->shuffle()
-            ->take($expected)
-            ->pluck('user_id')
-            ->first();
+        $user_id = (new RandomModelAttributeQuery($this->modelClass, 'user_id'))->execute();
 
         $model = $this->modelClass::query()->whereUser($user_id)->get();
 

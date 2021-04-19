@@ -2,6 +2,7 @@
 
 namespace Sfneal\Tracking\Tests\Feature\Builders;
 
+use Sfneal\Queries\RandomModelAttributeQuery;
 use Sfneal\Tracking\Models\TrackTraffic;
 
 class TrackTrafficBuilderTest extends BuilderTestCase
@@ -16,12 +17,7 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereRequestUri()
     {
-        $request_uri = $this->modelClass::query()
-            ->distinct()
-            ->get('request_uri')
-            ->shuffle()
-            ->pluck('request_uri')
-            ->first();
+        $request_uri = (new RandomModelAttributeQuery($this->modelClass, 'request_uri'))->execute();
 
         $model = $this->modelClass::query()->whereRequestUri($request_uri)->get();
 
@@ -73,12 +69,7 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereEnvironment()
     {
-        $app_environment = $this->modelClass::query()
-            ->distinct()
-            ->get('app_environment')
-            ->shuffle()
-            ->pluck('app_environment')
-            ->first();
+        $app_environment = (new RandomModelAttributeQuery($this->modelClass, 'app_environment'))->execute();
 
         $models = $this->modelClass::query()->whereEnvironment($app_environment)->get();
 

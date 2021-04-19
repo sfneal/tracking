@@ -2,6 +2,7 @@
 
 namespace Sfneal\Tracking\Tests\Feature\Queries;
 
+use Sfneal\Queries\RandomModelAttributeQuery;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
 use Sfneal\Tracking\Models\TrackAction;
 use Sfneal\Tracking\Queries\TrackActionQuery;
@@ -58,11 +59,7 @@ class TrackActionQueryTest extends QueriesTestCase
     public function query_with_key_param()
     {
         // Model Key
-        $model_key = TrackAction::query()
-            ->get('model_key')
-            ->shuffle()
-            ->first()
-            ->model_key;
+        $model_key = (new RandomModelAttributeQuery(TrackAction::class, 'model_key'))->execute();
 
         // `TrackAction` record for the $model_key
         $records = TrackAction::query()
@@ -89,12 +86,7 @@ class TrackActionQueryTest extends QueriesTestCase
         // Test each unique table name
         foreach (TrackAction::query()->distinct()->getFlatArray('model_table') as $table) {
             // Model Key
-            $model_key = TrackAction::query()
-                ->where('model_table', '=', $table)
-                ->get('model_key')
-                ->shuffle()
-                ->first()
-                ->model_key;
+            $model_key = (new RandomModelAttributeQuery(TrackAction::class, 'model_table'))->execute();
 
             // `TrackAction` records for the $table
             $records = TrackAction::query()
