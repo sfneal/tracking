@@ -4,10 +4,11 @@ namespace Sfneal\Tracking\Queries\Base;
 
 use Illuminate\Http\Request;
 use Sfneal\Queries\Query;
+use Sfneal\Queries\Traits\HasRelationships;
 
 abstract class TrackingQuery extends Query
 {
-    // todo: improve constructor arguments
+    use HasRelationships;
 
     /**
      * @var Request|null
@@ -20,20 +21,13 @@ abstract class TrackingQuery extends Query
     protected $parameters;
 
     /**
-     * @var array|null
-     */
-    protected $relationships;
-
-    /**
      * TrackActionQuery constructor.
      * @param Request|null $request
      * @param array|null   $parameters
-     * @param array|null   $relationships
      */
-    public function __construct(Request $request = null, array $parameters = null, array $relationships = null)
+    public function __construct(Request $request = null, array $parameters = null)
     {
         $this->request = $request;
         $this->parameters = $parameters ?? [];
-        $this->relationships = $relationships;
     }
 }
