@@ -3,6 +3,7 @@
 namespace Sfneal\Tracking\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Sfneal\Tracking\Console\CleanDevTrackingCommand;
 
 class TrackingServiceProvider extends ServiceProvider
 {
@@ -43,6 +44,13 @@ class TrackingServiceProvider extends ServiceProvider
                     'migrations/'.date('Y_m_d_His', time()).'_create_track_traffic_table.php'
                 ),
             ], 'migration');
+        }
+
+        // Publish the `CleanDevTrackingCommand`
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CleanDevTrackingCommand::class,
+            ]);
         }
     }
 

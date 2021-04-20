@@ -91,3 +91,8 @@ All notable changes to `tracking` will be documented in this file
 ## 0.7.2 - 2021-04-20
 - bump sfneal/mock-models dev requirement to v0.2
 - refactor use of testing utility traits & interfaces to sfneal/mock-models imports
+
+
+## 0.8.0 - 2021-04-20
+- make `CleanDevTrackingCommand` & add publishing to `TrackingServiceProvider` with test methods
+- add use of config queue & connection settings in `CleanDevTrackingJob`

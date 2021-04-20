@@ -8,14 +8,13 @@ use Sfneal\Tracking\Utils\ModelAdapter;
 class CleanDevTrackingJob extends Job
 {
     /**
-     * @var string Queue to use
+     * CleanDevTrackingJob constructor.
      */
-    public $queue = 'low';
-
-    /**
-     * @var string Queue connection to use
-     */
-    public $connection = 'database';
+    public function __construct()
+    {
+        $this->onQueue(config('tracking.queue'));
+        $this->onConnection(config('tracking.queue_driver'));
+    }
 
     /**
      * Execute the job.
