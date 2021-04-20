@@ -2,7 +2,7 @@
 
 namespace Sfneal\Tracking\Tests\Feature;
 
-use Illuminate\Database\Eloquent\Model;
+use Sfneal\Testing\Utils\Traits\ModelAttributeAssertions;
 use Sfneal\Tracking\Models\TrackAction;
 use Sfneal\Tracking\Models\TrackActivity;
 use Sfneal\Tracking\Models\TrackTraffic;
@@ -10,21 +10,7 @@ use Sfneal\Tracking\Tests\TestCase;
 
 class MigrationsTest extends TestCase
 {
-    /**
-     * Execute model assertions.
-     *
-     * // todo: add to test data package?
-     *
-     * @param array $data
-     * @param Model $model
-     * @return void
-     */
-    private function modelAttributeAssertions(array $data, Model $model): void
-    {
-        foreach ($data as $attribute => $value) {
-            $this->assertSame($value, $model->{$attribute});
-        }
-    }
+    use ModelAttributeAssertions;
 
     /** @test */
     public function track_action_table_is_accessible()
