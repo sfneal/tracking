@@ -105,4 +105,34 @@ class TrackActionQueryTest extends QueriesTestCase
             $this->executeAssertions($records, $builder, TrackActionBuilder::class);
         }
     }
+
+    /** @test */
+    public function query_with_period_param()
+    {
+        // Model Key
+        $created_at_1 = (new RandomModelAttributeQuery(TrackAction::class, 'created_at'))->execute();
+        $created_at_2 = (new RandomModelAttributeQuery(TrackAction::class, 'created_at'))->execute();
+        $min = min($created_at_1, $created_at_2);
+        $max = max($created_at_1, $created_at_2);
+
+        // `TrackAction` record for the $model_key
+        $records = TrackAction::query()
+            ->where('created_at', '>=', $min)
+            ->where('created_at', '<=', $max)
+            ->get();
+
+        // Create a request
+        $request = $this->createRequest([], [
+            'period' => [
+                $min,
+                $max
+            ],
+        ]);
+
+        // Query Builder
+        $builder = (new TrackActionQuery($request))->execute();
+
+        // Execute assertions
+        $this->executeAssertions($records, $builder, TrackActionBuilder::class);
+    }
 }
