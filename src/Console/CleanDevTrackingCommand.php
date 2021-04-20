@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Console;
-
 
 use Illuminate\Console\Command;
 use Sfneal\Tracking\Jobs\CleanDevTrackingJob;
