@@ -96,3 +96,7 @@ All notable changes to `tracking` will be documented in this file
 ## 0.8.0 - 2021-04-20
 - make `CleanDevTrackingCommand` & add publishing to `TrackingServiceProvider` with test methods
 - add use of config queue & connection settings in `CleanDevTrackingJob`
+
+
+## 0.8.1 - 2021-04-20
+- optimize queries test suite

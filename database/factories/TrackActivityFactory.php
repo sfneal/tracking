@@ -51,6 +51,8 @@ class TrackActivityFactory extends Factory
             'model_changes' => $this->faker->randomElements($this->modelChanges()),
 
             'request_token' => $this->faker->uuid,
+
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
         ];
     }
 
