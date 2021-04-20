@@ -7,6 +7,7 @@ use Sfneal\Tracking\Utils\ModelAdapter;
 
 class CleanDevTrackingJob extends Job
 {
+    // todo: add use of queue config
     /**
      * @var string Queue to use
      */
