@@ -3,13 +3,13 @@
 namespace Sfneal\Tracking\Tests\Unit;
 
 use Sfneal\Testing\Models\People;
+use Sfneal\Testing\Utils\Interfaces\CrudModelTest;
+use Sfneal\Testing\Utils\Traits\CreateRequest;
 use Sfneal\Tracking\Actions\TrackActivityAction;
 use Sfneal\Tracking\Actions\TrackTrafficAction;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
 use Sfneal\Tracking\Models\TrackActivity;
 use Sfneal\Tracking\Models\TrackTraffic;
-use Sfneal\Tracking\Tests\CreateRequest;
-use Sfneal\Tracking\Tests\CrudModelTest;
 use Sfneal\Tracking\Tests\TestCase;
 
 class TrackActivityTest extends TestCase implements CrudModelTest

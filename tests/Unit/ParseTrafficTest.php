@@ -3,8 +3,8 @@
 namespace Sfneal\Tracking\Tests\Unit;
 
 use Illuminate\Http\Response;
+use Sfneal\Testing\Utils\Traits\CreateRequest;
 use Sfneal\Tracking\Actions\ParseTraffic;
-use Sfneal\Tracking\Tests\CreateRequest;
 use Sfneal\Tracking\Tests\TestCase;
 
 class ParseTrafficTest extends TestCase

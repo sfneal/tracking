@@ -2,9 +2,10 @@
 
 namespace Sfneal\Tracking\Tests\Feature\Factories;
 
+use Sfneal\Testing\Utils\Interfaces\Factory\FillablesTest;
 use Sfneal\Tracking\Models\TrackActivity;
 
-class TrackActivityFactoryTest extends FactoriesTestCase implements FactoryFillablesTest
+class TrackActivityFactoryTest extends FactoriesTestCase implements FillablesTest
 {
     /**
      * @var TrackActivity

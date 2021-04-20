@@ -3,8 +3,8 @@
 namespace Sfneal\Tracking\Tests\Feature\Queries;
 
 use Illuminate\Support\Collection;
+use Sfneal\Testing\Utils\Traits\CreateRequest;
 use Sfneal\Tracking\Models\Base\Tracking;
-use Sfneal\Tracking\Tests\CreateRequest;
 use Sfneal\Tracking\Tests\TestCase;
 
 class QueriesTestCase extends TestCase

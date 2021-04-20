@@ -4,10 +4,10 @@ namespace Sfneal\Tracking\Tests\Feature;
 
 use Illuminate\Support\Facades\Event;
 use Sfneal\Testing\Models\People;
+use Sfneal\Testing\Utils\Traits\CreateRequest;
+use Sfneal\Testing\Utils\Traits\EventFaker;
 use Sfneal\Tracking\Events\TrackActivityEvent;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
-use Sfneal\Tracking\Tests\CreateRequest;
-use Sfneal\Tracking\Tests\EventFaker;
 use Sfneal\Tracking\Tests\TestCase;
 
 class EventsTest extends TestCase
