@@ -32,8 +32,7 @@ class CleanDevTrackingTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function dev_tracking_can_be_cleaned()
+    private function cleanDevTracking(\Closure $closure)
     {
         // Validate before cleaning
         $expectedBefore = 250;
@@ -41,7 +40,7 @@ class CleanDevTrackingTest extends TestCase
         $this->assertSame($expectedBefore, $devTrackingRecordsBefore);
 
         // Clean dev tracking data
-        (new CleanDevTrackingJob())->handle();
+        $closure();
         $expectedAfter = 0;
         $devTrackingRecordsAfter = TrackTraffic::query()->whereEnvironmentDevelopment()->count();
         $this->assertSame($expectedAfter, $devTrackingRecordsAfter);
@@ -50,5 +49,21 @@ class CleanDevTrackingTest extends TestCase
         $expectedTotal = 150;
         $totalTrackingRecords = TrackTraffic::query()->count();
         $this->assertSame($expectedTotal, $totalTrackingRecords);
+    }
+
+    /** @test */
+    public function clean_dev_tracking_with_job()
+    {
+        $this->cleanDevTracking(function () {
+            (new CleanDevTrackingJob())->handle();
+        });
+    }
+
+    /** @test */
+    public function clean_dev_tracking_with_command()
+    {
+        $this->cleanDevTracking(function () {
+            $this->artisan('tracking:clean-dev');
+        });
     }
 }
