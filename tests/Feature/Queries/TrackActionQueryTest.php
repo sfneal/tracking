@@ -22,12 +22,14 @@ class TrackActionQueryTest extends QueriesTestCase
         // Create a request
         $request = $this->createRequest();
 
+        // `TrackAction` records
+        $records = TrackAction::query()->get();
+
         // Query Builder
         $builder = (new TrackActionQuery($request))->execute();
 
         // Execute assertions
-        $this->assertInstanceOf(TrackActionBuilder::class, $builder);
-        $this->assertEquals($this->count, $builder->count());
+        $this->executeAssertions($records, $builder, TrackActionBuilder::class);
     }
 
     /** @test */
@@ -49,9 +51,7 @@ class TrackActionQueryTest extends QueriesTestCase
             $builder = (new TrackActionQuery($request))->execute();
 
             // Execute assertions
-            $this->assertInstanceOf(TrackActionBuilder::class, $builder);
-            $this->assertEquals($records->count(), $builder->count());
-            $this->assertEquals($records, $builder->get());
+            $this->executeAssertions($records, $builder, TrackActionBuilder::class);
         }
     }
 
@@ -75,9 +75,7 @@ class TrackActionQueryTest extends QueriesTestCase
         $builder = (new TrackActionQuery($request))->execute();
 
         // Execute assertions
-        $this->assertInstanceOf(TrackActionBuilder::class, $builder);
-        $this->assertEquals($records->count(), $builder->count());
-        $this->assertEquals($records, $builder->get());
+        $this->executeAssertions($records, $builder, TrackActionBuilder::class);
     }
 
     /** @test */
@@ -104,9 +102,7 @@ class TrackActionQueryTest extends QueriesTestCase
             $builder = (new TrackActionQuery($request))->execute();
 
             // Execute assertions
-            $this->assertInstanceOf(TrackActionBuilder::class, $builder);
-            $this->assertEquals($records->count(), $builder->count());
-            $this->assertEquals($records, $builder->get());
+            $this->executeAssertions($records, $builder, TrackActionBuilder::class);
         }
     }
 }

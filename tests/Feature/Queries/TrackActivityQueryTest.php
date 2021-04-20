@@ -22,12 +22,14 @@ class TrackActivityQueryTest extends QueriesTestCase
         // Create a request
         $request = $this->createRequest();
 
+        // `TrackAction` records
+        $records = TrackActivity::query()->get();
+
         // Query Builder
         $builder = (new TrackActivityQuery($request))->execute();
 
         // Execute assertions
-        $this->assertInstanceOf(TrackActivityBuilder::class, $builder);
-        $this->assertEquals($this->count, $builder->count());
+        $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
     }
 
     /** @test */
@@ -49,9 +51,7 @@ class TrackActivityQueryTest extends QueriesTestCase
             $builder = (new TrackActivityQuery($request))->execute();
 
             // Execute assertions
-            $this->assertInstanceOf(TrackActivityBuilder::class, $builder);
-            $this->assertEquals($records->count(), $builder->count());
-            $this->assertEquals($records, $builder->get());
+            $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
         }
     }
 
@@ -74,9 +74,7 @@ class TrackActivityQueryTest extends QueriesTestCase
             $builder = (new TrackActivityQuery($request))->execute();
 
             // Execute assertions
-            $this->assertInstanceOf(TrackActivityBuilder::class, $builder);
-            $this->assertEquals($records->count(), $builder->count());
-            $this->assertEquals($records, $builder->get());
+            $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
         }
     }
 
@@ -100,9 +98,7 @@ class TrackActivityQueryTest extends QueriesTestCase
         $builder = (new TrackActivityQuery($request))->execute();
 
         // Execute assertions
-        $this->assertInstanceOf(TrackActivityBuilder::class, $builder);
-        $this->assertEquals($records->count(), $builder->count());
-        $this->assertEquals($records, $builder->get());
+        $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
     }
 
     /** @test */
@@ -125,9 +121,7 @@ class TrackActivityQueryTest extends QueriesTestCase
         $builder = (new TrackActivityQuery($request))->execute();
 
         // Execute assertions
-        $this->assertInstanceOf(TrackActivityBuilder::class, $builder);
-        $this->assertEquals($records->count(), $builder->count());
-        $this->assertEquals($records, $builder->get());
+        $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
     }
 
     /** @test */
@@ -154,9 +148,7 @@ class TrackActivityQueryTest extends QueriesTestCase
             $builder = (new TrackActivityQuery($request))->execute();
 
             // Execute assertions
-            $this->assertInstanceOf(TrackActivityBuilder::class, $builder);
-            $this->assertEquals($records->count(), $builder->count());
-            $this->assertEquals($records, $builder->get());
+            $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
         }
     }
 
@@ -187,8 +179,6 @@ class TrackActivityQueryTest extends QueriesTestCase
         $builder = (new TrackActivityQuery($request))->execute();
 
         // Execute assertions
-        $this->assertInstanceOf(TrackActivityBuilder::class, $builder);
-        $this->assertEquals($records->count(), $builder->count());
-        $this->assertEquals($records, $builder->get());
+        $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
     }
 }
