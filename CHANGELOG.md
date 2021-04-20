@@ -82,3 +82,12 @@ All notable changes to `tracking` will be documented in this file
 - add testing of `TrackActivity` 'tracking' relationship
 - add use of `HasRelationships` trait to abstract `TrackingQuery`
 - refactor constructor params of `TrackActionQuery` & `TrackActivityQuery` to no longer include $relationships
+
+
+## 0.7.1 - 2021-04-19
+- bump sfneal/datum min version to v1.4
+
+
+## 0.7.2 - 2021-04-20
+- bump sfneal/mock-models dev requirement to v0.2
+- refactor use of testing utility traits & interfaces to sfneal/mock-models imports

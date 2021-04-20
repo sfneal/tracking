@@ -2,6 +2,7 @@
 
 namespace Sfneal\Tracking\Tests\Feature\Builders;
 
+use Sfneal\Queries\RandomModelAttributeQuery;
 use Sfneal\Tracking\Models\TrackTraffic;
 
 class TrackTrafficBuilderTest extends BuilderTestCase
@@ -16,12 +17,7 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereRequestUri()
     {
-        $request_uri = $this->modelClass::query()
-            ->distinct()
-            ->get('request_uri')
-            ->shuffle()
-            ->pluck('request_uri')
-            ->first();
+        $request_uri = (new RandomModelAttributeQuery($this->modelClass, 'request_uri'))->execute();
 
         $model = $this->modelClass::query()->whereRequestUri($request_uri)->get();
 
@@ -31,21 +27,17 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function orWhereRequestUri()
     {
-        $request_uris = $this->modelClass::query()
-            ->distinct()
-            ->get('request_uri')
-            ->shuffle()
-            ->take(3)
-            ->pluck('request_uri');
+        $take = 3;
+        $request_uris = (new RandomModelAttributeQuery($this->modelClass, 'request_uri', $take))->execute();
 
         $query = $this->modelClass::query();
-        $request_uris->each(function (string $request_uri) use ($query) {
+        collect($request_uris)->each(function (string $request_uri) use ($query) {
             $query->orWhereRequestUri($request_uri);
         });
 
         $model = $query->get();
 
-        $request_uris->each(function (string $request_uri) use ($model) {
+        collect($request_uris)->each(function (string $request_uri) use ($model) {
             $this->assertContains($request_uri, $model->pluck('request_uri'));
         });
     }
@@ -53,16 +45,8 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereRequestUriIn()
     {
-        $expected = 4;
-
-        $request_uris = $this->modelClass::query()
-            ->distinct()
-            ->get('request_uri')
-            ->shuffle()
-            ->take($expected)
-            ->pluck('request_uri')
-            ->toArray();
-
+        $take = 4;
+        $request_uris = (new RandomModelAttributeQuery($this->modelClass, 'request_uri', $take))->execute();
         $models = $this->modelClass::query()->whereRequestUriIn($request_uris)->get();
 
         foreach ($request_uris as $request_uri) {
@@ -73,12 +57,7 @@ class TrackTrafficBuilderTest extends BuilderTestCase
     /** @test */
     public function whereEnvironment()
     {
-        $app_environment = $this->modelClass::query()
-            ->distinct()
-            ->get('app_environment')
-            ->shuffle()
-            ->pluck('app_environment')
-            ->first();
+        $app_environment = (new RandomModelAttributeQuery($this->modelClass, 'app_environment'))->execute();
 
         $models = $this->modelClass::query()->whereEnvironment($app_environment)->get();
 

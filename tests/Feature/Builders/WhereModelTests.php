@@ -2,20 +2,14 @@
 
 namespace Sfneal\Tracking\Tests\Feature\Builders;
 
+use Sfneal\Queries\RandomModelAttributeQuery;
+
 trait WhereModelTests
 {
     /** @test */
     public function whereModelKey()
     {
-        $expected = 1;
-
-        $model_key = $this->modelClass::query()
-            ->distinct()
-            ->get('model_key')
-            ->shuffle()
-            ->take($expected)
-            ->pluck('model_key')
-            ->first();
+        $model_key = (new RandomModelAttributeQuery($this->modelClass, 'model_key'))->execute();
 
         $model = $this->modelClass::query()->whereModelKey($model_key)->get();
 
@@ -25,15 +19,8 @@ trait WhereModelTests
     /** @test */
     public function whereModelKeyMultiple()
     {
-        $expected = 4;
-
-        $model_keys = $this->modelClass::query()
-            ->distinct()
-            ->get('model_key')
-            ->shuffle()
-            ->take($expected)
-            ->pluck('model_key')
-            ->toArray();
+        $take = 4;
+        $model_keys = (new RandomModelAttributeQuery($this->modelClass, 'model_key', $take))->execute();
 
         $models = $this->modelClass::query()->whereModelKey($model_keys)->get();
 
@@ -45,15 +32,7 @@ trait WhereModelTests
     /** @test */
     public function whereModelTable()
     {
-        $expected = 25;
-
-        $model_table = $this->modelClass::query()
-            ->distinct()
-            ->get('model_table')
-            ->shuffle()
-            ->take($expected)
-            ->pluck('model_table')
-            ->first();
+        $model_table = (new RandomModelAttributeQuery($this->modelClass, 'model_table'))->execute();
 
         $models = $this->modelClass::query()->whereModelTable($model_table)->get();
 
