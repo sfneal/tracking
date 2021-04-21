@@ -16,7 +16,6 @@ use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackActivity extends Tracking
 {
-    // todo: add use of polymorphic relationships
     use HasFactory;
 
     /**
