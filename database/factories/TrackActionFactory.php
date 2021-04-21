@@ -5,10 +5,8 @@ namespace Database\Factories;
 use Database\Factories\Traits\ModelChanges;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Collection;
-use Sfneal\Address\Models\Address;
-use Sfneal\Queries\RandomModelAttributeQuery;
-use Sfneal\Testing\Models\People;
 use Sfneal\Tracking\Utils\ModelAdapter;
+use Sfneal\Tracking\Utils\RandomTrackable;
 
 class TrackActionFactory extends Factory
 {
@@ -44,16 +42,14 @@ class TrackActionFactory extends Factory
      */
     public function definition(): array
     {
-        // todo: improve this to add conditionals
-        $trackable_type = $this->faker->randomElement([People::class, Address::class]);
-        $trackable_id = (new RandomModelAttributeQuery($trackable_type, $trackable_type::getPrimaryKeyName()))->execute();
+        $trackable = new RandomTrackable();
 
         return [
             'action' => $this->faker->randomElement($this->randomAction()),
             'model_changes' => $this->faker->randomElements($this->modelChanges()),
 
-            'trackable_id' => $trackable_id,
-            'trackable_type' => $trackable_type,
+            'trackable_id' => $trackable->id,
+            'trackable_type' => $trackable->type,
 
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
         ];
