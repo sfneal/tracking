@@ -137,7 +137,13 @@ class TrackActivityQueryTest extends QueriesTestCase
         // Test each unique table name
         foreach (TrackActivity::query()->distinct()->getFlatArray('model_table') as $table) {
             // Model Key
-            $model_key = (new RandomModelAttributeQuery(TrackActivity::class, 'model_table'))->execute();
+            $model_key = TrackActivity::query()
+                ->whereModelTable($table)
+                ->get('model_key')
+                ->shuffle()
+                ->take(1)
+                ->pluck('model_key')
+                ->first();
 
             // `TrackAction` records for the $table
             $records = TrackActivity::query()
