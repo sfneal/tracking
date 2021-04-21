@@ -48,7 +48,6 @@ class TrackActionFactory extends Factory
         $trackable_type = $this->faker->randomElement([People::class, Address::class]);
         $trackable_id = (new RandomModelAttributeQuery($trackable_type, $trackable_type::getPrimaryKeyName()))->execute();
 
-
         return [
             'action' => $this->faker->randomElement($this->randomAction()),
             'model_changes' => $this->faker->randomElements($this->modelChanges()),
