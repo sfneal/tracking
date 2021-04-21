@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Utils;
-
 
 use Sfneal\Address\Models\Address;
 use Sfneal\Queries\RandomModelAttributeQuery;
@@ -16,14 +14,14 @@ class RandomTrackable
     private const MODELS = [People::class, Address::class];
 
     /**
-     * The trackable's 'type'
+     * The trackable's 'type'.
      *
      * @var People|Address|string
      */
     public $type;
 
     /**
-     * * The trackable's 'id'
+     * * The trackable's 'id'.
      *
      * @var int
      */
@@ -43,9 +41,8 @@ class RandomTrackable
         $this->id = (new RandomModelAttributeQuery($this->type, $this->type::getPrimaryKeyName()))->execute();
     }
 
-
     /**
-     * Create People models to attach to 'trackable' relationships
+     * Create People models to attach to 'trackable' relationships.
      *
      * @return void
      */
