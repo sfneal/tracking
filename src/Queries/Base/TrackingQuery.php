@@ -2,16 +2,16 @@
 
 namespace Sfneal\Tracking\Queries\Base;
 
-use Illuminate\Http\Request;
 use Sfneal\Queries\Query;
 use Sfneal\Queries\Traits\HasRelationships;
+use Sfneal\Tracking\Requests\TrackRequest;
 
 abstract class TrackingQuery extends Query
 {
     use HasRelationships;
 
     /**
-     * @var Request|null
+     * @var TrackRequest|null
      */
     protected $request;
 
@@ -22,10 +22,10 @@ abstract class TrackingQuery extends Query
 
     /**
      * TrackActionQuery constructor.
-     * @param Request|null $request
+     * @param TrackRequest|null $request
      * @param array|null   $parameters
      */
-    public function __construct(Request $request = null, array $parameters = null)
+    public function __construct(TrackRequest $request = null, array $parameters = null)
     {
         $this->request = $request;
         $this->parameters = $parameters ?? [];
