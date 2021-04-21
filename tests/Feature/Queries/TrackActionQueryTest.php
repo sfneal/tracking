@@ -34,23 +34,27 @@ class TrackActionQueryTest extends QueriesTestCase
     public function query_with_table_param()
     {
         // Test each unique table name
-        foreach (TrackAction::query()->distinct()->getFlatArray('model_table') as $table) {
-            // `TrackAction` records for the $table
-            $records = TrackAction::query()
-                ->where('model_table', '=', $table)
-                ->get();
+        TrackAction::query()
+            ->distinct()
+            ->pluck('model_table')
+            ->values()
+            ->each(function (string $table) {
+                // `TrackAction` records for the $table
+                $records = TrackAction::query()
+                    ->where('model_table', '=', $table)
+                    ->get();
 
-            // Create a request
-            $request = $this->createRequest([], [
-                'table' => $table,
-            ]);
+                // Create a request
+                $request = $this->createRequest([], [
+                    'table' => $table,
+                ]);
 
-            // Query Builder
-            $builder = (new TrackActionQuery($request))->execute();
+                // Query Builder
+                $builder = (new TrackActionQuery($request))->execute();
 
-            // Execute assertions
-            $this->executeAssertions($records, $builder, TrackActionBuilder::class);
-        }
+                // Execute assertions
+                $this->executeAssertions($records, $builder, TrackActionBuilder::class);
+            });
     }
 
     /** @test */
@@ -80,28 +84,32 @@ class TrackActionQueryTest extends QueriesTestCase
     public function query_with_table_and_key_params()
     {
         // Test each unique table name
-        foreach (TrackAction::query()->distinct()->getFlatArray('model_table') as $table) {
-            // Model Key
-            $model_key = (new RandomModelAttributeQuery(TrackAction::class, 'model_table'))->execute();
+        TrackAction::query()
+            ->distinct()
+            ->pluck('model_table')
+            ->values()
+            ->each(function (string $table) {
+                // Model Key
+                $model_key = (new RandomModelAttributeQuery(TrackAction::class, 'model_table'))->execute();
 
-            // `TrackAction` records for the $table
-            $records = TrackAction::query()
-                ->where('model_table', '=', $table)
-                ->where('model_key', '=', $model_key)
-                ->get();
+                // `TrackAction` records for the $table
+                $records = TrackAction::query()
+                    ->where('model_table', '=', $table)
+                    ->where('model_key', '=', $model_key)
+                    ->get();
 
-            // Create a request
-            $request = $this->createRequest([], [
-                'table' => $table,
-                'key' => $model_key,
-            ]);
+                // Create a request
+                $request = $this->createRequest([], [
+                    'table' => $table,
+                    'key' => $model_key,
+                ]);
 
-            // Query Builder
-            $builder = (new TrackActionQuery($request))->execute();
+                // Query Builder
+                $builder = (new TrackActionQuery($request))->execute();
 
-            // Execute assertions
-            $this->executeAssertions($records, $builder, TrackActionBuilder::class);
-        }
+                // Execute assertions
+                $this->executeAssertions($records, $builder, TrackActionBuilder::class);
+            });
     }
 
     /** @test */
