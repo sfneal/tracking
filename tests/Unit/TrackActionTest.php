@@ -10,6 +10,8 @@ use Sfneal\Tracking\Tests\TestCase;
 
 class TrackActionTest extends TestCase implements CrudModelTest
 {
+    // todo: fix trackable_type assertions to use instanceOf
+
     /** @test */
     public function records_can_be_created()
     {
@@ -18,8 +20,8 @@ class TrackActionTest extends TestCase implements CrudModelTest
 
         $this->assertInstanceOf(TrackAction::class, $trackAction);
         $this->assertSame($action, $trackAction->action);
-        $this->assertSame(People::getTableName(), $trackAction->model_table);
         $this->assertEmpty($trackAction->model_changes);
+        $this->assertSame(People::getTableName(), $trackAction->trackable_type);
     }
 
     /** @test */

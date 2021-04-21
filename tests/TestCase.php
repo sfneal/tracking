@@ -5,6 +5,8 @@ namespace Sfneal\Tracking\Tests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Sfneal\Address\Models\Address;
+use Sfneal\Testing\Models\People;
 use Sfneal\Testing\Providers\MockModelsServiceProvider;
 use Sfneal\Tracking\Providers\TrackingServiceProvider;
 
@@ -57,5 +59,25 @@ class TestCase extends OrchestraTestCase
         // Migrate 'people' table
         include_once __DIR__.'/../vendor/sfneal/mock-models/database/migrations/create_people_table.php.stub';
         (new \CreatePeopleTable())->up();
+
+        // Migrate 'address table
+        include_once __DIR__.'/../vendor/sfneal/address/database/migrations/create_address_table.php.stub';
+        (new \CreateAddressTable())->up();
+    }
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Create People models to attach to 'trackable'
+        People::factory()
+            ->count(20)
+            ->has(Address::factory())
+            ->create();
     }
 }

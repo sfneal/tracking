@@ -18,8 +18,8 @@ class MigrationsTest extends TestCase
         // Expected data
         $data = [
             'action' => 'Created the model.',
-            'model_table' => 'people',
-            'model_key' => 40,
+            'trackable_id' => 40,
+            'trackable_type' => 'people',
         ];
 
         // Create the `TrackAction`
@@ -40,9 +40,9 @@ class MigrationsTest extends TestCase
             'user_id' => 38,
             'route' => 'people.store',
             'description' => 'Created a new People model.',
-            'model_table' => 'people',
-            'model_key' => 22,
             'request_token' => uniqid(),
+            'trackable_id' => 22,
+            'trackable_type' => 'people',
         ];
 
         // Create the `TrackActivity` model

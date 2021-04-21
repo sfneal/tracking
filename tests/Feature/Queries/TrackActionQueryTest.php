@@ -9,6 +9,8 @@ use Sfneal\Tracking\Queries\TrackActionQuery;
 
 class TrackActionQueryTest extends QueriesTestCase
 {
+    // todo: add use of builder methods
+
     /**
      * @var TrackAction
      */
@@ -36,12 +38,12 @@ class TrackActionQueryTest extends QueriesTestCase
         // Test each unique table name
         TrackAction::query()
             ->distinct()
-            ->pluck('model_table')
+            ->pluck('trackable_type')
             ->values()
             ->each(function (string $table) {
                 // `TrackAction` records for the $table
                 $records = TrackAction::query()
-                    ->where('model_table', '=', $table)
+                    ->where('trackable_type', '=', $table)
                     ->get();
 
                 // Create a request
@@ -61,16 +63,16 @@ class TrackActionQueryTest extends QueriesTestCase
     public function query_with_key_param()
     {
         // Model Key
-        $model_key = (new RandomModelAttributeQuery(TrackAction::class, 'model_key'))->execute();
+        $trackable_id = (new RandomModelAttributeQuery(TrackAction::class, 'trackable_id'))->execute();
 
-        // `TrackAction` record for the $model_key
+        // `TrackAction` record for the $trackable_id
         $records = TrackAction::query()
-            ->where('model_key', '=', $model_key)
+            ->where('trackable_id', '=', $trackable_id)
             ->get();
 
         // Create a request
         $request = $this->createRequest([], [
-            'key' => $model_key,
+            'key' => $trackable_id,
         ]);
 
         // Query Builder
@@ -86,28 +88,28 @@ class TrackActionQueryTest extends QueriesTestCase
         // Test each unique table name
         TrackAction::query()
             ->distinct()
-            ->pluck('model_table')
+            ->pluck('trackable_type')
             ->values()
             ->each(function (string $table) {
                 // Model Key
-                $model_key = TrackAction::query()
-                    ->whereModelTable($table)
-                    ->get('model_key')
+                $trackable_id = TrackAction::query()
+                    ->whereTrackableType($table)
+                    ->get('trackable_id')
                     ->shuffle()
                     ->take(1)
-                    ->pluck('model_key')
+                    ->pluck('trackable_id')
                     ->first();
 
                 // `TrackAction` records for the $table
                 $records = TrackAction::query()
-                    ->where('model_table', '=', $table)
-                    ->where('model_key', '=', $model_key)
+                    ->where('trackable_type', '=', $table)
+                    ->where('trackable_id', '=', $trackable_id)
                     ->get();
 
                 // Create a request
                 $request = $this->createRequest([], [
                     'table' => $table,
-                    'key' => $model_key,
+                    'key' => $trackable_id,
                 ]);
 
                 // Query Builder
@@ -127,7 +129,7 @@ class TrackActionQueryTest extends QueriesTestCase
         $min = min($created_at_1, $created_at_2);
         $max = max($created_at_1, $created_at_2);
 
-        // `TrackAction` record for the $model_key
+        // `TrackAction` record for the $trackable_id
         $records = TrackAction::query()
             ->whereBetween('created_at', [$min, $max])
             ->get();

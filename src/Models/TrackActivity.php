@@ -6,6 +6,7 @@ use Database\Factories\TrackActivityFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Scopes\IdOrderScope;
@@ -38,10 +39,10 @@ class TrackActivity extends Tracking
         'user_id',
         'route',
         'description',
-        'model_table',
-        'model_key',
         'model_changes',
         'request_token',
+        'trackable_id',
+        'trackable_type',
     ];
 
     /**
@@ -51,8 +52,8 @@ class TrackActivity extends Tracking
      */
     protected $casts = [
         'user_id' => 'int',
-        'model_key' => 'int',
         'model_changes' => 'array',
+        'trackable_id' => 'int',
     ];
 
     /**
@@ -86,11 +87,21 @@ class TrackActivity extends Tracking
     }
 
     /**
+     * Get the owning trackable model.
+     *
+     * @return MorphTo
+     */
+    public function trackable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    /**
      * Related TrackTraffic data.
      *
      * @return BelongsTo
      */
-    public function tracking()
+    public function tracking(): BelongsTo
     {
         return $this->belongsTo(ModelAdapter::TrackTraffic(), 'request_token', 'request_token')
             ->withoutGlobalScope(SoftDeletingScope::class);

@@ -20,10 +20,10 @@ class CreateTrackActivityTable extends Migration
             $table->integer('user_id');
             $table->string('route', 255);
             $table->text('description')->nullable();
-            $table->string('model_table');
-            $table->integer('model_key');
             $table->string('model_changes')->nullable();
             $table->string('request_token');
+            $table->string('trackable_id', 11);
+            $table->string('trackable_type', 100);
             $table->timestamps();
             $table->softDeletes();
         });
