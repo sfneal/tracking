@@ -4,11 +4,12 @@ namespace Sfneal\Tracking\Tests\Feature\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Sfneal\Testing\Utils\Interfaces\RequestCreator;
 use Sfneal\Tracking\Models\Base\Tracking;
 use Sfneal\Tracking\Requests\TrackRequest;
 use Sfneal\Tracking\Tests\TestCase;
 
-class QueriesTestCase extends TestCase
+class QueriesTestCase extends TestCase implements RequestCreator
 {
     /**
      * @var Tracking
@@ -49,7 +50,7 @@ class QueriesTestCase extends TestCase
      * @param null $content
      * @return TrackRequest
      */
-    protected function createRequest(array $headers = [],
+    public function createRequest(array $headers = [],
                                      array $parameters = [],
                                      array $cookies = [],
                                      array $files = [],

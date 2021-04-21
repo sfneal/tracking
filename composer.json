@@ -22,7 +22,7 @@
         "sfneal/actions": "^2.0",
         "sfneal/array-helpers": "^1.0",
         "sfneal/controllers": "^2.0",
-        "sfneal/datum": "^1.4.1",
+        "sfneal/datum": "^1.5",
         "sfneal/laravel-helpers": "^2.1.1",
         "sfneal/models": "^2.2",
         "sfneal/observables": "^1.0",
@@ -36,7 +36,7 @@
         "phpunit/phpunit": ">=8.5.0",
         "orchestra/testbench": ">=6.7.1",
         "scrutinizer/ocular": "^1.8",
-        "sfneal/mock-models": ">=0.2"
+        "sfneal/mock-models": ">=0.3"
     },
     "extra": {
         "laravel": {
