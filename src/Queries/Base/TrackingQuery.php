@@ -29,5 +29,10 @@ abstract class TrackingQuery extends Query
     {
         $this->request = $request;
         $this->parameters = $parameters ?? [];
+
+        // Merge validated request inputs with parameters
+        if ($validated = $this->request->validated()) {
+            $this->parameters = array_merge($this->parameters, $validated);
+        }
     }
 }
