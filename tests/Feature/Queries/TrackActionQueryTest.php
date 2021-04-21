@@ -136,7 +136,7 @@ class TrackActionQueryTest extends QueriesTestCase
         $request = $this->createRequest([], [
             'period' => [
                 $min,
-                $max
+                $max,
             ],
         ]);
 
