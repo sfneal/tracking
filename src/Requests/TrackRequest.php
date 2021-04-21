@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\Tracking\Requests;
-
 
 use Illuminate\Foundation\Http\FormRequest;
 
