@@ -9,8 +9,6 @@ use Sfneal\Tracking\Queries\TrackActivityQuery;
 
 class TrackActivityQueryTest extends QueriesTestCase
 {
-    // todo: add methods to test 'period' key
-
     /**
      * @var TrackActivity
      */
@@ -163,8 +161,7 @@ class TrackActivityQueryTest extends QueriesTestCase
 
         // `TrackAction` record for the $model_key
         $records = TrackActivity::query()
-            ->where('created_at', '>=', $min)
-            ->where('created_at', '<=', $max)
+            ->whereBetween('created_at', [$min, $max])
             ->get();
 
         // Create a request
