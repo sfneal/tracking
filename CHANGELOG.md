@@ -100,3 +100,10 @@ All notable changes to `tracking` will be documented in this file
 
 ## 0.8.1 - 2021-04-20
 - optimize queries test suite
+
+
+## 0.9.0 - 2021-04-21
+- make `TrackRequest` for validating `TrackActivityQuery` & `TrackActionQuery` request params
+- add use of `TrackRequest` validation in `TrackingQuery` constructor
+- fix issue with $model_key not returning an integer in `query_with_table_and_key_params()` test methods
+
