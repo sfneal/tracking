@@ -14,7 +14,6 @@ use Sfneal\Tracking\Tests\TestCase;
 
 class TrackActivityTest extends TestCase implements CrudModelTest
 {
-    // todo: fix trackable_type assertions to use instanceOf
     use CreateRequest;
 
     /** @test */
@@ -34,9 +33,10 @@ class TrackActivityTest extends TestCase implements CrudModelTest
         $this->assertSame($user_id, $activity->user_id);
         $this->assertSame($route, $activity->route);
         $this->assertNull($activity->description);
-        $this->assertSame(People::getTableName(), $activity->trackable_type);
-        $this->assertSame($model->getKey(), $activity->trackable_id);
         $this->assertEmpty($activity->model_changes);
+        $this->assertSame(People::class, $activity->trackable_type);
+        $this->assertInstanceOf(People::class, $activity->trackable);
+        $this->assertSame($model->getKey(), $activity->trackable_id);
     }
 
     /** @test */
@@ -64,12 +64,14 @@ class TrackActivityTest extends TestCase implements CrudModelTest
         $this->assertSame($user_id, $activity->user_id);
         $this->assertSame($route, $activity->route);
         $this->assertNull($activity->description);
-        $this->assertSame(People::getTableName(), $activity->trackable_type);
-        $this->assertSame($model->getKey(), $activity->trackable_id);
         $this->assertEmpty($activity->model_changes);
 
         $this->assertInstanceOf(TrackTraffic::class, $activity->tracking);
         $this->assertSame($traffic->request_token, $activity->request_token);
+
+        $this->assertSame(People::class, $activity->trackable_type);
+        $this->assertInstanceOf(People::class, $activity->trackable);
+        $this->assertSame($model->getKey(), $activity->trackable_id);
     }
 
     /** @test */
@@ -93,6 +95,9 @@ class TrackActivityTest extends TestCase implements CrudModelTest
         $this->assertInstanceOf(TrackActivity::class, $activity);
         $this->assertSame($description, $activity->description);
         $this->assertTrue($activity->wasUpdated());
+        $this->assertSame(People::class, $activity->trackable_type);
+        $this->assertInstanceOf(People::class, $activity->trackable);
+        $this->assertSame($model->getKey(), $activity->trackable_id);
     }
 
     /** @test */
