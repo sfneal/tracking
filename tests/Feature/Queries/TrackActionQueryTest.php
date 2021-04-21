@@ -90,7 +90,13 @@ class TrackActionQueryTest extends QueriesTestCase
             ->values()
             ->each(function (string $table) {
                 // Model Key
-                $model_key = (new RandomModelAttributeQuery(TrackAction::class, 'model_table'))->execute();
+                $model_key = TrackAction::query()
+                    ->whereModelTable($table)
+                    ->get('model_key')
+                    ->shuffle()
+                    ->take(1)
+                    ->pluck('model_key')
+                    ->first();
 
                 // `TrackAction` records for the $table
                 $records = TrackAction::query()
