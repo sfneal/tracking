@@ -4,14 +4,12 @@ namespace Sfneal\Tracking\Tests\Feature\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Sfneal\Testing\Utils\Traits\CreateRequest;
 use Sfneal\Tracking\Models\Base\Tracking;
+use Sfneal\Tracking\Requests\TrackRequest;
 use Sfneal\Tracking\Tests\TestCase;
 
 class QueriesTestCase extends TestCase
 {
-    use CreateRequest;
-
     /**
      * @var Tracking
      */
@@ -38,6 +36,33 @@ class QueriesTestCase extends TestCase
 
         // Retrieve the People model from an Address model
         $this->models = $this->modelClass::factory()->count($this->count)->create();
+    }
+
+    /**
+     * Create a Request to be used in test methods.
+     *
+     * @param array $headers
+     * @param array $parameters
+     * @param array $cookies
+     * @param array $files
+     * @param array $server
+     * @param null $content
+     * @return TrackRequest
+     */
+    protected function createRequest(array $headers = [],
+                                     array $parameters = [],
+                                     array $cookies = [],
+                                     array $files = [],
+                                     array $server = [],
+                                     $content = null): TrackRequest
+    {
+        $request = TrackRequest ::create('/', 'GET', $parameters, $cookies, $files, $server, $content);
+
+        foreach ($headers as $header => $value) {
+            $request->headers->set($header, $value);
+        }
+
+        return $request;
     }
 
     /**

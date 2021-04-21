@@ -9,8 +9,6 @@ use Sfneal\Tracking\Queries\TrackActivityQuery;
 
 class TrackActivityQueryTest extends QueriesTestCase
 {
-    // todo: add methods to test 'period' key
-
     /**
      * @var TrackActivity
      */
@@ -36,46 +34,55 @@ class TrackActivityQueryTest extends QueriesTestCase
     public function query_with_table_param()
     {
         // Test each unique table name
-        foreach (TrackActivity::query()->distinct()->getFlatArray('model_table') as $table) {
-            // `TrackAction` records for the $table
-            $records = TrackActivity::query()
-                ->where('model_table', '=', $table)
-                ->get();
+        TrackActivity::query()
+            ->distinct()
+            ->pluck('model_table')
+            ->values()
+            ->each(function (string $table) {
+                // `TrackAction` records for the $table
+                $records = TrackActivity::query()
+                    ->where('model_table', '=', $table)
+                    ->get();
 
-            // Create a request
-            $request = $this->createRequest([], [
-                'table' => $table,
-            ]);
+                // Create a request
+                $request = $this->createRequest([], [
+                    'table' => $table,
+                ]);
 
-            // Query Builder
-            $builder = (new TrackActivityQuery($request))->execute();
+                // Query Builder
+                $builder = (new TrackActivityQuery($request))->execute();
 
-            // Execute assertions
-            $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
-        }
+                // Execute assertions
+                $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
+            });
     }
 
     /** @test */
     public function query_with_user_param()
     {
         // Test each unique table name
-        foreach (TrackActivity::query()->distinct()->limit(20)->getFlatArray('user_id') as $user_id) {
-            // `TrackAction` records for the $table
-            $records = TrackActivity::query()
-                ->where('user_id', '=', $user_id)
-                ->get();
+        TrackActivity::query()
+            ->distinct()
+            ->limit(20)
+            ->pluck('user_id')
+            ->values()
+            ->each(function (int $user_id) {
+                // `TrackAction` records for the $table
+                $records = TrackActivity::query()
+                    ->where('user_id', '=', $user_id)
+                    ->get();
 
-            // Create a request
-            $request = $this->createRequest([], [
-                'user' => $user_id,
-            ]);
+                // Create a request
+                $request = $this->createRequest([], [
+                    'user' => $user_id,
+                ]);
 
-            // Query Builder
-            $builder = (new TrackActivityQuery($request))->execute();
+                // Query Builder
+                $builder = (new TrackActivityQuery($request))->execute();
 
-            // Execute assertions
-            $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
-        }
+                // Execute assertions
+                $this->executeAssertions($records, $builder, TrackActivityBuilder::class);
+            });
     }
 
     /** @test */
@@ -130,7 +137,13 @@ class TrackActivityQueryTest extends QueriesTestCase
         // Test each unique table name
         foreach (TrackActivity::query()->distinct()->getFlatArray('model_table') as $table) {
             // Model Key
-            $model_key = (new RandomModelAttributeQuery(TrackActivity::class, 'model_table'))->execute();
+            $model_key = TrackActivity::query()
+                ->whereModelTable($table)
+                ->get('model_key')
+                ->shuffle()
+                ->take(1)
+                ->pluck('model_key')
+                ->first();
 
             // `TrackAction` records for the $table
             $records = TrackActivity::query()
@@ -163,8 +176,7 @@ class TrackActivityQueryTest extends QueriesTestCase
 
         // `TrackAction` record for the $model_key
         $records = TrackActivity::query()
-            ->where('created_at', '>=', $min)
-            ->where('created_at', '<=', $max)
+            ->whereBetween('created_at', [$min, $max])
             ->get();
 
         // Create a request
