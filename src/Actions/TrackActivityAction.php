@@ -79,7 +79,7 @@ class TrackActivityAction extends Action
             'model_changes' => $this->model_changes,
             'request_token' => $this->request_token,
             'trackable_id'     => $this->model->getKey(),
-            'trackable_type'   => $this->model->getTable(),
+            'trackable_type'   => get_class($this->model),
         ]);
     }
 }

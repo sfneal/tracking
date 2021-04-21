@@ -66,7 +66,7 @@ class TrackActionJob extends Job
                 'action'        => $this->action,
                 'model_changes' => $this->model_changes,
                 'trackable_id'     => $this->model->getKey(),
-                'trackable_type'   => $this->model->getTable(),
+                'trackable_type'   => get_class($this->model),
             ]);
         }
 
