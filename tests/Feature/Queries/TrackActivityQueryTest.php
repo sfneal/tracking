@@ -9,8 +9,6 @@ use Sfneal\Tracking\Queries\TrackActivityQuery;
 
 class TrackActivityQueryTest extends QueriesTestCase
 {
-    // todo: add use of builder methods
-
     /**
      * @var TrackActivity
      */
@@ -43,7 +41,7 @@ class TrackActivityQueryTest extends QueriesTestCase
             ->each(function (string $table) {
                 // `TrackAction` records for the $table
                 $records = TrackActivity::query()
-                    ->where('trackable_type', '=', $table)
+                    ->whereTrackableType($table)
                     ->get();
 
                 // Create a request
@@ -118,7 +116,7 @@ class TrackActivityQueryTest extends QueriesTestCase
 
         // `TrackAction` record for the $trackable_id
         $records = TrackActivity::query()
-            ->where('trackable_id', '=', $trackable_id)
+            ->whereTrackableId($trackable_id)
             ->get();
 
         // Create a request
@@ -149,8 +147,8 @@ class TrackActivityQueryTest extends QueriesTestCase
 
             // `TrackAction` records for the $table
             $records = TrackActivity::query()
-                ->where('trackable_type', '=', $table)
-                ->where('trackable_id', '=', $trackable_id)
+                ->whereTrackableType($table)
+                ->whereTrackableId($trackable_id)
                 ->get();
 
             // Create a request
