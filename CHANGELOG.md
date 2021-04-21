@@ -112,3 +112,8 @@ All notable changes to `tracking` will be documented in this file
 - bump sfneal/mock-models min version to v0.3
 - add use of `RequestCreator` interface in `QueriesTestCase`
 
+
+## 0.9.2 - 2021-04-21
+- bump sfneal/datum min version to v1.5
+- add import of `Sfneal\Requests\FormRequest` in `TrackRequest`
+
