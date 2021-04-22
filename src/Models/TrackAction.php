@@ -5,6 +5,7 @@ namespace Sfneal\Tracking\Models;
 use Database\Factories\TrackActionFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Sfneal\Scopes\CreatedOrderScope;
 use Sfneal\Scopes\IdOrderScope;
 use Sfneal\Tracking\Builders\TrackActionBuilder;
@@ -32,9 +33,9 @@ class TrackAction extends Tracking
     protected $fillable = [
         'track_action_id',
         'action',
-        'model_table',
-        'model_key',
         'model_changes',
+        'trackable_id',
+        'trackable_type',
     ];
 
     /**
@@ -43,8 +44,8 @@ class TrackAction extends Tracking
      * @var array
      */
     protected $casts = [
-        'model_key' => 'int',
         'model_changes' => 'array',
+        'trackable_id' => 'int',
     ];
 
     /**
@@ -75,5 +76,15 @@ class TrackAction extends Tracking
     public static function query(): TrackActionBuilder
     {
         return parent::query();
+    }
+
+    /**
+     * Get the owning trackable model.
+     *
+     * @return MorphTo
+     */
+    public function trackable(): MorphTo
+    {
+        return $this->morphTo();
     }
 }

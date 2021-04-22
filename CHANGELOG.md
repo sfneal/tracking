@@ -114,3 +114,10 @@ All notable changes to `tracking` will be documented in this file
 - bump sfneal/datum min version to v1.5
 - add import of `Sfneal\Requests\FormRequest` in `TrackRequest`
 
+
+## 0.10.0 - 2021-04-22
+- refactor `TrackAction` & `TrackActivity` to use polymorphic relationships
+- refactor 'model_key' attributes to 'trackable_id'
+- refactor 'model_table' attributes to 'trackable_type'
+- refactor tracking factories to require `People` models to be created prior to using
+

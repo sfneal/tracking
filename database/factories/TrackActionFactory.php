@@ -6,6 +6,7 @@ use Database\Factories\Traits\ModelChanges;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Collection;
 use Sfneal\Tracking\Utils\ModelAdapter;
+use Sfneal\Tracking\Utils\RandomTrackable;
 
 class TrackActionFactory extends Factory
 {
@@ -41,12 +42,14 @@ class TrackActionFactory extends Factory
      */
     public function definition(): array
     {
+        $trackable = new RandomTrackable();
+
         return [
             'action' => $this->faker->randomElement($this->randomAction()),
-
-            'model_table' => $this->faker->randomElement(['people', 'address']),
-            'model_key' => $this->faker->randomNumber(3),
             'model_changes' => $this->faker->randomElements($this->modelChanges()),
+
+            'trackable_id' => $trackable->id,
+            'trackable_type' => $trackable->type,
 
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
         ];

@@ -10,6 +10,8 @@ use Sfneal\Tracking\Utils\ModelAdapter;
 
 class TrackActionQuery extends TrackingQuery
 {
+    // todo: refactor params?
+
     use ParamGetter;
 
     /**
@@ -39,12 +41,12 @@ class TrackActionQuery extends TrackingQuery
 
         // Table
         if ($table = self::getParam($this->request, $this->parameters, 'table')) {
-            $tracking->whereModelTable($table);
+            $tracking->whereTrackableType($table);
         }
 
         // Key
-        if ($model_keys = self::getParam($this->request, $this->parameters, 'key')) {
-            $tracking->whereModelKey($model_keys);
+        if ($trackable_ids = self::getParam($this->request, $this->parameters, 'key')) {
+            $tracking->whereTrackableId($trackable_ids);
         }
 
         // Time Period
