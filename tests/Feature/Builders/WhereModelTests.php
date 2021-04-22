@@ -7,35 +7,35 @@ use Sfneal\Queries\RandomModelAttributeQuery;
 trait WhereModelTests
 {
     /** @test */
-    public function whereModelKey()
+    public function whereTrackableId()
     {
-        $model_key = (new RandomModelAttributeQuery($this->modelClass, 'model_key'))->execute();
+        $trackable_id = (new RandomModelAttributeQuery($this->modelClass, 'trackable_id'))->execute();
 
-        $model = $this->modelClass::query()->whereModelKey($model_key)->get();
+        $model = $this->modelClass::query()->whereTrackableId($trackable_id)->get();
 
-        $this->assertContains($model_key, $model->pluck('model_key'));
+        $this->assertContains($trackable_id, $model->pluck('trackable_id'));
     }
 
     /** @test */
-    public function whereModelKeyMultiple()
+    public function whereTrackableIdMultiple()
     {
         $take = 4;
-        $model_keys = (new RandomModelAttributeQuery($this->modelClass, 'model_key', $take))->execute();
+        $trackable_ids = (new RandomModelAttributeQuery($this->modelClass, 'trackable_id', $take))->execute();
 
-        $models = $this->modelClass::query()->whereModelKey($model_keys)->get();
+        $models = $this->modelClass::query()->whereTrackableId($trackable_ids)->get();
 
-        foreach ($model_keys as $model_key) {
-            $this->assertContains($model_key, $models->pluck('model_key'));
+        foreach ($trackable_ids as $trackable_id) {
+            $this->assertContains($trackable_id, $models->pluck('trackable_id'));
         }
     }
 
     /** @test */
-    public function whereModelTable()
+    public function whereTrackableType()
     {
-        $model_table = (new RandomModelAttributeQuery($this->modelClass, 'model_table'))->execute();
+        $trackable_type = (new RandomModelAttributeQuery($this->modelClass, 'trackable_type'))->execute();
 
-        $models = $this->modelClass::query()->whereModelTable($model_table)->get();
+        $models = $this->modelClass::query()->whereTrackableType($trackable_type)->get();
 
-        $this->assertContains($model_table, $models->pluck('model_table'));
+        $this->assertContains($trackable_type, $models->pluck('trackable_type'));
     }
 }

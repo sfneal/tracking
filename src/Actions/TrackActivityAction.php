@@ -76,10 +76,10 @@ class TrackActivityAction extends Action
             'user_id'       => $this->user_id,
             'route'         => $this->route,
             'description'   => $this->description,
-            'model_table'   => $this->model->getTable(),
-            'model_key'     => $this->model->getKey(),
             'model_changes' => $this->model_changes,
             'request_token' => $this->request_token,
+            'trackable_id'     => $this->model->getKey(),
+            'trackable_type'   => get_class($this->model),
         ]);
     }
 }

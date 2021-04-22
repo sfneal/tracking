@@ -57,5 +57,9 @@ class TestCase extends OrchestraTestCase
         // Migrate 'people' table
         include_once __DIR__.'/../vendor/sfneal/mock-models/database/migrations/create_people_table.php.stub';
         (new \CreatePeopleTable())->up();
+
+        // Migrate 'address table
+        include_once __DIR__.'/../vendor/sfneal/address/database/migrations/create_address_table.php.stub';
+        (new \CreateAddressTable())->up();
     }
 }

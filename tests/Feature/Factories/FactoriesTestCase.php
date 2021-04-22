@@ -2,7 +2,9 @@
 
 namespace Sfneal\Tracking\Tests\Feature\Factories;
 
+use Sfneal\Testing\Models\People;
 use Sfneal\Tracking\Models\Base\Tracking;
+use Sfneal\Tracking\Models\TrackTraffic;
 use Sfneal\Tracking\Tests\TestCase;
 
 class FactoriesTestCase extends TestCase
@@ -26,7 +28,14 @@ class FactoriesTestCase extends TestCase
     {
         parent::setUp();
 
-        // Retrieve the People model from an Address model
-        $this->model = $this->modelClass::factory()->create();
+        $factory = $this->modelClass::factory();
+
+        // Add polymorphic relationships for `TrackAction` & `TrackActivity`
+        if ($this->modelClass != TrackTraffic::class) {
+            $factory->for(People::factory(), 'trackable');
+        }
+
+        // Create models from the factory
+        $this->model = $factory->create();
     }
 }

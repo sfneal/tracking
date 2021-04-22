@@ -18,9 +18,9 @@ class CreateTrackActionTable extends Migration
         Schema::create(self::TABLE_NAME, function (Blueprint $table) {
             $table->increments('track_action_id');
             $table->string('action', 255);
-            $table->string('model_table');
-            $table->integer('model_key');
             $table->text('model_changes')->nullable();
+            $table->string('trackable_id', 11);
+            $table->string('trackable_type', 100);
             $table->timestamps();
             $table->softDeletes();
         });

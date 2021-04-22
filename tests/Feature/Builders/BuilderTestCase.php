@@ -22,7 +22,7 @@ class BuilderTestCase extends TestCase
         parent::setUp();
 
         $this->modelClass::factory()
-            ->count(50)
+            ->count(200)
             ->create();
     }
 }

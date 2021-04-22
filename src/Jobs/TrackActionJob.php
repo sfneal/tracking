@@ -64,9 +64,9 @@ class TrackActionJob extends Job
         if ($this->model->exists) {
             return ModelAdapter::TrackAction()::query()->create([
                 'action'        => $this->action,
-                'model_table'   => $this->model->getTable(),
-                'model_key'     => $this->model->getKey(),
                 'model_changes' => $this->model_changes,
+                'trackable_id'     => $this->model->getKey(),
+                'trackable_type'   => get_class($this->model),
             ]);
         }
 
