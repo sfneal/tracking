@@ -20,17 +20,12 @@ php:
 
 before_script:
     - echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+    - phpenv config-rm xdebug.ini
     - travis_retry composer self-update
     - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction
 
 script:
-    - DEBUG_MODE=coverage composer test-coverage
+    - composer test
 
 after_script:
     - composer upload-coverage
-
-#deploy:
-#    provider: script
-#    script: DEBUG_MODE=coverage composer test-coverage
-#    on:
-#        tags: true
