@@ -31,22 +31,22 @@ class TrackActionQueryTest extends QueriesTestCase
     }
 
     /** @test */
-    public function query_with_table_param()
+    public function query_with_type_param()
     {
         // Test each unique table name
         TrackAction::query()
             ->distinct()
             ->pluck('trackable_type')
             ->values()
-            ->each(function (string $table) {
+            ->each(function (string $type) {
                 // `TrackAction` records for the $table
                 $records = TrackAction::query()
-                    ->whereTrackableType($table)
+                    ->whereTrackableType($type)
                     ->get();
 
                 // Create a request
                 $request = $this->createRequest([], [
-                    'table' => $table,
+                    'type' => $type,
                 ]);
 
                 // Query Builder
@@ -70,7 +70,7 @@ class TrackActionQueryTest extends QueriesTestCase
 
         // Create a request
         $request = $this->createRequest([], [
-            'key' => $trackable_id,
+            'id' => $trackable_id,
         ]);
 
         // Query Builder
@@ -88,10 +88,10 @@ class TrackActionQueryTest extends QueriesTestCase
             ->distinct()
             ->pluck('trackable_type')
             ->values()
-            ->each(function (string $table) {
+            ->each(function (string $type) {
                 // Model Key
                 $trackable_id = TrackAction::query()
-                    ->whereTrackableType($table)
+                    ->whereTrackableType($type)
                     ->get('trackable_id')
                     ->shuffle()
                     ->take(1)
@@ -100,14 +100,14 @@ class TrackActionQueryTest extends QueriesTestCase
 
                 // `TrackAction` records for the $table
                 $records = TrackAction::query()
-                    ->whereTrackableType($table)
+                    ->whereTrackableType($type)
                     ->whereTrackableId($trackable_id)
                     ->get();
 
                 // Create a request
                 $request = $this->createRequest([], [
-                    'table' => $table,
-                    'key' => $trackable_id,
+                    'type' => $type,
+                    'id' => $trackable_id,
                 ]);
 
                 // Query Builder
