@@ -29,7 +29,7 @@ class MigrationsTest extends TestCase
         $newAction = TrackAction::query()->find($action->getKey());
 
         // Assert model has expected values
-        $this->modelAttributeAssertions($data, $newAction);
+        $this->assertModelAttributesSame($data, $newAction);
     }
 
     /** @test */
@@ -52,7 +52,7 @@ class MigrationsTest extends TestCase
         $newActivity = TrackActivity::query()->find($activity->getKey());
 
         // Assert model has expected values
-        $this->modelAttributeAssertions($data, $newActivity);
+        $this->assertModelAttributesSame($data, $newActivity);
     }
 
     /** @test */
@@ -85,6 +85,6 @@ class MigrationsTest extends TestCase
         $newTraffic = TrackTraffic::query()->find($traffic->getKey());
 
         // Assert model has expected values
-        $this->modelAttributeAssertions($data, $newTraffic);
+        $this->assertModelAttributesSame($data, $newTraffic);
     }
 }
