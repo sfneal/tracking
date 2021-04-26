@@ -38,15 +38,15 @@ class TrackActivityQueryTest extends QueriesTestCase
             ->distinct()
             ->pluck('trackable_type')
             ->values()
-            ->each(function (string $table) {
+            ->each(function (string $type) {
                 // `TrackAction` records for the $table
                 $records = TrackActivity::query()
-                    ->whereTrackableType($table)
+                    ->whereTrackableType($type)
                     ->get();
 
                 // Create a request
                 $request = $this->createRequest([], [
-                    'table' => $table,
+                    'type' => $type,
                 ]);
 
                 // Query Builder
@@ -121,7 +121,7 @@ class TrackActivityQueryTest extends QueriesTestCase
 
         // Create a request
         $request = $this->createRequest([], [
-            'key' => $trackable_id,
+            'id' => $trackable_id,
         ]);
 
         // Query Builder
@@ -135,10 +135,10 @@ class TrackActivityQueryTest extends QueriesTestCase
     public function query_with_table_and_key_params()
     {
         // Test each unique table name
-        foreach (TrackActivity::query()->distinct()->getFlatArray('trackable_type') as $table) {
+        foreach (TrackActivity::query()->distinct()->getFlatArray('trackable_type') as $type) {
             // Model Key
             $trackable_id = TrackActivity::query()
-                ->whereTrackableType($table)
+                ->whereTrackableType($type)
                 ->get('trackable_id')
                 ->shuffle()
                 ->take(1)
@@ -147,14 +147,14 @@ class TrackActivityQueryTest extends QueriesTestCase
 
             // `TrackAction` records for the $table
             $records = TrackActivity::query()
-                ->whereTrackableType($table)
+                ->whereTrackableType($type)
                 ->whereTrackableId($trackable_id)
                 ->get();
 
             // Create a request
             $request = $this->createRequest([], [
-                'table' => $table,
-                'key' => $trackable_id,
+                'type' => $type,
+                'id' => $trackable_id,
             ]);
 
             // Query Builder

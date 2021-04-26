@@ -121,3 +121,9 @@ All notable changes to `tracking` will be documented in this file
 - refactor 'model_table' attributes to 'trackable_type'
 - refactor tracking factories to require `People` models to be created prior to using
 
+
+## 0.10.1 - 2021-04-26
+- refactor `TrackActionQuery` & `TrackActivity` params to use new attribute names
+- refactor 'table' param to 'type'
+- refactor 'key' param to 'id'
+

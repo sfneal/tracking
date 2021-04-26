@@ -24,10 +24,10 @@ class TrackRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'table' => ['string', 'nullable'],
+            'type' => ['string', 'nullable'],
+            'id' => ['integer', 'nullable'],
             'user' => ['integer', 'nullable'],
             'users' => ['array', 'nullable'],
-            'key' => ['integer', 'nullable'],
             'period' => ['array', 'nullable'],
         ];
     }
