@@ -13,7 +13,7 @@ class CleanDevTrackingJob extends Job
     public function __construct()
     {
         $this->onQueue(config('tracking.queue'));
-        $this->onConnection(config('tracking.queue_driver'));
+        $this->onConnection(config('tracking.driver'));
     }
 
     /**
