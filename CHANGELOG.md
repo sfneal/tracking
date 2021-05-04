@@ -127,3 +127,7 @@ All notable changes to `tracking` will be documented in this file
 - refactor 'table' param to 'type'
 - refactor 'key' param to 'id'
 
+
+## 0.10.2 - 2021-05-04
+- fix use of 'tracking.queue_driver' to 'tracking.driver'
+
