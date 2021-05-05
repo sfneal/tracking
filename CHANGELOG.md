@@ -135,4 +135,3 @@ All notable changes to `tracking` will be documented in this file
 ## 1.0.0 - 2021-05-05
 - initial production release
 - bump sfneal/users min version v1.0
-
