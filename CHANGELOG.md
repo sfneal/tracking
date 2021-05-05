@@ -131,3 +131,8 @@ All notable changes to `tracking` will be documented in this file
 ## 0.10.2 - 2021-05-04
 - fix use of 'tracking.queue_driver' to 'tracking.driver'
 
+
+## 1.0.0 - 2021-05-05
+- initial production release
+- bump sfneal/users min version v1.0
+
