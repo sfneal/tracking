@@ -12,6 +12,8 @@ class TestCase extends OrchestraTestCase
 {
     use RefreshDatabase;
 
+    // todo: refactor database seeding to use seeder classes
+
     /**
      * Register package service providers.
      *
