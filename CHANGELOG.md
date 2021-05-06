@@ -139,3 +139,7 @@ All notable changes to `tracking` will be documented in this file
 
 ## 1.0.1 - 2021-05-06
 - fix issue with `TrackTrafficMiddleware` creating the $response before adding the 'track_traffic_token' attribute to the $request
+
+
+## 1.0.2 - 2021-05-06
+- optimize `TrackTrafficMiddleware` by adding token's & creating responses once
