@@ -18,16 +18,13 @@ class TrackTrafficMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // Create response
-        $response = $next($request);
-
         // Check if traffic tracking is enabled
         if (config('tracking.traffic.track')) {
             // Add unique ID to be used to relate traffic & activities
             $request->attributes->add(['track_traffic_token' => uniqid()]);
 
             // Fire Traffic Tracker event
-            event(new TrackTrafficEvent($request, $response, microtime(true)));
+            event(new TrackTrafficEvent($request, $next($request), microtime(true)));
         }
 
         // false value signifies that the tracking token was disabled
@@ -36,6 +33,6 @@ class TrackTrafficMiddleware
         }
 
         // Return the response
-        return $response;
+        return $next($request);
     }
 }
