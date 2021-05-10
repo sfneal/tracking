@@ -3,15 +3,17 @@
 namespace Sfneal\Tracking\Tests\Feature;
 
 use Illuminate\Support\Facades\Event;
+use Sfneal\Testing\Utils\Interfaces\MiddlewareEnabler;
+use Sfneal\Testing\Utils\Traits\EnableMiddleware;
 use Sfneal\Testing\Utils\Traits\EventFaker;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
-use Sfneal\Tracking\Tests\EnableMiddleware;
+use Sfneal\Tracking\Middleware\TrackTrafficMiddleware;
 use Sfneal\Tracking\Tests\TestCase;
 
-class MiddlewareTest extends TestCase
+class MiddlewareTest extends TestCase implements MiddlewareEnabler
 {
-    use EnableMiddleware;
     use EventFaker;
+    use EnableMiddleware;
 
     /**
      * Setup the test environment.
@@ -39,7 +41,7 @@ class MiddlewareTest extends TestCase
     public function middleware_enabled()
     {
         // Enable middleware
-        $this->enableMiddleware();
+        $this->enableMiddleware(TrackTrafficMiddleware::class);
 
         // Mock request
         $this->get('/');
@@ -52,7 +54,7 @@ class MiddlewareTest extends TestCase
     public function middleware_adds_tracking_token()
     {
         // Enable middleware
-        $this->enableMiddleware();
+        $this->enableMiddleware(TrackTrafficMiddleware::class);
 
         // Mock request
         $this->get('/');
@@ -70,7 +72,7 @@ class MiddlewareTest extends TestCase
         $this->app['config']->set('tracking.traffic.track', false);
 
         // Enable middleware
-        $this->enableMiddleware();
+        $this->enableMiddleware(TrackTrafficMiddleware::class);
 
         // Mock request
         $this->get('/');
