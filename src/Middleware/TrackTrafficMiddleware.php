@@ -4,9 +4,10 @@ namespace Sfneal\Tracking\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Sfneal\Controllers\Middleware;
 use Sfneal\Tracking\Events\TrackTrafficEvent;
 
-class TrackTrafficMiddleware
+class TrackTrafficMiddleware implements Middleware
 {
     /**
      * Handle an incoming request.

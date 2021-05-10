@@ -21,7 +21,7 @@
         "jenssegers/agent": "^2.6",
         "sfneal/actions": "^2.0",
         "sfneal/array-helpers": "^1.0",
-        "sfneal/controllers": "^2.0",
+        "sfneal/controllers": "^2.1",
         "sfneal/datum": "^1.5",
         "sfneal/laravel-helpers": "^2.1.1",
         "sfneal/models": "^2.2",
