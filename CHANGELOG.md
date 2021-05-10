@@ -143,3 +143,8 @@ All notable changes to `tracking` will be documented in this file
 
 ## 1.0.2 - 2021-05-06
 - optimize `TrackTrafficMiddleware` by adding token's & creating responses once
+
+
+## 1.0.3 - 2021-05-10
+- bump sfneal/controllers min package version to v2.1
+- add use of `Middleware` interface implementation in `TrackTrafficMiddleware` middleware
