@@ -148,3 +148,7 @@ All notable changes to `tracking` will be documented in this file
 ## 1.0.3 - 2021-05-10
 - bump sfneal/controllers min package version to v2.1
 - add use of `Middleware` interface implementation in `TrackTrafficMiddleware` middleware
+
+
+## 1.0.4 - 2021-08-03
+- bump min sfneal/array-helpers version to v2.0 & refactor use
