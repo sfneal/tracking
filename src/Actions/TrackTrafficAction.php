@@ -24,7 +24,7 @@ class TrackTrafficAction extends Action
     public function __construct(array $tracking)
     {
         // Flatten tracking data
-        $this->tracking = ArrayHelpers::from($tracking)->flattenKeys();
+        $this->tracking = ArrayHelpers::from($tracking)->flattenKeys()->get();
     }
 
     /**
