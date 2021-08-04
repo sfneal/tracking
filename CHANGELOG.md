@@ -157,3 +157,8 @@ All notable changes to `tracking` will be documented in this file
 
 ## 1.0.5 - 2021-08-04
 - bump min sfneal/array-helpers version to v3.0 & refactor use
+
+ 
+## 1.0.6 - 2021-08-04
+- bump sfneal/mock-models min dev requirements to v0.9
+- refactor import of `ModelAttributeAssertions` to `AssertModelAttributes`
