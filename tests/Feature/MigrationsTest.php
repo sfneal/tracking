@@ -2,7 +2,7 @@
 
 namespace Sfneal\Tracking\Tests\Feature;
 
-use Sfneal\Testing\Utils\Traits\ModelAttributeAssertions;
+use Sfneal\Testing\Utils\Traits\AssertModelAttributes;
 use Sfneal\Tracking\Models\TrackAction;
 use Sfneal\Tracking\Models\TrackActivity;
 use Sfneal\Tracking\Models\TrackTraffic;
@@ -10,7 +10,7 @@ use Sfneal\Tracking\Tests\TestCase;
 
 class MigrationsTest extends TestCase
 {
-    use ModelAttributeAssertions;
+    use AssertModelAttributes;
 
     /** @test */
     public function track_action_table_is_accessible()
