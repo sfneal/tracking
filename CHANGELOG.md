@@ -153,3 +153,7 @@ All notable changes to `tracking` will be documented in this file
 ## 1.0.4 - 2021-08-03
 - bump min sfneal/array-helpers version to v2.0 & refactor use
 - add explicit sfneal/address composer requirement
+
+
+## 1.0.5 - 2021-08-04
+- bump min sfneal/array-helpers version to v3.0 & refactor use
