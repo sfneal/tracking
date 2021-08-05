@@ -145,8 +145,8 @@ class ParseTraffic extends Action
      */
     private function getRequestPayload(): array
     {
-        // todo: add use of `merge()` method
-        return ArrayHelpers::from(array_merge($this->request->query(), $this->request->input()))
+        return ArrayHelpers::from($this->request->query())
+            ->merge($this->request->input())
             ->removeKeys(self::REQUEST_PAYLOAD_EXCLUSIONS)
             ->get();
     }
