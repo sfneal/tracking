@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+    tracking:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: "stephenneal/tracking:${TAG}"
+        env_file: .env.docker
+        container_name: tracking
+        tty: true
+        volumes:
+            - tracking:/var/www
+        depends_on:
+            - tracking-cache
+        networks:
+            - tracking-network
+
+    tracking-cache:
+        container_name: tracking-cache
+        image: redis:6-alpine
+        command: ["redis-server", "--appendonly yes", "--port 9576"]
+        ports:
+            - "9576:9576"
+        volumes:
+            - tracking-cache:/data
+        networks:
+            - tracking-network
+
+
+# Networks
+networks:
+    tracking-network:
+        driver: bridge
+
+# Volumes
+volumes:
+    tracking:
+    tracking-cache:
