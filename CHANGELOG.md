@@ -166,3 +166,8 @@ All notable changes to `tracking` will be documented in this file
  
 ## 1.0.7 - 2021-08-05
 - bump min sfneal/array-helpers version to v3.3 to support use of `merge()` method
+
+
+## 1.0.8 - 2022-02-28
+- add support for GitHub actions & running test suite inside Docker container
+- bump testing package min versions to support php8.1
