@@ -66,7 +66,6 @@ class TrackTraffic extends Tracking
      * Query Builder.
      *
      * @param $query
-     *
      * @return TrackTrafficBuilder
      */
     public function newEloquentBuilder($query)
@@ -95,7 +94,7 @@ class TrackTraffic extends Tracking
     /**
      * Set the `app_environment` attribute.
      *
-     * @param null $value
+     * @param  null  $value
      */
     public function setAppEnvironmentAttribute($value = null)
     {
@@ -105,7 +104,7 @@ class TrackTraffic extends Tracking
     /**
      * Set the 'request_method' attribute.
      *
-     * @param string|null $value
+     * @param  string|null  $value
      */
     public function setRequestMethodAttribute(string $value = null)
     {

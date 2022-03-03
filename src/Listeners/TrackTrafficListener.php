@@ -20,8 +20,7 @@ class TrackTrafficListener extends Listener
     /**
      * Retrieve tracking data and then do something with it.
      *
-     * @param TrackTrafficEvent $event
-     *
+     * @param  TrackTrafficEvent  $event
      * @return void
      */
     public function handle(TrackTrafficEvent $event)

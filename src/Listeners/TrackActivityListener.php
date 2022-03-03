@@ -20,8 +20,7 @@ class TrackActivityListener extends Listener
     /**
      * Handle the event.
      *
-     * @param TrackActivityEvent $event
-     *
+     * @param  TrackActivityEvent  $event
      * @return void
      */
     public function handle(TrackActivityEvent $event)

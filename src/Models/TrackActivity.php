@@ -69,7 +69,6 @@ class TrackActivity extends Tracking
      * Query Builder.
      *
      * @param $query
-     *
      * @return TrackActivityBuilder
      */
     public function newEloquentBuilder($query)

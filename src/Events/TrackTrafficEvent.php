@@ -18,9 +18,9 @@ class TrackTrafficEvent extends Event
     /**
      * Create a new event instance.
      *
-     * @param Request                   $request
-     * @param Response|RedirectResponse $response
-     * @param string|null               $timestamp
+     * @param  Request  $request
+     * @param  Response|RedirectResponse  $response
+     * @param  string|null  $timestamp
      */
     public function __construct(Request $request, $response, string $timestamp = null)
     {

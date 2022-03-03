@@ -14,13 +14,13 @@ class TrackTrafficFactory extends Factory
     /**
      * TrackActivityFactory constructor.
      *
-     * @param null $count
-     * @param Collection|null $states
-     * @param Collection|null $has
-     * @param Collection|null $for
-     * @param Collection|null $afterMaking
-     * @param Collection|null $afterCreating
-     * @param null $connection
+     * @param  null  $count
+     * @param  Collection|null  $states
+     * @param  Collection|null  $has
+     * @param  Collection|null  $for
+     * @param  Collection|null  $afterMaking
+     * @param  Collection|null  $afterCreating
+     * @param  null  $connection
      */
     public function __construct($count = null,
                                 ?Collection $states = null,
