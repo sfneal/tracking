@@ -42,7 +42,7 @@ class TrackActivityEvent extends Event
     /**
      * Create a new event instance.
      *
-     * @param Model $model
+     * @param  Model  $model
      */
     public function __construct(Model $model)
     {

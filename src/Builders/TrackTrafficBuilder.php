@@ -13,10 +13,9 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
     /**
      * Scope query results to Traffic sent to a particular endpoint $uri.
      *
-     * @param string $uri
-     * @param string $operator
-     * @param string $boolean
-     *
+     * @param  string  $uri
+     * @param  string  $operator
+     * @param  string  $boolean
      * @return $this
      */
     public function whereRequestUri(string $uri, string $operator = '=', string $boolean = 'and'): self
@@ -29,9 +28,8 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
     /**
      * Add an 'or where' request_uri clause to the query.
      *
-     * @param string $uri
-     * @param string $operator
-     *
+     * @param  string  $uri
+     * @param  string  $operator
      * @return $this
      */
     public function orWhereRequestUri(string $uri, string $operator = '='): self
@@ -44,10 +42,9 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
     /**
      * Scope query results to Traffic sent to an array of $uris.
      *
-     * @param array  $uris
-     * @param string $boolean
-     * @param bool   $not
-     *
+     * @param  array  $uris
+     * @param  string  $boolean
+     * @param  bool  $not
      * @return $this
      */
     public function whereRequestUriIn(array $uris, string $boolean = 'and', bool $not = false): self
@@ -60,10 +57,9 @@ class TrackTrafficBuilder extends QueryBuilder implements WhereUserInterface
     /**
      * Add a where clause that scopes query results to Traffic originating in a particular app environment.
      *
-     * @param string $environment
-     * @param string $operator
-     * @param string $boolean
-     *
+     * @param  string  $environment
+     * @param  string  $operator
+     * @param  string  $boolean
      * @return $this
      */
     public function whereEnvironment(string $environment, string $operator = '=', string $boolean = 'and'): self

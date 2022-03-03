@@ -9,8 +9,7 @@ trait WhereModels
     /**
      * Scope query to activity on a specific trackable id.
      *
-     * @param mixed $trackable_id
-     *
+     * @param  mixed  $trackable_id
      * @return $this
      */
     public function whereTrackableId($trackable_id): self
@@ -28,8 +27,7 @@ trait WhereModels
     /**
      * Scope query to activity on a specific trackable type.
      *
-     * @param mixed $trackable_type
-     *
+     * @param  mixed  $trackable_type
      * @return $this
      */
     public function whereTrackableType($trackable_type): self

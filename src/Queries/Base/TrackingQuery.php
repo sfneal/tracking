@@ -22,8 +22,9 @@ abstract class TrackingQuery extends Query
 
     /**
      * TrackActionQuery constructor.
-     * @param TrackRequest|null $request
-     * @param array|null   $parameters
+     *
+     * @param  TrackRequest|null  $request
+     * @param  array|null  $parameters
      */
     public function __construct(TrackRequest $request = null, array $parameters = null)
     {

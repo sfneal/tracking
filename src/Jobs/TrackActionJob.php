@@ -36,8 +36,8 @@ class TrackActionJob extends Job
     /**
      * Track a user's action.
      *
-     * @param string           $action
-     * @param Model|Collection $model
+     * @param  string  $action
+     * @param  Model|Collection  $model
      */
     public function __construct(string $action, $model)
     {

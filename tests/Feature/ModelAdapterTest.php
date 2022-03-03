@@ -15,7 +15,6 @@ class ModelAdapterTest extends TestCase
      *
      * @param $expected
      * @param $model
-     *
      * @return void
      */
     private function executeAssertions($expected, $model): void

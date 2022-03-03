@@ -19,7 +19,7 @@ class TrackTrafficAction extends Action
     /**
      * TrackTrafficAction constructor.
      *
-     * @param array $tracking
+     * @param  array  $tracking
      */
     public function __construct(array $tracking)
     {

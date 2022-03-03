@@ -46,9 +46,9 @@ class ParseTraffic extends Action
     /**
      * Create a new event instance.
      *
-     * @param Request                   $request
-     * @param Response|RedirectResponse $response
-     * @param string|null               $timestamp
+     * @param  Request  $request
+     * @param  Response|RedirectResponse  $response
+     * @param  string|null  $timestamp
      */
     public function __construct(Request $request, $response, string $timestamp = null)
     {
@@ -154,8 +154,7 @@ class ParseTraffic extends Action
     /**
      * Determine the amount of time taken to return a response.
      *
-     * @param string $timestamp
-     *
+     * @param  string  $timestamp
      * @return float
      */
     private static function getResponseTime(string $timestamp): float
@@ -166,8 +165,7 @@ class ParseTraffic extends Action
     /**
      * Retrieve a traffic visit occurred at timestamp.
      *
-     * @param string $timestamp
-     *
+     * @param  string  $timestamp
      * @return string
      */
     private static function getTimestamp(string $timestamp): string

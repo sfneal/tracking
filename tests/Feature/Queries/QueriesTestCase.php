@@ -42,12 +42,12 @@ class QueriesTestCase extends TestCase implements RequestCreator
     /**
      * Create a Request to be used in test methods.
      *
-     * @param array $headers
-     * @param array $parameters
-     * @param array $cookies
-     * @param array $files
-     * @param array $server
-     * @param null $content
+     * @param  array  $headers
+     * @param  array  $parameters
+     * @param  array  $cookies
+     * @param  array  $files
+     * @param  array  $server
+     * @param  null  $content
      * @return TrackRequest
      */
     public function createRequest(array $headers = [],
@@ -57,7 +57,7 @@ class QueriesTestCase extends TestCase implements RequestCreator
                                      array $server = [],
                                      $content = null): TrackRequest
     {
-        $request = TrackRequest ::create('/', 'GET', $parameters, $cookies, $files, $server, $content);
+        $request = TrackRequest::create('/', 'GET', $parameters, $cookies, $files, $server, $content);
 
         foreach ($headers as $header => $value) {
             $request->headers->set($header, $value);
@@ -69,9 +69,9 @@ class QueriesTestCase extends TestCase implements RequestCreator
     /**
      * Execute Query test assertions.
      *
-     * @param Collection $records
-     * @param Builder $builder
-     * @param string $queryBuilder
+     * @param  Collection  $records
+     * @param  Builder  $builder
+     * @param  string  $queryBuilder
      */
     protected function executeAssertions(Collection $records, Builder $builder, string $queryBuilder)
     {

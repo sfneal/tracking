@@ -86,7 +86,6 @@ abstract class Tracking extends Model
      * Mutate model changes array to remove any dates attributes before display.
      *
      * @param $value
-     *
      * @return array
      */
     public function getModelChangesAttribute($value)

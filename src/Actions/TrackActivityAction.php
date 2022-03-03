@@ -42,12 +42,12 @@ class TrackActivityAction extends Action
     /**
      * Track a user's action.
      *
-     * @param Model       $model
-     * @param string|null $request_token
-     * @param int         $user_id
-     * @param string|null $route
-     * @param array       $model_changes
-     * @param string|null $description
+     * @param  Model  $model
+     * @param  string|null  $request_token
+     * @param  int  $user_id
+     * @param  string|null  $route
+     * @param  array  $model_changes
+     * @param  string|null  $description
      */
     public function __construct(
         Model $model,
