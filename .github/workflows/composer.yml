@@ -1,9 +1,11 @@
-name: composer
+name: Composer
 
-on: [push, pull_request]
+on:
+    push:
+    pull_request:
 
 jobs:
-    test:
+    build:
         runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
@@ -11,8 +13,9 @@ jobs:
                 os: [ubuntu-latest]
                 php: [7.4, 8.0, 8.1]
                 dependency-version: [prefer-lowest, prefer-stable]
+                dev-dependencies: [dev, no-dev]
 
-        name: PHP${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
+        name: PHP ${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.dev-dependencies }}
 
         steps:
             -   name: Checkout code
@@ -24,9 +27,7 @@ jobs:
                     php-version: ${{ matrix.php }}
                     coverage: none
 
-            -   name: Install dependencies
+            -   name: Install Composer Dependencies
                 run: |
-                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+                    composer update --${{ matrix.dev-dependencies }} --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
-            -   name: Execute tests
-                run: composer test
